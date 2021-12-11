@@ -17,7 +17,8 @@ export default class Primitive {
 
     shiftXY(x, y) {
         this.points.forEach(p => {
-
+            p.x += x;
+            p.y += y;
         })
     }
 
