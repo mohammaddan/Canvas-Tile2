@@ -1,6 +1,5 @@
 export default class BaseDrawer {
     constructor(ctx, width, height, xOffet = 0, yOffset = 0) {
-        // super();
         this.ctx = ctx;
         this.width = width;
         this.height = height;
@@ -28,10 +27,10 @@ export default class BaseDrawer {
         return false
     }
 
-    addPointInRows(point) {
+    addPointInRows(point, offsetX = 0) {
         let nextRow = this.rows.find(r => r.height == point.y)
         if (nextRow == null) {
-            this.rows.push({ height: point.y, points: new Set([0]) });
+            this.rows.push({ height: point.y, points: new Set([this.xOffet]) });
             nextRow = this.rows[this.rows.length - 1];
             this.rows = this.rows.sort((a, b) => a.height - b.height)
         }
@@ -62,10 +61,9 @@ export default class BaseDrawer {
                 this.addPointInRows(p)
         })
         if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
-        // this.removeAnyPointsOnShape(this.shapes[this.shapes.length - 1]);
         if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
-        console.log(this.rows)
-        this.drawLastShapeWithAllPoint();
+        // console.log(this.rows)
+        // this.drawLastShapeWithAllPoint();
     }
 
     drawLastShapeWithAllPoint() {
@@ -88,6 +86,8 @@ export default class BaseDrawer {
         // this.ctx.imageSmoothingEnabled = true;
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';
+        this.ctx.strokeRect(50, 50, this.width, this.height);
+
         this.primitives.forEach(shape => shape.draw(this.ctx))
             // this.ctx.translate(0.5, 0.5);
     }

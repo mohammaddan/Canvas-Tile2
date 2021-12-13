@@ -4,7 +4,9 @@ export default class Primitive {
         this.height = height;
         this.padding = padding;
         this.lineWidth = lineWidth;
+        this.drawablePoints = [];
         this.points = [];
+        this.offsetX = 0;
     }
 
     set_line_width(size) {
@@ -20,14 +22,18 @@ export default class Primitive {
             p.x += x;
             p.y += y;
         })
+        this.drawablePoints.forEach(p => {
+            p.x += x;
+            p.y += y;
+        })
     }
 
     draw(ctx) {
         ctx.beginPath();
         ctx.lineWidth = this.lineWidth;
-        let fp = this.points[0];
+        let fp = this.drawablePoints[0];
         ctx.moveTo(fp.x + 50, fp.y + 50);
-        this.points.slice(1).forEach(p => {
+        this.drawablePoints.slice(1).forEach(p => {
             ctx.lineTo(p.x + 50, p.y + 50);
         });
         ctx.lineTo(fp.x + 50, fp.y + 50);
@@ -40,7 +46,6 @@ export default class Primitive {
         let size = this.points.length;
         for (let i = 0; i < size; i++) {
             res += this.isLeft(p, this.points[i], this.points[(i + 1) % size]) ? 1 : -1;
-            // console.log("is left : " + this.isLeft(p, this.points[i], this.points[(i + 1) % size]));
         }
         return res === size;
     }
