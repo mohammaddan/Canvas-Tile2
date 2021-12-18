@@ -1,16 +1,16 @@
 import BaseDrawer from "./Classes/BaseDrawer.js";
 import LozengeMirror from "./Classes/Mirrors/LozengeMirror.js";
 import Lozenge from "./Classes/Primitives/Lozenge.js";
-import SpotSpearMirror from "./Classes/Mirrors/SpotSpearMirror.js";
+import FourSpotSpearMirror from "./Classes/Mirrors/FourSpotSpearMirror.js";
+import FourAndHalfSpotSpearMirror from "./Classes/Mirrors/FourAndHalfSpotSpearMirror.js";
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
-console.log(canvas.clientWidth, canvas.clientHeight)
 canvas.setAttribute('width', '400px');
 canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
-// let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 4);
-let mirror = new SpotSpearMirror(ctx,200,300,4,2)
+// let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
+let mirror = new FourAndHalfSpotSpearMirror(ctx,200,300,4,40,3)
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // body.addEventListener('keyup', () => {

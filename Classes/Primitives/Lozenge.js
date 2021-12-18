@@ -18,7 +18,7 @@ export default class Lozenge extends Primitive {
         return new Lozenge(this.width, this.height, this.padding, this.lineWidth);
     }
 
-    area(drawerWidth, drawerHeight) {
+    area() {
         // if (this.isInDrawerBound(drawerWidth, drawerHeight))
         return this.width * this.height / 2;
         // return this.width * this.height / 4;
@@ -26,7 +26,7 @@ export default class Lozenge extends Primitive {
 
     environment() {
         let edge = Math.sqrt(this.width ^ 2 + this.height ^ 2);
-        // if (this.isInDrawerBound(drawerWidth, drawerHeight)) 
+        // if (this.isInDrawerBound(drawerWidth, drawerHeight))
         return edge * 4;
 
     }

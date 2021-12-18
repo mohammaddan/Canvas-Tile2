@@ -17,7 +17,7 @@ export default class BottomTriangle extends Primitive {
         return new BottomTriangle(this.width, this.height, this.padding, this.lineWidth);
     }
 
-    area(drawerWidth, drawerHeight) {
+    area() {
         return this.width * this.height / 2;
     }
 

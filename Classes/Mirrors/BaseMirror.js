@@ -17,10 +17,9 @@ export default class BaseMirror {
 
     area() {
         let a = 0;
-        let width = this.drawer.width;
-        let height = this.drawer.height;
         this.drawer.primitives.forEach(p => {
-            a += p.area(width, height);
+            a += p.area();
+            console.log(p.area());
         });
         return Math.round(a);
     }
@@ -42,14 +41,14 @@ export default class BaseMirror {
         }
     }
 
-    add2RowLozenge(y,lWidth,lHeight,countX,padding=0){
-        for (let i = 0; i < 2; i++) {
+    addGridOfLozenge(y, lWidth, lHeight, countX, countY, padding=0){
+        for (let i = 0; i < countY; i++) {
             this.drawer.addOneShapeAt(0, lHeight * i+y, new LeftTriangle(lWidth / 2, lHeight, padding));
             this.drawer.addOneRowOfShapes(lWidth / 2, lHeight / 2 + lHeight * i+y,
                 new Lozenge(lWidth, lHeight, padding), countX - 1);
             this.drawer.addOneShapeAt(this.width - lWidth / 2, lHeight * i+y,
                 new RightTriangle(lWidth / 2, lHeight, padding));
-            if (i===0)
+            if (i<countY-1)
                 this.drawer.addOneRowOfShapes(0, lHeight + lHeight * i+y,
                     new Lozenge(lWidth, lHeight, padding), countX);
         }

@@ -16,7 +16,7 @@ export default class RightTriangle extends Primitive {
         return new RightTriangle(this.width, this.height, this.padding, this.lineWidth);
     }
 
-    area(drawerWidth, drawerHeight) {
+    area() {
         return this.width * this.height / 2;
     }
 

@@ -24,7 +24,7 @@ export default class Spear extends Primitive {
         return new Spear(this.width, this.height, this.padding, this.lineWidth);
     }
 
-    area(drawerWidth, drawerHeight) {
+    area() {
         return this.width * this.h1+this.width*this.h2;
     }
 
