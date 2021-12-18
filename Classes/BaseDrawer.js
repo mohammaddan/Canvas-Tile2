@@ -22,7 +22,7 @@ export default class BaseDrawer {
     isOnTheShape(x, y) {
         let sz = this.primitives.length;
         for (let i = 0; i < sz - 1; i++) {
-            if (this.primitives[i].points.some(p => p.x === x && p.y === y)) return true
+            if (this.primitives[i].points.some(p => Math.abs(p.x - x) < .0000001 && Math.abs(p.y - y) < .0000001)) return true
         }
         return false
     }
@@ -30,20 +30,22 @@ export default class BaseDrawer {
     addPointInRows(point, offsetX = 0) {
         let nextRow = this.rows.find(r => r.height == point.y)
         if (nextRow == null) {
-            this.rows.push({ height: point.y, points: new Set([this.xOffet]) });
+            this.rows.push({ height: point.y, points: new Set([offsetX]) });
             nextRow = this.rows[this.rows.length - 1];
             this.rows = this.rows.sort((a, b) => a.height - b.height)
         }
-        nextRow.points.add(point.x)
+        if (offsetX !== point.x) nextRow.points.add(point.x)
     }
 
     addShape(primitive) {
+        console.log([...this.rows]);
+
         let x = [...this.rows[0].points].sort((a, b) => a - b)[0];
         let y = this.rows[0].height;
         this.rows[0].points.forEach((q) => {
             isNaN(q) ? this.rows[0].points.delete(q) : "";
         });
-        while (x + primitive.points[0].x > this.width || this.isInTheShape(primitive, x, y)) {
+        while (x + primitive.width > this.width || this.isInTheShape(primitive, x, y)) {
             this.rows[0].points.delete(x);
             this.rows[0].points.forEach((q) => { isNaN(q) ? this.rows[0].points.delete(q) : ""; });
             if (this.rows[0].points.size === 0) {
@@ -56,14 +58,35 @@ export default class BaseDrawer {
         this.primitives.push(primitive);
         this.rows[0].points.delete(x);
         primitive.points.forEach((p, index) => {
-            if (index && (p.x >= -primitive.width / 2) &&
+            if (index && (p.x >= 0) &&
                 (p.y >= 0) && (p.x < this.width) && !this.isOnTheShape(p.x, p.y))
                 this.addPointInRows(p)
         })
-        if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
-        if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
+        while (this.rows.length && this.rows[0].points.size === 0) {
+            this.rows = this.rows.splice(1);
+        }
+        // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
+        // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
         // console.log(this.rows)
         // this.drawLastShapeWithAllPoint();
+    }
+
+    addOneShapeAt(x, y, primitive) {
+        primitive.shiftXY(x, y);
+        this.primitives.push(primitive);
+    }
+
+    addOneRowOfShapes(x, y, primitive, countX) {
+        for (let i = 0; i < countX; i++) {
+            let temp = primitive.clone();
+            temp.shiftXY(x, y);
+            this.primitives.push(temp);
+            x += temp.width;
+        }
+        // this.addPointInRows({ x: x, y: y }, x);
+        // this.addPointInRows({ x: 0, y: y + primitive.height });
+        // let r0 = this.rows.findIndex(r => r.height === 0);
+        // if (r0 >= 0) this.rows = this.rows.splice(1);
     }
 
     drawLastShapeWithAllPoint() {
@@ -86,6 +109,7 @@ export default class BaseDrawer {
         // this.ctx.imageSmoothingEnabled = true;
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';
+        this.ctx.clearRect(0, 0, this.width + 100, this.height + 100);
         this.ctx.strokeRect(50, 50, this.width, this.height);
 
         this.primitives.forEach(shape => shape.draw(this.ctx))

@@ -42,15 +42,19 @@ export default class Primitive {
     }
 
     isInside(p) {
-        let res = 0;
         let size = this.points.length;
         for (let i = 0; i < size; i++) {
-            res += this.isLeft(p, this.points[i], this.points[(i + 1) % size]) ? 1 : -1;
+            if (Math.abs(p.x - this.points[i].x) < .00000001 && Math.abs(p.y - this.points[i].y) < .00000001) return false;
+            if (!this.isLeft(p, this.points[i], this.points[(i + 1) % size])) return false;
         }
-        return res === size;
+        return true;
     }
 
     isLeft(p, p1, p2) {
-        return ((p2.x - p1.x) * (p.y - p1.y) - (p2.y - p1.y) * (p.x - p1.x)) > 0;
+        return (p2.x - p1.x) * (p.y - p1.y) - (p2.y - p1.y) * (p.x - p1.x) > 0;
+    }
+
+    isInDrawerBound(width, height) {
+        return !this.points.some(p => p.x < 0 || p.x > width || p.y < 0 || p.y > height);
     }
 }
