@@ -30,13 +30,13 @@ export default class Primitive {
 
     draw(ctx) {
         ctx.beginPath();
-        ctx.lineWidth = this.lineWidth;
+        ctx.lineWidth =1;// this.lineWidth;
         let fp = this.drawablePoints[0];
-        ctx.moveTo(fp.x + 50, fp.y + 50);
+        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.drawablePoints.slice(1).forEach(p => {
-            ctx.lineTo(p.x + 50, p.y + 50);
+            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
         });
-        ctx.lineTo(fp.x + 50, fp.y + 50);
+        // ctx.lineTo(fp.x + 50, fp.y + 50);
         ctx.closePath();
         ctx.stroke();
     }

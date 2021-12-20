@@ -1,12 +1,12 @@
 export default class BaseDrawer {
-    constructor(ctx, width, height, xOffet = 0, yOffset = 0) {
+    constructor(ctx, width, height, xOffset = 0, yOffset = 0) {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
         this.primitives = [];
-        this.rows = [{ height: 0, points: new Set([0]) }];
+        this.rows = [{ height: yOffset, points: new Set([0]) }];
         this.row = this.x = this.y = 0;
-        this.xOffet = xOffet;
+        this.xOffset = xOffset;
         this.yOffset = yOffset;
     }
 
@@ -28,8 +28,8 @@ export default class BaseDrawer {
     }
 
     addPointInRows(point, offsetX = 0) {
-        let nextRow = this.rows.find(r => r.height == point.y)
-        if (nextRow == null) {
+        let nextRow = this.rows.find(r => r.height === point.y)
+        if (!nextRow) {
             this.rows.push({ height: point.y, points: new Set([offsetX]) });
             nextRow = this.rows[this.rows.length - 1];
             this.rows = this.rows.sort((a, b) => a.height - b.height)
@@ -38,14 +38,14 @@ export default class BaseDrawer {
     }
 
     addShape(primitive) {
-        console.log([...this.rows]);
-
+        // console.log([...this.rows])
         let x = [...this.rows[0].points].sort((a, b) => a - b)[0];
         let y = this.rows[0].height;
         this.rows[0].points.forEach((q) => {
             isNaN(q) ? this.rows[0].points.delete(q) : "";
         });
         while (x + primitive.width > this.width || this.isInTheShape(primitive, x, y)) {
+            // console.log(x,y,this.isInTheShape(primitive, x, y),primitive);
             this.rows[0].points.delete(x);
             this.rows[0].points.forEach((q) => { isNaN(q) ? this.rows[0].points.delete(q) : ""; });
             if (this.rows[0].points.size === 0) {
@@ -68,7 +68,7 @@ export default class BaseDrawer {
         // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
         // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
         // console.log(this.rows)
-        // this.drawLastShapeWithAllPoint();
+        this.drawLastShapeWithAllPoint();
     }
 
     addOneShapeAt(x, y, primitive) {

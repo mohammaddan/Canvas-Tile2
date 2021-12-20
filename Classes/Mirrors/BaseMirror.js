@@ -4,11 +4,11 @@ import Lozenge from "../Primitives/Lozenge.js";
 import RightTriangle from "../Primitives/RightTriangle.js";
 
 export default class BaseMirror {
-    constructor(ctx, width, height) {
+    constructor(ctx, width, height,yOffset=0) {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
-        this.drawer = new BaseDrawer(ctx, width, height);
+        this.drawer = new BaseDrawer(ctx, width, height,0,yOffset);
     }
 
     draw() {
