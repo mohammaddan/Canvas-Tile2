@@ -16,15 +16,23 @@ export default class BaseMirror {
     }
 
     area() {
-        let a = 0;
-        this.drawer.primitives.forEach(p => {
-            a += p.area();
-            console.log(p.area());
-        });
-        return Math.round(a);
+        // let a = 0;
+        // this.drawer.primitives.forEach(p => {
+        //     a += p.area();
+        //     // console.log(p.area());
+        // });
+        // return Math.round(a);
+        return Math.round(this.drawer.primitives.reduce((prev, next) => prev + next.area(), 0));
+
     }
 
     environment() {
+        // let a = 0;
+        // this.drawer.primitives.forEach(p => {
+        //     a += p.environment();
+        //     console.log(p.environment());
+        // });
+        // return Math.round(a);
         return Math.round(this.drawer.primitives.reduce((prev, next) => prev + next.environment(), 0));
     }
 

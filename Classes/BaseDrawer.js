@@ -50,6 +50,7 @@ export default class BaseDrawer {
             this.rows[0].points.forEach((q) => { isNaN(q) ? this.rows[0].points.delete(q) : ""; });
             if (this.rows[0].points.size === 0) {
                 this.rows = this.rows.splice(1);
+                // if(this.rows.length===0) return ;
                 y = this.rows[0].height;
             }
             x = [...this.rows[0].points].sort((a, b) => a - b)[0];
