@@ -30,6 +30,10 @@ export default class Primitive {
 
     draw(ctx) {
         ctx.beginPath();
+        let my_gradient = ctx.createLinearGradient(0, 0, 100, 400);
+        my_gradient.addColorStop(0, "#ccc");
+        my_gradient.addColorStop(1, "#f5f5f5");
+        ctx.fillStyle = my_gradient;
         ctx.lineWidth =1;// this.lineWidth;
         let fp = this.drawablePoints[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
@@ -38,6 +42,7 @@ export default class Primitive {
         });
         // ctx.lineTo(fp.x + 50, fp.y + 50);
         ctx.closePath();
+        ctx.fill();
         ctx.stroke();
     }
 

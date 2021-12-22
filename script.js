@@ -9,6 +9,7 @@ import MiddleFourSpotSpearMirror from "./Classes/Mirrors/MiddleFourSpotSpearMirr
 import SpearMirror from "./Classes/Mirrors/SpearMirror.js";
 import NineSpotSpearMirror from "./Classes/Mirrors/NineSpotSpearMirror.js";
 import SquareMirror from "./Classes/Mirrors/SquareMirror.js";
+import TwoSpotSpearMirror from "./Classes/Mirrors/TwoSpotSpearMirror.js";
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
@@ -17,7 +18,7 @@ canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
-let mirror = new SquareMirror(ctx,200,300,5,5,2)
+let mirror = new TwoSpotSpearMirror(ctx,200,300,5,2)
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // body.addEventListener('keyup', () => {

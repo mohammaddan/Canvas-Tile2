@@ -111,7 +111,7 @@ export default class BaseDrawer {
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';
         this.ctx.clearRect(0, 0, this.width + 100, this.height + 100);
-        this.ctx.strokeRect(50, 50, this.width, this.height);
+        // this.ctx.strokeRect(50, 50, this.width, this.height);
 
         this.primitives.forEach(shape => shape.draw(this.ctx))
             // this.ctx.translate(0.5, 0.5);
