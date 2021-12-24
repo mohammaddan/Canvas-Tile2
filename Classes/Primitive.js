@@ -32,7 +32,8 @@ export default class Primitive {
         ctx.beginPath();
         let my_gradient = ctx.createLinearGradient(0, 0, 100, 400);
         my_gradient.addColorStop(0, "#ccc");
-        my_gradient.addColorStop(1, "#f5f5f5");
+        my_gradient.addColorStop(0.7, "#fafafa");
+        my_gradient.addColorStop(1, "#ddd");
         ctx.fillStyle = my_gradient;
         ctx.lineWidth =1;// this.lineWidth;
         let fp = this.drawablePoints[0];

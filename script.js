@@ -18,7 +18,7 @@ canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
-let mirror = new TwoSpotSpearMirror(ctx,200,300,5,2)
+let mirror = new NineSpotSpearMirror(ctx,200,300,5,3)
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // body.addEventListener('keyup', () => {
