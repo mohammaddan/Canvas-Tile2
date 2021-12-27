@@ -36,6 +36,7 @@ export default class Primitive {
         my_gradient.addColorStop(1, "#ddd");
         ctx.fillStyle = my_gradient;
         ctx.lineWidth =1;// this.lineWidth;
+        ctx.setLineDash([]);
         let fp = this.drawablePoints[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.drawablePoints.slice(1).forEach(p => {
@@ -44,6 +45,14 @@ export default class Primitive {
         // ctx.lineTo(fp.x + 50, fp.y + 50);
         ctx.closePath();
         ctx.fill();
+        ctx.stroke();
+        ctx.setLineDash([3,3]);
+        fp = this.points[0];
+        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
+        this.points.slice(1).forEach(p => {
+            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
+        });
+        ctx.closePath();
         ctx.stroke();
     }
 
