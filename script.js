@@ -11,6 +11,8 @@ import NineSpotSpearMirror from "./Classes/Mirrors/NineSpotSpearMirror.js";
 import SquareMirror from "./Classes/Mirrors/SquareMirror.js";
 import TwoSpotSpearMirror from "./Classes/Mirrors/TwoSpotSpearMirror.js";
 import BladeMirror from "./Classes/Mirrors/BladeMirror.js";
+import BrickMirror from "./Classes/Mirrors/BrickMirror.js";
+import Square from "./Classes/Primitives/Square.js";
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
@@ -19,9 +21,10 @@ canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
-let mirror = new BladeMirror(ctx,200,300,5,60,3)
+let mirror = new BrickMirror(ctx,200,300,4,6,3)
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+
 // body.addEventListener('keyup', () => {
 //     cx = (cx + 1) % 10;
 //     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
@@ -30,7 +33,11 @@ document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' 
 
 // let drawer = new BaseDrawer(ctx, 300, 210, 0);
 //
-// let shapes = Array.from({ length: 45 }, () => new CutedLozenge(50,40,20,0,1,true))
+// let shapes = Array.from({ length: 45 }, (a,i) => {
+//     console.log(i)
+//     if(i%12===0 || i%12===6) return new Square(25,40)
+//     return new Square(50,40)
+// })
 //
 // let stop = false;
 // body.addEventListener('keyup', () => {

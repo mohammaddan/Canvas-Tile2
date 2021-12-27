@@ -29,31 +29,39 @@ export default class Primitive {
     }
 
     draw(ctx) {
+
         ctx.beginPath();
-        let my_gradient = ctx.createLinearGradient(0, 0, 100, 400);
-        my_gradient.addColorStop(0, "#ccc");
-        my_gradient.addColorStop(0.7, "#fafafa");
-        my_gradient.addColorStop(1, "#ddd");
-        ctx.fillStyle = my_gradient;
-        ctx.lineWidth =1;// this.lineWidth;
-        ctx.setLineDash([]);
-        let fp = this.drawablePoints[0];
-        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
-        this.drawablePoints.slice(1).forEach(p => {
-            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
-        });
-        // ctx.lineTo(fp.x + 50, fp.y + 50);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
+        ctx.strokeStyle='#bbb';
+        ctx.fillStyle='#eee'
         ctx.setLineDash([3,3]);
-        fp = this.points[0];
+        let fp = this.points[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.points.slice(1).forEach(p => {
             ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
         });
         ctx.closePath();
+        // ctx.fill();
         ctx.stroke();
+
+        ctx.beginPath();
+        let my_gradient = ctx.createLinearGradient(0, 0, 100, 400);
+        my_gradient.addColorStop(0, "#ccc");
+        my_gradient.addColorStop(0.55, "#fafafa");
+        my_gradient.addColorStop(0.7, "#fafafa");
+        my_gradient.addColorStop(1, "#ddd");
+        ctx.fillStyle = my_gradient;
+        ctx.lineWidth =1;// this.lineWidth;
+        ctx.setLineDash([]);
+        ctx.strokeStyle='#ccc';
+        fp = this.drawablePoints[0];
+        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
+        this.drawablePoints.slice(1).forEach(p => {
+            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
     }
 
     isInside(p) {
