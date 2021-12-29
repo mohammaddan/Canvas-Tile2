@@ -1,22 +1,24 @@
 import Primitive from "../Primitive.js";
 
-export default class Blade extends Primitive {
-    constructor(width, height, padding = 0, lineWidth = 1,type='left') {
+export default class HalfRhombus extends Primitive {
+    constructor(width, height, padding = 0, lineWidth = 1,type='left',angle=null) {
         super(width, height, padding, lineWidth);
-        this.h1=width;
-        this.h2=height-2*this.h1;
-        this.type=type
+
+        this.h1 = !angle ? width : Math.tan(Math.PI * angle/180)*width;
+
+        this.angle=angle;
+        this.type=type;
+        this.h2=height-this.h1;
         if(type==='left'){
             this.points.push({ x: 0, y: 0 });
-            this.points.push({ x: width, y: this.h1 });
-            this.points.push({ x: width, y: height-this.h1 });
-            this.points.push({ x: 0, y: height });
+            this.points.push({ x: width, y: 0 });
+            this.points.push({ x: width, y: height });
+            this.points.push({ x: 0, y: height-this.h1 });
 
-            this.drawablePoints.push({ x: padding, y: padding*2 });
-            this.drawablePoints.push({ x: width-padding, y: this.h1 +padding*0.5});
-            this.drawablePoints.push({ x: width-padding, y: height-this.h1 });
-            this.drawablePoints.push({ x: padding, y: height-padding*2 });
-
+            this.drawablePoints.push({ x: padding, y: padding });
+            this.drawablePoints.push({ x: width-padding, y: this.h1+padding });
+            this.drawablePoints.push({ x: width-padding, y: height-padding });
+            this.drawablePoints.push({ x: 0, y: height-this.h1-padding });
         }else{
             this.points.push({ x: 0, y: 0 });
             this.points.push({ x: width, y: -this.h1 });
@@ -31,11 +33,11 @@ export default class Blade extends Primitive {
     }
 
     clone() {
-        return new Blade(this.width, this.height, this.padding, this.lineWidth,this.type);
+        return new Rhombus(this.width, this.height, this.padding, this.lineWidth,this.type,this.angle);
     }
 
     area() {
-        return this.width * this.h1+this.width*this.h2;
+        return this.h2*this.width;
     }
 
     environment() {

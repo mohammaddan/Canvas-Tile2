@@ -69,7 +69,7 @@ export default class BaseDrawer {
         // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
         // if (this.rows[0].points.size === 0) this.rows = this.rows.splice(1);
         // console.log(this.rows)
-        this.drawLastShapeWithAllPoint();
+        // this.drawLastShapeWithAllPoint();
     }
 
     addOneShapeAt(x, y, primitive) {

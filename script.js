@@ -13,6 +13,7 @@ import TwoSpotSpearMirror from "./Classes/Mirrors/TwoSpotSpearMirror.js";
 import BladeMirror from "./Classes/Mirrors/BladeMirror.js";
 import BrickMirror from "./Classes/Mirrors/BrickMirror.js";
 import Square from "./Classes/Primitives/Square.js";
+import RhombusMirror from "./Classes/Mirrors/RhombusMirror.js";
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
@@ -21,7 +22,7 @@ canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
-let mirror = new BrickMirror(ctx,200,300,4,6,3)
+let mirror = new RhombusMirror(ctx,200,300,8,3,null,4);
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 
