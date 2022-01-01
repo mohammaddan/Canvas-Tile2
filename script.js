@@ -21,8 +21,10 @@ canvas.setAttribute('width', '400px');
 canvas.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
-// let mirror = new LozengeMirror(ctx, 300, 200, 6, 4, 2);
-let mirror = new RhombusMirror(ctx,200,300,8,3,null,4);
+// let mirror = new LozengeMirror(ctx, 300, 200,{countX:6,countY:4}, 2);
+// let mirror=new BladeMirror(ctx,200,300,{countX:5,upperBladeHeight:40},2);
+let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
+// let mirror = new NineSpotSpearMirror(ctx,200,300,5,4);
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 

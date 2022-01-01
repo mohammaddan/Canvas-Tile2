@@ -33,7 +33,7 @@ export default class Primitive {
         ctx.beginPath();
         ctx.strokeStyle='#bbb';
         ctx.fillStyle='#eee'
-        ctx.setLineDash([3,3]);
+        // ctx.setLineDash([3,3]);
         let fp = this.points[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.points.slice(1).forEach(p => {
@@ -44,9 +44,10 @@ export default class Primitive {
         ctx.stroke();
 
         ctx.beginPath();
-        let my_gradient = ctx.createLinearGradient(0, 0, 100, 400);
+        let my_gradient = ctx.createLinearGradient(0, 0, 200, 400);
         my_gradient.addColorStop(0, "#ccc");
-        my_gradient.addColorStop(0.55, "#fafafa");
+        my_gradient.addColorStop(0.3, "#fafafa");
+        my_gradient.addColorStop(0.5, "#ccc");
         my_gradient.addColorStop(0.7, "#fafafa");
         my_gradient.addColorStop(1, "#ddd");
         ctx.fillStyle = my_gradient;

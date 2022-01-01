@@ -5,15 +5,27 @@ import RightTriangle from "../Primitives/RightTriangle.js";
 import UpperTriangle from "../Primitives/UpperTriangle.js";
 import BaseMirror from "./BaseMirror.js";
 
+
+/**
+ * params is object that has countX and countY
+ */
 export default class LozengeMirror extends BaseMirror {
-    constructor(ctx, width, height, countX, countY, padding = 0) {
+    /**
+     * params has countX and countY
+     * @param ctx
+     * @param width
+     * @param height
+     * @param {{countX,countY}} params
+     * @param padding
+     */
+    constructor(ctx, width, height, params, padding = 0) {
         super(ctx, width, height);
 
-        this.lozengeWidth = width / countX;
-        this.lozengeHeight = height / countY;
-        this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), countX);
-        this.addGridOfLozenge(0,this.lozengeWidth,this.lozengeHeight,countX,countY,padding);
-        this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2, new BottomTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), countX);
+        this.lozengeWidth = width / params.countX;
+        this.lozengeHeight = height / params.countY;
+        this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
+        this.addGridOfLozenge(0,this.lozengeWidth,this.lozengeHeight,params.countX,params.countY,padding);
+        this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2, new BottomTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
 
         // for (let i = 0; i < countY; i++) {
         //     this.drawer.addOneShapeAt(0, this.lozengeHeight * i, new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, padding));
