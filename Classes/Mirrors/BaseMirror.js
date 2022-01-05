@@ -36,18 +36,11 @@ export default class BaseMirror {
         return Math.round(this.drawer.primitives.reduce((prev, next) => prev + next.environment(), 0));
     }
 
-    parameters(){
-        return [
-            {value:'countX',label:'تعداد تکرار در عرض'},
-            {value:'countY',label:'تعداد تکرار در ارتفاع'},
-        ]
-    }
-
-    limits(){
-        return {
-            countX:null,countY:null
-        }
-    }
+    // static parameters(){
+    // }
+    //
+    // static limits(){
+    // }
 
     addGridOfLozenge(y, lWidth, lHeight, countX, countY, padding=0){
         for (let i = 0; i < countY; i++) {

@@ -23,8 +23,17 @@ let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200,{countX:6,countY:4}, 2);
 // let mirror=new BladeMirror(ctx,200,300,{countX:5,upperBladeHeight:40},2);
-let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
+// let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
 // let mirror = new NineSpotSpearMirror(ctx,200,300,5,4);
+let inParams=BladeMirror.parameters(200,300);
+console.log(inParams)
+let params={}
+inParams.forEach(p=>{
+    p.value=p.default;// prompt(p.label,p.default);
+    params[p.name]=parseFloat(p.value);
+})
+console.log(params)
+let mirror = new BladeMirror(ctx,200,300,params,4);
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 
