@@ -33,7 +33,7 @@ inParams.forEach(p=>{
     params[p.name]=parseFloat(p.value);
 })
 console.log(params)
-let mirror = new BladeMirror(ctx,200,300,params,4);
+let mirror = new BladeMirror(ctx,200,300,params,2);
 mirror.draw();
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 
