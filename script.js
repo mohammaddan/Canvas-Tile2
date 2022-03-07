@@ -14,6 +14,10 @@ import BladeMirror from "./Classes/Mirrors/BladeMirror.js";
 import BrickMirror from "./Classes/Mirrors/BrickMirror.js";
 import Square from "./Classes/Primitives/Square.js";
 import RhombusMirror from "./Classes/Mirrors/RhombusMirror.js";
+import Blade from "./Classes/Primitives/Blade.js";
+
+
+
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext("2d");
@@ -25,23 +29,25 @@ let cx = 0;
 // let mirror=new BladeMirror(ctx,200,300,{countX:5,upperBladeHeight:40},2);
 // let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
 // let mirror = new NineSpotSpearMirror(ctx,200,300,5,4);
-let inParams=BladeMirror.parameters(200,300);
+let inParams = BladeMirror.parameters(200, 300);
 console.log(inParams)
-let params={}
-inParams.forEach(p=>{
-    p.value=p.default;// prompt(p.label,p.default);
-    params[p.name]=parseFloat(p.value);
+let params = {}
+inParams.forEach(p => {
+    p.value = p.default; // prompt(p.label,p.default);
+    params[p.name] = parseFloat(p.value);
 })
 console.log(params)
-let mirror = new BladeMirror(ctx,200,300,params,2);
-mirror.draw();
-document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
-
-// body.addEventListener('keyup', () => {
-//     cx = (cx + 1) % 10;
-//     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
-//     mirror.draw();
-// });
+    // let mirror = new BladeMirror(ctx,200,300,params,2);
+    // mirror.draw();
+    // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+let loz = new Blade(20, 100);
+// loz.draw(ctx);
+loz.drawMeasures(ctx, 50.5, 80.5, 20, 60)
+    // body.addEventListener('keyup', () => {
+    //     cx = (cx + 1) % 10;
+    //     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
+    //     mirror.draw();
+    // });
 
 // let drawer = new BaseDrawer(ctx, 300, 210, 0);
 //

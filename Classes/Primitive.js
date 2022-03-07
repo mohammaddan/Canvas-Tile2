@@ -31,9 +31,9 @@ export default class Primitive {
     draw(ctx) {
 
         ctx.beginPath();
-        ctx.strokeStyle='#bbb';
-        ctx.fillStyle='#eee'
-        // ctx.setLineDash([3,3]);
+        ctx.strokeStyle = '#bbb';
+        ctx.fillStyle = '#eee'
+            // ctx.setLineDash([3,3]);
         let fp = this.points[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.points.slice(1).forEach(p => {
@@ -51,9 +51,9 @@ export default class Primitive {
         my_gradient.addColorStop(0.7, "#fafafa");
         my_gradient.addColorStop(1, "#ddd");
         ctx.fillStyle = my_gradient;
-        ctx.lineWidth =1;// this.lineWidth;
+        ctx.lineWidth = 1; // this.lineWidth;
         ctx.setLineDash([]);
-        ctx.strokeStyle='#ccc';
+        ctx.strokeStyle = '#ccc';
         fp = this.drawablePoints[0];
         ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
         this.drawablePoints.slice(1).forEach(p => {
@@ -80,5 +80,37 @@ export default class Primitive {
 
     isInDrawerBound(width, height) {
         return !this.points.some(p => p.x < 0 || p.x > width || p.y < 0 || p.y > height);
+    }
+
+    measureLine(ctx, x1, y1, x2, y2, dx, dy, label) {
+        let t = Math.atan((x2 - x1) / (y2 - y1));
+        ctx.strokeStyle = '#fcc';
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x1 + dx * 1.1, y1 + dy * 1.1)
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 + dx * 1.1, y2 + dy * 1.1)
+        ctx.moveTo(x1 + dx, y1 + dy)
+        ctx.lineTo(x2 + dx, y2 + dy)
+        ctx.closePath();
+        ctx.stroke();
+        ctx.strokeStyle = '#f00';
+        ctx.fillStyle = '#f00';
+        ctx.beginPath();
+        ctx.lineTo(x2 + dx + 5 * Math.cos(t + Math.PI / 4), y2 + dy - 5 * Math.sin(t + Math.PI / 4))
+        ctx.lineTo(x2 + dx + 5 * Math.cos(t + 3 * Math.PI / 4), y2 + dy - 5 * Math.sin(t + 3 * Math.PI / 4))
+        ctx.lineTo(x2 + dx, y2 + dy)
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill()
+        ctx.beginPath();
+        ctx.moveTo(x1 + dx, y1 + dy);
+        ctx.lineTo(x1 + dx - 5 * Math.cos(t + Math.PI / 4), y1 + dy + 5 * Math.sin(t + Math.PI / 4))
+        ctx.lineTo(x1 + dx - 5 * Math.cos(t + 3 * Math.PI / 4), y1 + dy + 5 * Math.sin(t + 3 * Math.PI / 4))
+        ctx.lineTo(x1 + dx, y1 + dy)
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill()
+        ctx.fillText(label, (x1 + x2) / 2 + dx * 1.1, (y1 + y2) / 2 + dy * 1.1);
     }
 }

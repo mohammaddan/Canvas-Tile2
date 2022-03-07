@@ -30,4 +30,26 @@ export default class Lozenge extends Primitive {
         return edge * 4;
 
     }
+
+    drawMeasures(ctx, offsetX, offsetY, n, size) {
+        let points = [];
+        let raio = this.width / this.height;
+        this.points.forEach(p => {
+            points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
+        })
+        this.measureLine(ctx, points[1].x, points[1].y, points[3].x, points[3].y, size / 2 + 10, 0, this.height)
+        this.measureLine(ctx, points[0].x, points[0].y, points[2].x, points[2].y, 0, -(size / raio) / 2 - 10, this.width)
+        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -size / 3, size / 3, Math.sqrt(this.width ** 2 + this.height ** 2).toFixed(1))
+        ctx.beginPath();
+        ctx.strokeStyle = '#000';
+        let fp = points[0];
+        ctx.moveTo(Math.floor(fp.x), Math.floor(fp.y));
+        points.slice(1).forEach(p => {
+            ctx.lineTo(Math.floor(p.x), Math.floor(p.y));
+        });
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fillStyle = '#555';
+        ctx.fillText('n=' + n, points[0].x + size / 3, points[0].y + 3)
+    }
 }
