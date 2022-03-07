@@ -15,6 +15,8 @@ import BrickMirror from "./Classes/Mirrors/BrickMirror.js";
 import Square from "./Classes/Primitives/Square.js";
 import RhombusMirror from "./Classes/Mirrors/RhombusMirror.js";
 import Blade from "./Classes/Primitives/Blade.js";
+import BottomSpear from "./Classes/Primitives/BottomSpear.js";
+import BottomTriangle from "./Classes/Primitives/BottomTriangle.js";
 
 
 
@@ -40,9 +42,9 @@ console.log(params)
     // let mirror = new BladeMirror(ctx,200,300,params,2);
     // mirror.draw();
     // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
-let loz = new Blade(20, 100);
+let loz = new CutedLozenge(50, 30);
 // loz.draw(ctx);
-loz.drawMeasures(ctx, 50.5, 80.5, 20, 60)
+loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
     // body.addEventListener('keyup', () => {
     //     cx = (cx + 1) % 10;
     //     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);

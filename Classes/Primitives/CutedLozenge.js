@@ -10,34 +10,34 @@ export default class CutedLozenge extends Primitive {
         this.horizontal = horizontal;
         if (horizontal) {
             this.edge = Math.sqrt(this.w2 * this.w2 + this.height * this.height / 4);
-            this.points.push({x: 0, y: 0});
-            this.points.push({x: this.w2, y: -height / 2});
-            this.points.push({x: this.w2 + squareWidth, y: -height / 2});
-            this.points.push({x: width, y: 0});
-            this.points.push({x: this.w2 + squareWidth, y: height / 2});
-            this.points.push({x: this.w2, y: height / 2});
+            this.points.push({ x: 0, y: 0 });
+            this.points.push({ x: this.w2, y: -height / 2 });
+            this.points.push({ x: this.w2 + squareWidth, y: -height / 2 });
+            this.points.push({ x: width, y: 0 });
+            this.points.push({ x: this.w2 + squareWidth, y: height / 2 });
+            this.points.push({ x: this.w2, y: height / 2 });
 
-            this.drawablePoints.push({x: padding, y: 0});
-            this.drawablePoints.push({x: this.w2, y: -height / 2 + padding});
-            this.drawablePoints.push({x: this.w2 + squareWidth, y: -height / 2 + padding});
-            this.drawablePoints.push({x: width - padding, y: 0});
-            this.drawablePoints.push({x: this.w2 + squareWidth, y: height / 2 - padding});
-            this.drawablePoints.push({x: this.w2, y: height / 2 - padding});
+            this.drawablePoints.push({ x: padding, y: 0 });
+            this.drawablePoints.push({ x: this.w2, y: -height / 2 + padding });
+            this.drawablePoints.push({ x: this.w2 + squareWidth, y: -height / 2 + padding });
+            this.drawablePoints.push({ x: width - padding, y: 0 });
+            this.drawablePoints.push({ x: this.w2 + squareWidth, y: height / 2 - padding });
+            this.drawablePoints.push({ x: this.w2, y: height / 2 - padding });
         } else {
             this.edge = Math.sqrt(this.h2 * this.h2 + this.width * this.width / 4)
-            this.points.push({x: 0, y: 0});
-            this.points.push({x: width / 2, y: -this.h2});
-            this.points.push({x: width, y: 0});
-            this.points.push({x: width, y: this.h1 * 2});
-            this.points.push({x: width / 2, y: this.h1 * 2 + this.h2});
-            this.points.push({x: 0, y: this.h1 * 2});
+            this.points.push({ x: 0, y: 0 });
+            this.points.push({ x: width / 2, y: -this.h2 });
+            this.points.push({ x: width, y: 0 });
+            this.points.push({ x: width, y: this.h1 * 2 });
+            this.points.push({ x: width / 2, y: this.h1 * 2 + this.h2 });
+            this.points.push({ x: 0, y: this.h1 * 2 });
 
-            this.drawablePoints.push({x: padding, y: 0});
-            this.drawablePoints.push({x: width / 2, y: -this.h2 + padding});
-            this.drawablePoints.push({x: width - padding, y: 0});
-            this.drawablePoints.push({x: width - padding, y: this.h1 * 2});
-            this.drawablePoints.push({x: width / 2, y: this.h1 * 2 + this.h2 - padding});
-            this.drawablePoints.push({x: padding, y: this.h1 * 2});
+            this.drawablePoints.push({ x: padding, y: 0 });
+            this.drawablePoints.push({ x: width / 2, y: -this.h2 + padding });
+            this.drawablePoints.push({ x: width - padding, y: 0 });
+            this.drawablePoints.push({ x: width - padding, y: this.h1 * 2 });
+            this.drawablePoints.push({ x: width / 2, y: this.h1 * 2 + this.h2 - padding });
+            this.drawablePoints.push({ x: padding, y: this.h1 * 2 });
         }
     }
 
@@ -53,7 +53,31 @@ export default class CutedLozenge extends Primitive {
     }
 
     environment() {
-        return this.edge * 4 +2*this.squareWidth;
+        return this.edge * 4 + 2 * this.squareWidth;
+    }
 
+
+    drawMeasures(ctx, offsetX, offsetY, n, size) {
+        let points = [];
+        let raio = this.width / this.height;
+        let t = Math.sqrt(2 * this.w1 ** 2)
+        this.points.forEach(p => {
+            points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
+        })
+        this.measureLine(ctx, points[1].x, points[1].y, points[5].x, points[5].y, -20 - this.w1 * size / this.width, 0, this.height)
+        this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 0, -15, this.w1)
+        this.measureLine(ctx, points[2].x, points[2].y, points[3].x, points[3].y, 15, -15, t.toFixed(1))
+        this.measureLine(ctx, points[3].x, points[3].y, points[0].x, points[0].y, 0, this.height + 15, this.width)
+        ctx.beginPath();
+        ctx.strokeStyle = '#000';
+        let fp = points[0];
+        ctx.moveTo(Math.floor(fp.x), Math.floor(fp.y));
+        points.slice(1).forEach(p => {
+            ctx.lineTo(Math.floor(p.x), Math.floor(p.y));
+        });
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fillStyle = '#555';
+        ctx.fillText('n=' + n, points[1].x, (points[1].y + points[4].y) / 2)
     }
 }
