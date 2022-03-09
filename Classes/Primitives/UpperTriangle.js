@@ -35,8 +35,6 @@ export default class UpperTriangle extends Primitive {
         this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -10, this.width)
         this.measureLine(ctx, points[0].x, points[0].y, points[0].x, points[2].y, -10, 0, this.height)
         this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 10, 10, t.toFixed(1))
-            // this.measureLine(ctx, points[1].x, points[1].y, points[1].x, points[3].y, 15, 0, this.height)
-            // this.measureLine(ctx, points[4].x, points[4].y, points[3].x, points[3].y, -15, 15, t.toFixed(1))
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

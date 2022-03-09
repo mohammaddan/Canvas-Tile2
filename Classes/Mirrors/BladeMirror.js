@@ -19,64 +19,52 @@ export default class BladeMirror extends BaseMirror {
         super(ctx, width, height);
 
         this.bladeWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
-        this.bladeHeight= height - 2* params.upperBladeHeight;
-        for(let i=0;i<params.countX;i++){
-            this.drawer.addOneShapeAt(i*this.bladeWidth,0,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'top-left'))
-            this.drawer.addOneShapeAt((i+0.5)*this.bladeWidth,0,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'top-right'))
+        this.bladeHeight = height - 2 * params.upperBladeHeight;
+        this.padding = padding;
+        for (let i = 0; i < params.countX; i++) {
+            this.drawer.addOneShapeAt(i * this.bladeWidth, 0, new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, padding, 1, 'top-left'))
+            this.drawer.addOneShapeAt((i + 0.5) * this.bladeWidth, 0, new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, padding, 1, 'top-right'))
         }
-        this.drawer.addOneRowOfShapes(0,params.upperBladeHeight, new Lozenge(this.bladeWidth, this.bladeWidth , padding), params.countX);
-        for(let i=0;i<params.countX;i++){
-            this.drawer.addOneShapeAt(i*this.bladeWidth,params.upperBladeHeight,new Blade(this.bladeWidth/2,this.bladeHeight,padding,1,'left'))
-            this.drawer.addOneShapeAt((i+0.5)*this.bladeWidth,params.upperBladeHeight+this.bladeWidth*0.5,new Blade(this.bladeWidth/2,this.bladeHeight,padding,1,'right'))
+        this.drawer.addOneRowOfShapes(0, params.upperBladeHeight, new Lozenge(this.bladeWidth, this.bladeWidth, padding), params.countX);
+        for (let i = 0; i < params.countX; i++) {
+            this.drawer.addOneShapeAt(i * this.bladeWidth, params.upperBladeHeight, new Blade(this.bladeWidth / 2, this.bladeHeight, padding, 1, 'left'))
+            this.drawer.addOneShapeAt((i + 0.5) * this.bladeWidth, params.upperBladeHeight + this.bladeWidth * 0.5, new Blade(this.bladeWidth / 2, this.bladeHeight, padding, 1, 'right'))
         }
-        this.drawer.addOneRowOfShapes(0, params.upperBladeHeight+this.bladeHeight, new Lozenge(this.bladeWidth, this.bladeWidth , padding), params.countX);
-        for(let i=0;i<params.countX;i++){
-            this.drawer.addOneShapeAt(i*this.bladeWidth,height-params.upperBladeHeight,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'bottom-left'))
-            this.drawer.addOneShapeAt((i+0.5)*this.bladeWidth,height-params.upperBladeHeight+this.bladeWidth/2,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'bottom-right'))
-            // this.drawer.addOneShapeAt((i+0.5)*this.bladeWidth,0,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'right'))
+        this.drawer.addOneRowOfShapes(0, params.upperBladeHeight + this.bladeHeight, new Lozenge(this.bladeWidth, this.bladeWidth, padding), params.countX);
+        for (let i = 0; i < params.countX; i++) {
+            this.drawer.addOneShapeAt(i * this.bladeWidth, height - params.upperBladeHeight, new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, padding, 1, 'bottom-left'))
+            this.drawer.addOneShapeAt((i + 0.5) * this.bladeWidth, height - params.upperBladeHeight + this.bladeWidth / 2, new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, padding, 1, 'bottom-right'))
+                // this.drawer.addOneShapeAt((i+0.5)*this.bladeWidth,0,new HalfBlade(this.bladeWidth/2,params.upperBladeHeight,padding,1,'right'))
         }
     }
 
-    static parameters(width,height){
-        return [
-            {
-                name:'countX',
-                required:true,
-                label:'تعداد تکرار در عرض',
-                default: Math.fround(width/25),
-                min: Math.ceil(width/50),
-                max: Math.floor(width/10)
+    static parameters(width, height) {
+        return [{
+                name: 'countX',
+                required: true,
+                label: 'تعداد تکرار در عرض',
+                default: Math.fround(width / 25),
+                min: Math.ceil(width / 50),
+                max: Math.floor(width / 10)
             },
             {
-                name:'upperBladeHeight',
-                required:false,
-                label:'ارتفاع نیم نیزه های بالا و پایین',
+                name: 'upperBladeHeight',
+                required: false,
+                label: 'ارتفاع نیم نیزه های بالا و پایین',
                 default: 50,
                 min: 30,
                 max: 100
             },
         ]
     }
-    //
-    // /**
-    //  *
-    //  * @param width
-    //  * @param height
-    //  * @returns {{countX: {default: number, min: number, max: number}, upperBladeHeight: {default: number, min: number, max: number}}}
-    //  */
-    // static limits(width,height){
-    //     return {
-    //         countX: {
-    //             default: Math.fround(width/25),
-    //             min: Math.ceil(width/50),
-    //             max: Math.floor(width/10)
-    //         },
-    //         upperBladeHeight: {
-    //             default: 50,
-    //             min: 30,
-    //             max: 100
-    //         },
-    //     }
-    // }
+
+    drawMeasures(ctx, params, size) {
+        let loz = new Lozenge(this.bladeWidth, this.bladeWidth);
+        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2, 80)
+        let hf = new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, this.padding, 1)
+        hf.drawMeasures(ctx, 200.5, 40.5, params.countX * 4, 40)
+        let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1)
+        blade.drawMeasures(ctx, 300.5, 40.5, params.countX * 2, 25)
+    }
 
 }

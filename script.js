@@ -30,16 +30,20 @@ import UpperTriangle from "./Classes/Primitives/UpperTriangle.js";
 
 
 let canvas = document.getElementById('myCanvas');
+let canvas2 = document.getElementById('myCanvas2');
 let ctx = canvas.getContext("2d");
+let ctx2 = canvas2.getContext("2d");
 canvas.setAttribute('width', '400px');
 canvas.setAttribute('height', '500px');
+canvas2.setAttribute('width', '400px');
+canvas2.setAttribute('height', '500px');
 let body = document.body;
 let cx = 0;
 // let mirror = new LozengeMirror(ctx, 300, 200,{countX:6,countY:4}, 2);
 // let mirror=new BladeMirror(ctx,200,300,{countX:5,upperBladeHeight:40},2);
 // let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
 // let mirror = new NineSpotSpearMirror(ctx,200,300,5,4);
-let inParams = BladeMirror.parameters(200, 300);
+let inParams = BrickMirror.parameters(200, 300);
 console.log(inParams)
 let params = {}
 inParams.forEach(p => {
@@ -47,17 +51,18 @@ inParams.forEach(p => {
     params[p.name] = parseFloat(p.value);
 })
 console.log(params)
-    // let mirror = new BladeMirror(ctx,200,300,params,2);
-    // mirror.draw();
-    // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
-let loz = new UpperTriangle(40, 30);
+let mirror = new BrickMirror(ctx, 200, 300, params, 2);
+mirror.draw();
+mirror.drawMeasures(ctx2, params, 50);
+// document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+// let loz = new UpperTriangle(40, 30);
 // loz.draw(ctx);
-loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
-    // body.addEventListener('keyup', () => {
-    //     cx = (cx + 1) % 10;
-    //     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
-    //     mirror.draw();
-    // });
+// loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
+// body.addEventListener('keyup', () => {
+//     cx = (cx + 1) % 10;
+//     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
+//     mirror.draw();
+// });
 
 // let drawer = new BaseDrawer(ctx, 300, 210, 0);
 //

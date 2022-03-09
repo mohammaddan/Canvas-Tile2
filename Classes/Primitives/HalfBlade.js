@@ -83,6 +83,6 @@ export default class HalfBlade extends Primitive {
         ctx.closePath();
         ctx.stroke();
         ctx.fillStyle = '#555';
-        ctx.fillText('n=' + n, (points[0].x + points[1].x) / 2, (points[1].y + points[3].y) / 2)
+        ctx.fillText('n=' + n, (points[0].x + points[1].x) / 2 - 10, (points[1].y + points[3].y) / 2)
     }
 }
