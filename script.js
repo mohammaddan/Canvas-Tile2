@@ -17,6 +17,14 @@ import RhombusMirror from "./Classes/Mirrors/RhombusMirror.js";
 import Blade from "./Classes/Primitives/Blade.js";
 import BottomSpear from "./Classes/Primitives/BottomSpear.js";
 import BottomTriangle from "./Classes/Primitives/BottomTriangle.js";
+import HalfBlade from "./Classes/Primitives/HalfBlade.js";
+import HalfCutedLozenge from "./Classes/Primitives/HalfCutedLozenge.js";
+import HalfRhombus from "./Classes/Primitives/HalfRhombus.js";
+import Rhombus from "./Classes/Primitives/Rhombus.js";
+import RightTriangle from "./Classes/Primitives/RightTriangle.js";
+import Spear from "./Classes/Primitives/Spear.js";
+import UpperSpear from "./Classes/Primitives/UpperSpear.js";
+import UpperTriangle from "./Classes/Primitives/UpperTriangle.js";
 
 
 
@@ -42,7 +50,7 @@ console.log(params)
     // let mirror = new BladeMirror(ctx,200,300,params,2);
     // mirror.draw();
     // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
-let loz = new CutedLozenge(50, 30);
+let loz = new UpperTriangle(40, 30);
 // loz.draw(ctx);
 loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
     // body.addEventListener('keyup', () => {
