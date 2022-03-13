@@ -39,7 +39,7 @@ export default class UpperSpear extends Primitive {
             points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
         })
         this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -10, this.width)
-        this.measureLine(ctx, points[0].x, points[0].y, points[4].x, points[4].y, -20, 0, this.h1)
+        this.measureLine(ctx, points[0].x, points[0].y, points[4].x, points[4].y, -20, 0, this.h2)
         this.measureLine(ctx, points[1].x, points[1].y, points[1].x, points[3].y, 15, 0, this.height)
         this.measureLine(ctx, points[4].x, points[4].y, points[3].x, points[3].y, -15, 15, t.toFixed(1))
         ctx.beginPath();

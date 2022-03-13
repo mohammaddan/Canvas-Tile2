@@ -24,38 +24,35 @@ export default class LozengeMirror extends BaseMirror {
         this.lozengeWidth = width / params.countX;
         this.lozengeHeight = height / params.countY;
         this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
-        this.addGridOfLozenge(0,this.lozengeWidth,this.lozengeHeight,params.countX,params.countY,padding);
+        this.addGridOfLozenge(0, this.lozengeWidth, this.lozengeHeight, params.countX, params.countY, padding);
         this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2, new BottomTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
 
     }
 
 
-    static parameters(){
-        return [
-            {name:'countX',required:true,label:'تعداد تکرار در عرض'},
-            {name:'countY',required:true,label:'تعداد تکرار در ارتفاع'},
+    static parameters(width, height) {
+        return [{
+                name: 'countX',
+                required: true,
+                label: 'تعداد تکرار در عرض',
+                default: Math.fround(width / 25),
+                min: Math.ceil(width / 50),
+                max: Math.floor(width / 10)
+            },
+            {
+                name: 'countX',
+                required: true,
+                label: 'تعداد تکرار در ارتفاع',
+                default: Math.fround(height / 25),
+                min: Math.ceil(height / 50),
+                max: Math.floor(height / 10)
+            },
         ]
     }
 
-    /**
-     *
-     * @param width
-     * @param height
-     * @returns {{countY: {default: number, min: number, max: number}, countX: {default: number, min: number, max: number}}}
-     */
-    static limits(width,height){
-        return {
-            countX: {
-                default: Math.fround(width/25),
-                min: Math.ceil(width/50),
-                max: Math.floor(width/10)
-            },
-            countY: {
-                default: Math.fround(width/25),
-                min: Math.ceil(width/50),
-                max: Math.floor(width/10)
-            },
-        }
+    drawMeasures(ctx, params, size) {
+        let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
+        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2, 80)
     }
 
 }

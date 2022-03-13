@@ -1,0 +1,22 @@
+{
+    "name": "canvas-tile2",
+    "version": "1.0.1",
+    "description": "decorachi",
+    "main": "script.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "directories": {
+        "mirror": "Classes/Mirrors"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mohammaddan/Canvas-Tile2.git"
+    },
+    "author": "mohammad daneshamooz",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mohammaddan/Canvas-Tile2/issues"
+    },
+    "homepage": "https://github.com/mohammaddan/Canvas-Tile2#readme"
+}
