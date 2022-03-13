@@ -43,7 +43,10 @@ let cx = 0;
 // let mirror=new BladeMirror(ctx,200,300,{countX:5,upperBladeHeight:40},2);
 // let mirror=new BrickMirror(ctx,200,300,{countX:5,countY:7},2);
 // let mirror = new NineSpotSpearMirror(ctx,200,300,5,4);
-let inParams = FourAndHalfSpotSpearMirror.parameters(200, 300);
+
+let width = 100,
+    height = 200;
+let inParams = TwoSpotSpearMirror.parameters(width, height);
 console.log(inParams)
 let params = {}
 inParams.forEach(p => {
@@ -51,10 +54,10 @@ inParams.forEach(p => {
     params[p.name] = parseFloat(p.value);
 })
 console.log(params)
-let mirror = new FourAndHalfSpotSpearMirror(ctx, 200, 300, params, 2);
+let mirror = new TwoSpotSpearMirror(ctx, width, height, params, 2);
 mirror.draw();
 mirror.drawMeasures(ctx2, params, 50);
-// document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // let loz = new UpperTriangle(40, 30);
 // loz.draw(ctx);
 // loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)

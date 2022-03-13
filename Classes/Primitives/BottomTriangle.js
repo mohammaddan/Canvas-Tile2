@@ -22,7 +22,7 @@ export default class BottomTriangle extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.height ^ 2);
+        let edge = Math.sqrt((this.width / 2) ** 2 + this.height ** 2);
         return edge * 2 + this.width;
     }
 

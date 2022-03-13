@@ -54,12 +54,12 @@ export default class HalfBlade extends Primitive {
     }
 
     area() {
-        return this.width * this.h1 + this.width * this.h2;
+        return (this.height + this.h2) * this.width / 2;
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.h1 ^ 2);
-        return edge * 4 + 2 * this.h2;
+        let edge = Math.sqrt(this.width ** 2 + this.h1 ** 2);
+        return edge + this.h2 + this.width + this.height;
     }
 
     drawMeasures(ctx, offsetX, offsetY, n, size) {

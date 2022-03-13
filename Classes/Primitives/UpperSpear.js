@@ -27,14 +27,14 @@ export default class UpperSpear extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.h1 ^ 2);
+        let edge = Math.sqrt(2 * (this.width / 2) ** 2);
         return edge * 2 + this.width + 2 * this.h2;
     }
 
     drawMeasures(ctx, offsetX, offsetY, n, size) {
         let points = [];
         let raio = this.width / this.height;
-        let t = Math.sqrt(2 * this.width ** 2)
+        let t = Math.sqrt(2 * (this.width / 2) ** 2)
         this.points.forEach(p => {
             points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
         })

@@ -25,7 +25,7 @@ export default class Lozenge extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt(this.width ^ 2 + this.height ^ 2);
+        let edge = 0.5 * Math.sqrt(this.width ** 2 + this.height ** 2);
         // if (this.isInDrawerBound(drawerWidth, drawerHeight))
         return edge * 4;
 
@@ -39,7 +39,7 @@ export default class Lozenge extends Primitive {
         })
         this.measureLine(ctx, points[1].x, points[1].y, points[3].x, points[3].y, size / 2 + 10, 0, this.height)
         this.measureLine(ctx, points[0].x, points[0].y, points[2].x, points[2].y, 0, -(size / raio) / 2 - 10, this.width)
-        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -size / 3, size / 3, Math.sqrt(this.width ** 2 + this.height ** 2).toFixed(1))
+        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -size / 3, size / 3, 0.5 * Math.sqrt(this.width ** 2 + this.height ** 2).toFixed(1))
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

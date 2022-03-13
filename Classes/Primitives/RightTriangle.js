@@ -21,7 +21,7 @@ export default class RightTriangle extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt((this.height / 2) ^ 2 + this.width ^ 2);
+        let edge = Math.sqrt((this.height / 2) ** 2 + this.width ** 2);
         return edge * 2 + this.height;
     }
 

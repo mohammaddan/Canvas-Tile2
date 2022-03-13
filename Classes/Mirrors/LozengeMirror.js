@@ -35,15 +35,15 @@ export default class LozengeMirror extends BaseMirror {
                 name: 'countX',
                 required: true,
                 label: 'تعداد تکرار در عرض',
-                default: Math.fround(width / 25),
+                default: Math.round(width / 25),
                 min: Math.ceil(width / 50),
                 max: Math.floor(width / 10)
             },
             {
-                name: 'countX',
+                name: 'countY',
                 required: true,
                 label: 'تعداد تکرار در ارتفاع',
-                default: Math.fround(height / 25),
+                default: Math.round(height / 25),
                 min: Math.ceil(height / 50),
                 max: Math.floor(height / 10)
             },
@@ -52,7 +52,11 @@ export default class LozengeMirror extends BaseMirror {
 
     drawMeasures(ctx, params, size) {
         let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2, 80)
+        loz.drawMeasures(ctx, 50.5, 80.5, (params.countX - 1) * params.countY + params.countX * (params.countY - 1), 70)
+        let uloz = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding)
+        uloz.drawMeasures(ctx, 200.5, 60.5, params.countX * 2, 70)
+        let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)
+        lloz.drawMeasures(ctx, 150.5, 160.5, params.countY * 2, 45)
     }
 
 }

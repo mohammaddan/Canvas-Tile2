@@ -29,7 +29,7 @@ export default class Spear extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.h1 ^ 2);
+        let edge = Math.sqrt((this.width / 2) ** 2 + this.h1 ** 2);
         return edge * 4 + 2 * this.h2;
     }
 

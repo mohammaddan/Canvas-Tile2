@@ -39,9 +39,8 @@ export default class Blade extends Primitive {
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.h1 ^ 2);
-        return edge * 4 + 2 * this.h2;
-
+        let edge = Math.sqrt(this.width ** 2 + this.h1 ** 2);
+        return edge * 2 + this.h2 + this.height;
     }
 
 
@@ -54,7 +53,7 @@ export default class Blade extends Primitive {
         })
         this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -25, 0, this.height)
         this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 25, 0, this.h2)
-        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[0].y, 0, -25, this.width)
+        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[0].y, 0, -10, this.width)
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

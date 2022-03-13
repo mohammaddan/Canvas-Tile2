@@ -3,6 +3,7 @@ import Spear from "../Primitives/Spear.js";
 import UpperSpear from "../Primitives/UpperSpear.js";
 import BottomSpear from "../Primitives/BottomSpear.js";
 import Lozenge from "../Primitives/Lozenge.js";
+import LeftTriangle from "../Primitives/LeftTriangle.js";
 
 export default class FourAndHalfSpotSpearMirror extends BaseMirror {
     constructor(ctx, width, height, params, padding = 0) {
@@ -22,7 +23,7 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
                 name: 'countX',
                 required: true,
                 label: 'تعداد تکرار در عرض',
-                default: Math.fround(width / 25),
+                default: Math.round(width / 25),
                 min: Math.ceil(width / 50),
                 max: Math.floor(width / 10)
             },
@@ -39,11 +40,13 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
 
     drawMeasures(ctx, params, size) {
         let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2, 80)
-        let hf = new UpperSpear(this.lozengeWidth / 2, this.params.upperSpearHeight, this.padding, 1)
-        hf.drawMeasures(ctx, 50.5, 180.5, params.countX * 4, 40)
+        loz.drawMeasures(ctx, 50.5, 80.5, (params.countX * 3 - 2) * 2, 80)
+        let hf = new UpperSpear(this.lozengeWidth, this.params.upperSpearHeight, this.padding, 1)
+        hf.drawMeasures(ctx, 50.5, 180.5, params.countX * 2, 40)
         let spear = new Spear(this.spearWidth, this.spearHeight, this.padding)
-        spear.drawMeasures(ctx, 230.5, 50.5, params.countX * 2, 55)
+        spear.drawMeasures(ctx, 230.5, 50.5, params.countX, 55)
+        let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)
+        lloz.drawMeasures(ctx, 230.5, 200.5, 8, 45)
     }
 
 

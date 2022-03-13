@@ -111,6 +111,6 @@ export default class Primitive {
         ctx.closePath();
         ctx.stroke();
         ctx.fill()
-        ctx.fillText(label, (x1 + x2) / 2 + dx * 1.1, (y1 + y2) / 2 + dy * 1.1);
+        ctx.fillText(typeof(label) == 'number' ? label.toFixed(1) : label, (x1 + x2) / 2 + dx * 1.1, (y1 + y2) / 2 + dy * 1.1);
     }
 }

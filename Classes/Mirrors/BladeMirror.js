@@ -43,7 +43,7 @@ export default class BladeMirror extends BaseMirror {
                 name: 'countX',
                 required: true,
                 label: 'تعداد تکرار در عرض',
-                default: Math.fround(width / 25),
+                default: Math.round(width / 25),
                 min: Math.ceil(width / 50),
                 max: Math.floor(width / 10)
             },
@@ -62,9 +62,9 @@ export default class BladeMirror extends BaseMirror {
         let loz = new Lozenge(this.bladeWidth, this.bladeWidth);
         loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2, 80)
         let hf = new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, this.padding, 1)
-        hf.drawMeasures(ctx, 200.5, 40.5, params.countX * 4, 40)
+        hf.drawMeasures(ctx, 60.5, 180.5, params.countX * 4, 40)
         let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1)
-        blade.drawMeasures(ctx, 300.5, 40.5, params.countX * 2, 25)
+        blade.drawMeasures(ctx, 200.5, 40.5, params.countX * 2, 30)
     }
 
 }
