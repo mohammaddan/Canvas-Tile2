@@ -60,14 +60,14 @@ export default class CutedLozenge extends Primitive {
     drawMeasures(ctx, offsetX, offsetY, n, size) {
         let points = [];
         let raio = this.width / this.height;
-        let t = Math.sqrt(2 * this.w1 ** 2)
+        let t = Math.sqrt(this.width ** 2+(this.height-this.squareWidth)**2)/2
         this.points.forEach(p => {
             points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
         })
-        this.measureLine(ctx, points[1].x, points[1].y, points[5].x, points[5].y, -20 - this.w1 * size / this.width, 0, this.height)
-        this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 0, -15, this.w1)
-        this.measureLine(ctx, points[2].x, points[2].y, points[3].x, points[3].y, 15, -15, t.toFixed(1))
-        this.measureLine(ctx, points[3].x, points[3].y, points[0].x, points[0].y, 0, this.height + 15, this.width)
+        this.measureLine(ctx, points[1].x, points[1].y, points[0].x, points[0].y, -20,-20, t.toFixed(1))
+        this.measureLine(ctx, points[1].x, points[1].y, points[4].x, points[4].y, size/2+10,0, this.height)
+        this.measureLine(ctx, points[5].x, points[5].y, points[0].x, points[0].y, -20,0, this.squareWidth)
+        this.measureLine(ctx, points[5].x, points[5].y, points[3].x, points[3].y, 0,size, this.width)
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

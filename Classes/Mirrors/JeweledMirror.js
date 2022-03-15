@@ -7,39 +7,81 @@ export default class JeweledMirror extends BaseMirror {
     constructor(ctx, width, height, params, padding = 0) {
         super(ctx, width, height);
         this.lozengeWidth = width / params.countX;
-        if(!params.squareWidth) params.squareWidth=5;
-        let squareWidth=params.squareWidth;
-        this.lozengeHeight = height / params.countY -squareWidth;
-        this.drawer.addOneRowOfShapes(0,0,
-            new HalfCutedLozenge(this.lozengeWidth,this.lozengeHeight/2,squareWidth,padding,1,'top')
-            ,params.countX);
-        for(let y=this.lozengeHeight/2;y<this.height;y+=this.lozengeHeight+squareWidth){
-            let x=(this.lozengeWidth-squareWidth)/2;
-            this.drawer.addOneShapeAt(0,y-this.lozengeHeight/2,
-                new HalfCutedLozenge((this.lozengeWidth-squareWidth)/2,this.lozengeHeight+squareWidth,squareWidth,padding,1,'left'))
-            for (let i=0;i<params.countX-1;i++){
-                this.drawer.addOneShapeAt(x,y,new Square(squareWidth,squareWidth,padding))
-                this.drawer.addOneShapeAt(x+squareWidth,y,
-                    new CutedLozenge(this.lozengeWidth-squareWidth,this.lozengeHeight+squareWidth,squareWidth,padding,1,false)
+        if (!params.squareWidth) params.squareWidth = 5;
+        let squareWidth = params.squareWidth;
+        this.lozengeHeight = height / params.countY - squareWidth;
+        this.drawer.addOneRowOfShapes(0, 0,
+            new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, squareWidth, padding, 1, 'top')
+            , params.countX);
+        for (let y = this.lozengeHeight / 2; y < this.height; y += this.lozengeHeight + squareWidth) {
+            let x = (this.lozengeWidth - squareWidth) / 2;
+            this.drawer.addOneShapeAt(0, y - this.lozengeHeight / 2,
+                new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, 'left'))
+            for (let i = 0; i < params.countX - 1; i++) {
+                this.drawer.addOneShapeAt(x, y, new Square(squareWidth, squareWidth, padding))
+                this.drawer.addOneShapeAt(x + squareWidth, y,
+                    new CutedLozenge(this.lozengeWidth - squareWidth, this.lozengeHeight + squareWidth, squareWidth, padding, 1, false)
                 )
-                x+=this.lozengeWidth;
+                x += this.lozengeWidth;
             }
-            this.drawer.addOneShapeAt(x,y,new Square(squareWidth,squareWidth,padding))
-            this.drawer.addOneShapeAt(width-(this.lozengeWidth-squareWidth)/2,y-this.lozengeHeight/2,
-                new HalfCutedLozenge((this.lozengeWidth-squareWidth)/2,this.lozengeHeight+squareWidth,squareWidth,padding,1,'right'))
+            this.drawer.addOneShapeAt(x, y, new Square(squareWidth, squareWidth, padding))
+            this.drawer.addOneShapeAt(width - (this.lozengeWidth - squareWidth) / 2, y - this.lozengeHeight / 2,
+                new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, 'right'))
 
-            if(y<this.height-this.lozengeHeight)
-                this.drawer.addOneRowOfShapes(0,y+ this.lozengeHeight/2 + squareWidth,
-                    new CutedLozenge(this.lozengeWidth,this.lozengeHeight,squareWidth,padding,1,true),params.countX);
+            if (y < this.height - this.lozengeHeight)
+                this.drawer.addOneRowOfShapes(0, y + this.lozengeHeight / 2 + squareWidth,
+                    new CutedLozenge(this.lozengeWidth, this.lozengeHeight, squareWidth, padding, 1, true), params.countX);
         }
-        this.drawer.addOneRowOfShapes(0,height-this.lozengeHeight/2,
-            new HalfCutedLozenge(this.lozengeWidth,this.lozengeHeight/2,squareWidth,padding,1,'bottom')
-            ,params.countX);
+        this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2,
+            new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, squareWidth, padding, 1, 'bottom')
+            , params.countX);
 
         // for(let i=0;i<params.countX;i++)
         //     this.drawer.addShape(new CutedLozenge(this.lozengeWidth,this.lozengeHeight,squareWidth,padding,1,true));
         // for(let i=0;i<params.countX-1;i++)
         //     this.drawer.addShape(new CutedLozenge(this.lozengeWidth,this.lozengeHeight,squareWidth,padding,true));
+    }
+
+    static parameters(width, height) {
+        return [
+            {
+                name: 'countX',
+                required: true,
+                label: 'تعداد تکرار در عرض',
+                default: Math.round(width / 25),
+                min: Math.ceil(width / 50),
+                max: Math.floor(width / 10)
+            },
+            {
+                name: 'countY',
+                required: true,
+                label: 'تعداد تکرار در ارتفاع',
+                default: Math.round(width / 25),
+                min: Math.ceil(width / 50),
+                max: Math.floor(width / 10)
+            },
+            {
+                name: 'squareWidth',
+                required: false,
+                label: 'ضلع نگین',
+                default: 5,
+                min: 5,
+                max: 10
+            },
+        ]
+    }
+
+    drawMeasures(ctx, params, size) {
+        let jw = new CutedLozenge(this.lozengeWidth - params.squareWidth, this.lozengeHeight + params.squareWidth, params.squareWidth, this.padding, 1, false);
+        jw.drawMeasures(ctx, 60.5, 100.5, params.countX * 2, 80)
+        let sq=new Square(params.squareWidth, params.squareWidth, this.padding)
+        sq.drawMeasures(ctx, 240.5, 60.5, params.countX * 2, 50)
+        let hcl=new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, params.squareWidth, this.padding, 1, 'top');
+        hcl.drawMeasures(ctx, 60.5, 180.5, params.countX * 4, 40);
+        // let hf = new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, this.padding, 1)
+        // hf.drawMeasures(ctx, 60.5, 180.5, params.countX * 4, 40)
+        // let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1)
+        // blade.drawMeasures(ctx, 200.5, 40.5, params.countX * 2, 30)
     }
 
 }

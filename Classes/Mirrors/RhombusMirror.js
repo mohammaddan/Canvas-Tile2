@@ -7,31 +7,58 @@ export default class RhombusMirror extends BaseMirror {
         super(ctx, width, height);
 
         this.rhombusWidth = width / params.countX;
-        this.rhombusHeight= height /params.countY;
+        this.rhombusHeight = height / params.countY;
+        let t=[1,3,2];
 
-        this.h1 = !params.angle ? this.rhombusWidth : Math.tan(Math.PI * params.angle/180)*this.rhombusWidth;
+        this.h1 = !params.angle ? this.rhombusWidth : Math.tan(Math.PI * params.angle / 180) * this.rhombusWidth;
 
-        for(let j=0;j<params.countX;j++){
-            let h1= (j%3+1)*(this.rhombusHeight-this.h1)/4+this.h1;
+        for (let j = 0; j < params.countX; j++) {
+            let h1 = t[j % 3 ] * (this.rhombusHeight - this.h1) / 5 + this.h1;
 
-            this.drawer.addOneShapeAt(j*this.rhombusWidth,0,new HalfBlade(this.rhombusWidth,h1,padding,1,'top-right'))
-            for(let i=0;i<params.countY-1;i++)
-                this.drawer.addOneShapeAt(j*this.rhombusWidth,h1-this.h1+i*(this.rhombusHeight-this.h1),new Rhombus(this.rhombusWidth,this.rhombusHeight,padding,1,'left'))
-            this.drawer.addOneShapeAt(j*this.rhombusWidth,h1-this.h1+(params.countY-1)*(this.rhombusHeight-this.h1),new HalfBlade(this.rhombusWidth,this.rhombusHeight- h1,padding,1,'bottom-left'))
+            this.drawer.addOneShapeAt(j * this.rhombusWidth, 0, new HalfBlade(this.rhombusWidth, h1, padding, 1, 'top-right'))
+            for (let i = 0; i < params.countY - 1; i++)
+                this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + i * (this.rhombusHeight - this.h1), new Rhombus(this.rhombusWidth, this.rhombusHeight, padding, 1, 'left'))
+            this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + (params.countY - 1) * (this.rhombusHeight - this.h1), new HalfBlade(this.rhombusWidth, this.rhombusHeight - h1, padding, 1, 'bottom-left'))
         }
 
     }
 
-    parameters(){
+    static parameters(width, height) {
         return [
-            {value:'countX',label:'تعداد تکرار در عرض'},
+            {
+                name: 'countX',
+                required: true,
+                label: 'تعداد تکرار در عرض',
+                default: Math.round(width / 25),
+                min: Math.ceil(width / 50),
+                max: Math.floor(width / 10)
+            },
+            {
+                name: 'countY',
+                required: true,
+                label: 'تعداد تکرار در ارتفاع',
+                default: Math.round(0.5*height / 60),
+                min: 50,
+                max: 100
+            },
+            {
+                name: 'angle',
+                required: false,
+                label: 'زاویه',
+                default: 45,
+                min: 30,
+                max: 60
+            },
         ]
     }
 
-    limits(){
-        return {
-            countX: []
-        }
+    drawMeasures(ctx, params, size) {
+        let rm = new Rhombus(this.rhombusWidth, this.rhombusHeight, this.padding, 1, 'left');
+        rm.drawMeasures(ctx, 50.5, 80.5, params.countX * params.countY, 80)
+        // let hf = new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, this.padding, 1)
+        // hf.drawMeasures(ctx, 60.5, 180.5, params.countX * 4, 40)
+        // let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1)
+        // blade.drawMeasures(ctx, 200.5, 40.5, params.countX * 2, 30)
     }
 
 }
