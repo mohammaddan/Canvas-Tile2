@@ -1,6 +1,10 @@
 {
-    "editor.fontFamily": "JetBrains Mono,Hack, monospace, Droid Sans Fallback",
-    "editor.fontLigatures": true,
-    "editor.tabSize": 4,
-    "editor.wordWrapColumn": 120
+  "editor.fontFamily": "JetBrains Mono,Hack, monospace, Droid Sans Fallback",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 4,
+  "editor.wordWrapColumn": 160,
+  "bladeFormatter.format.wrapLineLength": 160,
+  "html.format.wrapLineLength": 160,
+  "diffEditor.wordWrap": "off",
+  "prettier.printWidth": 160
 }
