@@ -92,14 +92,14 @@ export default class BaseDrawer {
 
     drawLastShapeWithAllPoint() {
         this.ctx.clearRect(0, 0, this.width, this.height);
-        this.ctx.strokeRect(50, 50, this.width, this.height);
+        this.ctx.strokeRect(2, 2, this.width, this.height);
         this.drawAll();
 
         this.rows.forEach(row => {
             for (let x of row.points) {
                 this.ctx.beginPath();
                 this.ctx.strokeStyle = '#ff0000';
-                this.ctx.arc(x + 50, row.height + 50, 3, 0, 2 * Math.PI);
+                this.ctx.arc(x + 2, row.height + 2, 3, 0, 2 * Math.PI);
                 this.ctx.stroke();
             }
         })
@@ -110,7 +110,7 @@ export default class BaseDrawer {
         // this.ctx.imageSmoothingEnabled = true;
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';
-        this.ctx.clearRect(0, 0, this.width + 100, this.height + 100);
+        this.ctx.clearRect(0, 0, this.width + 4, this.height + 4);
         // this.ctx.strokeRect(50, 50, this.width, this.height);
 
         this.primitives.forEach(shape => shape.draw(this.ctx))

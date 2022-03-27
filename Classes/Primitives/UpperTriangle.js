@@ -3,12 +3,13 @@ import Primitive from "../Primitive.js";
 export default class UpperTriangle extends Primitive {
     constructor(width, height, padding = 0, lineWidth = 1) {
         super(width, height, padding, lineWidth);
+        let ratio=width/height;
         this.points.push({ x: 0, y: 0 });
         this.points.push({ x: width, y: 0 });
         this.points.push({ x: width / 2, y: height });
 
-        this.drawablePoints.push({ x: padding * 2, y: padding });
-        this.drawablePoints.push({ x: width - padding * 2, y: padding });
+        this.drawablePoints.push({ x: padding * ratio, y: padding });
+        this.drawablePoints.push({ x: width - padding * ratio, y: padding });
         this.drawablePoints.push({ x: width / 2, y: height - padding });
     }
 

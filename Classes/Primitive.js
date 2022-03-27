@@ -35,9 +35,9 @@ export default class Primitive {
         ctx.fillStyle = '#eee'
             // ctx.setLineDash([3,3]);
         let fp = this.points[0];
-        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
+        ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
         this.points.slice(1).forEach(p => {
-            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
+            ctx.lineTo(Math.floor(p.x) + 2.5, Math.floor(p.y) + 2.5);
         });
         ctx.closePath();
         // ctx.fill();
@@ -55,9 +55,9 @@ export default class Primitive {
         ctx.setLineDash([]);
         ctx.strokeStyle = '#ccc';
         fp = this.drawablePoints[0];
-        ctx.moveTo(Math.floor(fp.x) + 50.5, Math.floor(fp.y) + 50.5);
+        ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
         this.drawablePoints.slice(1).forEach(p => {
-            ctx.lineTo(Math.floor(p.x) + 50.5, Math.floor(p.y) + 50.5);
+            ctx.lineTo(Math.floor(p.x) + 2.5, Math.floor(p.y) + 2.5);
         });
         ctx.closePath();
         ctx.fill();
