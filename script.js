@@ -26,6 +26,7 @@ import Spear from "./Classes/Primitives/Spear.js";
 import UpperSpear from "./Classes/Primitives/UpperSpear.js";
 import UpperTriangle from "./Classes/Primitives/UpperTriangle.js";
 import CubeMirror from "./Classes/Mirrors/CubeMirror.js";
+import CascadeMirror from "./Classes/Mirrors/CascadeMirror.js";
 
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
@@ -49,18 +50,18 @@ let cx = 0;
 // let mirror = new TwoSpotSpearMirror(ctx,200,200,{countX:5,countY:5},2);
 // let mirror = new RhombusMirror(ctx,200,200,{countX:5,countY:2},2);
 // let mirror = new CubeMirror(ctx, 320, 300, { countX: 3, countY: 3 }, 2);
+// let mirror = new CascadeMirror(ctx, 320, 300, { squareWidth: 5, countY: 3 }, 1);
 
-let width = 100,
-  height = 100;
-let inParams = CubeMirror.parameters(width, height);
+let width = 200,
+  height = 200;
+let inParams = CascadeMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-console.log(params);
-let mirror = new CubeMirror(ctx, width, height, params, 2);
+let mirror = new CascadeMirror(ctx, width, height, params, 2);
 mirror.draw();
 mirror.drawMeasures(ctx2, params, 0.9);
 // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
