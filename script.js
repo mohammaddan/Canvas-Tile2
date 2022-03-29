@@ -67,6 +67,10 @@ inParams.forEach((p) => {
 let mirror = new ShatterMirror(ctx, width, height, params, 2);
 mirror.draw();
 mirror.drawMeasures(ctx2, params, 0.9);
+mirror.getMirrorPics(canvas)
+mirror.getMirrorPics(canvas2)
+console.log(mirror.mirrorPics)
+mirror.drawDXF().downloadDXF()
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // let loz = new UpperTriangle(40, 30);
 // loz.draw(ctx);

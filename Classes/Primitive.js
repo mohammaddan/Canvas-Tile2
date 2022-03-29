@@ -29,7 +29,6 @@ export default class Primitive {
     }
 
     draw(ctx) {
-
         ctx.beginPath();
         ctx.strokeStyle = '#bbb';
         ctx.fillStyle = '#eee'
@@ -62,7 +61,15 @@ export default class Primitive {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
+    }
 
+    drawDXF(dxf){
+        let fp = this.points[0];
+        this.points.slice(1).forEach(p => {
+            dxf.drawLine(fp.x, fp.y,p.x,p.y);
+            fp=p;
+        });
+        dxf.drawLine(fp.x, fp.y, this.points[0].x, this.points[0].y);
     }
 
     isInside(p) {
