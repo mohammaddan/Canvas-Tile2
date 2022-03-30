@@ -28,6 +28,7 @@ import UpperTriangle from "./Classes/Primitives/UpperTriangle.js";
 import CubeMirror from "./Classes/Mirrors/CubeMirror.js";
 import CascadeMirror from "./Classes/Mirrors/CascadeMirror.js";
 import DiamondMirror from "./Classes/Mirrors/DiamondMirror.js";
+import RectanglesMirror from "./Classes/Mirrors/RectanglesMirror.js";
 
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
@@ -51,7 +52,7 @@ let cx = 0;
 // let mirror = new TwoSpotSpearMirror(ctx,200,200,{countX:5,countY:5},2);
 // let mirror = new RhombusMirror(ctx,200,200,{countX:5,countY:2},2);
 // let mirror = new CubeMirror(ctx, 320, 300, { countX: 3, countY: 3 }, 2);
-let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
+let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
 
 // let width = 200,
 //   height = 200;
@@ -65,7 +66,7 @@ let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new CascadeMirror(ctx, width, height, params, 2);
 mirror.draw();
 // mirror.drawMeasures(ctx2, params, 0.9);
-document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
 // let loz = new UpperTriangle(40, 30);
 // loz.draw(ctx);
 // loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
