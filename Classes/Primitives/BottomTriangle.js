@@ -34,7 +34,7 @@ export default class BottomTriangle extends Primitive {
             points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
         })
         this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 0, 15, this.width)
-        this.measureLine(ctx, points[0].x, points[0].y, points[0].x, points[2].y, -this.width / 2 - 15, 0, this.height)
+        this.measureLine(ctx, points[0].x, points[0].y, points[0].x, points[2].y, -size / 2 - 15, 0, this.height)
         this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 15, -15 / raio, t.toFixed(1))
         ctx.beginPath();
         ctx.strokeStyle = '#000';
@@ -46,6 +46,6 @@ export default class BottomTriangle extends Primitive {
         ctx.closePath();
         ctx.stroke();
         ctx.fillStyle = '#555';
-        ctx.fillText('n=' + n, points[0].x + size / 4, (points[0].y + points[3].y) / 2 - 5)
+        ctx.fillText('n=' + n, points[0].x -10, points[1].y-10)
     }
 }

@@ -53,12 +53,14 @@ export default class DiamondMirror extends BaseMirror {
     ];
   }
 
-  // drawMeasures(ctx, params, size = 1) {
-  //   let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-  //   loz.drawMeasures(ctx, 50.5, 80.5, (params.countX - 1) * params.countY + params.countX * (params.countY - 1), 70);
-  //   let uloz = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding);
-  //   uloz.drawMeasures(ctx, 200.5, 60.5, params.countX * 2, 70);
-  //   let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
-  //   lloz.drawMeasures(ctx, 150.5, 160.5, params.countY * 2, 45);
-  // }
+  drawMeasures(ctx, params, size = 1) {
+    let d =  new Diamond(this.diamondWidth, this.diamondHeight, this.padding,1,false)
+    d.drawMeasures(ctx, 70.5, 80.5, (params.countX - 1) * params.countY + params.countX * (params.countY - 1), 70*size);
+    let ul =new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, this.padding)
+    ul.drawMeasures(ctx, 200.5, 60.5, params.countX , 90*size);
+    let bl =new BottomTriangle(this.diamondWidth, 2*this.diamondHeight / 3, this.padding)
+    bl.drawMeasures(ctx, 70.5, 160.5, params.countX , 70*size);
+    let hd =new HalfDiamond(this.diamondWidth/2,this.diamondHeight,this.padding);
+    hd.drawMeasures(ctx, 200.5, 160.5, params.countY * 2, 70*size);
+  }
 }
