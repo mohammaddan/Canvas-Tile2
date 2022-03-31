@@ -45,4 +45,13 @@ export default class TwoSpotSpearMirror extends BaseMirror {
     let blade = new Blade(this.spearWidth / 2, this.spearHeight, this.padding, 1, "left");
     blade.drawMeasures(ctx, parseInt(50 + 250 * size) + 0.5, 30.5, 2, 25 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Lozenge(width,height),
+      new UpperTriangle(width,height/2),
+      new Spear(width/6,height),
+      new Blade(width/6,height),
+    ];
+  }
 }

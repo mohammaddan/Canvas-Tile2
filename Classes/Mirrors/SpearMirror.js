@@ -54,4 +54,13 @@ export default class SpearMirror extends BaseMirror {
     let uspear = new UpperSpear(this.lozengeWidth, params.upperSpearHeight, this.padding);
     uspear.drawMeasures(ctx, parseInt(50 + 40 * size) + 0.5, parseInt(80 + 220 * size) + 0.5, params.countX * 2, 55 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Lozenge(width,height),
+      new Spear(width/6,height),
+      new UpperTriangle(width,height/2),
+      new UpperSpear(width/3,height),
+    ];
+  }
 }

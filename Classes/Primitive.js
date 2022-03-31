@@ -28,6 +28,23 @@ export default class Primitive {
         });
     }
 
+    moveToCenter(width,height){
+        let x0=Math.min(...this.points.map(p=>p.x))
+        let x1=Math.max(...this.points.map(p=>p.x))
+        let y0=Math.min(...this.points.map(p=>p.y))
+        let y1=Math.max(...this.points.map(p=>p.y))
+        let deltaX=(width - (x0+x1))/2;
+        let deltaY=(height - (y0+y1))/2;
+        this.points.forEach(p=> {
+            p.x+=deltaX;
+            p.y+=deltaY;
+        })
+        this.drawablePoints.forEach(p=> {
+            p.x+=deltaX;
+            p.y+=deltaY;
+        })
+    }
+
     draw(ctx) {
         ctx.beginPath();
         ctx.strokeStyle = '#bbb';

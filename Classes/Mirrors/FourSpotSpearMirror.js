@@ -80,4 +80,12 @@ export default class FourSpotSpearMirror extends BaseMirror {
       55 * size
     );
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Lozenge(width,height),
+      new UpperTriangle(width,height/2),
+      new Spear(width/8,height),
+    ]
+  }
 }

@@ -33,8 +33,10 @@ import ShatterMirror from "./Classes/Mirrors/ShatterMirror.js";
 
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
+let canvas3 = document.getElementById("myCanvas3");
 let ctx = canvas.getContext("2d");
 let ctx2 = canvas2.getContext("2d");
+let ctx3 = canvas3.getContext("2d");
 canvas.setAttribute("width", "400px");
 canvas.setAttribute("height", "500px");
 canvas2.setAttribute("width", "320px");
@@ -53,20 +55,27 @@ let cx = 0;
 // let mirror = new TwoSpotSpearMirror(ctx,200,200,{countX:5,countY:5},2);
 // let mirror = new RhombusMirror(ctx,200,200,{countX:5,countY:2},2);
 // let mirror = new CubeMirror(ctx, 320, 300, { countX: 3, countY: 3 }, 2);
-let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
+// let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
 // let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 
 let width = 200,
   height = 250;
-let inParams = ShatterMirror.parameters(width, height);
+let inParams = TwoSpotSpearMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
+let mirror= new TwoSpotSpearMirror(ctx,width,height,params,2);
 mirror.draw();
+let reserves=mirror.reservePrimitives(180,180);
+let x,y;
+reserves.forEach(r=>{
+  r.moveToCenter(200,200)
+  r.draw(ctx3)
+})
 // mirror.drawMeasures(ctx2, params, 0.9);
 document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
 mirror.drawMeasures(ctx2, params, 0.9);

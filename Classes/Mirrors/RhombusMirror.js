@@ -55,10 +55,12 @@ export default class RhombusMirror extends BaseMirror {
     drawMeasures(ctx, params, size) {
         let rm = new Rhombus(this.rhombusWidth, this.rhombusHeight, this.padding, 1, 'left');
         rm.drawMeasures(ctx, 50.5, 80.5, params.countX * params.countY, 80)
-        // let hf = new HalfBlade(this.bladeWidth / 2, params.upperBladeHeight, this.padding, 1)
-        // hf.drawMeasures(ctx, 60.5, 180.5, params.countX * 4, 40)
-        // let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1)
-        // blade.drawMeasures(ctx, 200.5, 40.5, params.countX * 2, 30)
+    }
+
+    reservePrimitives(width,height) {
+        return [
+            new Rhombus(width/8,height)
+        ]
     }
 
 }

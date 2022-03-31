@@ -79,4 +79,13 @@ export default class BladeMirror extends BaseMirror {
     let blade = new Blade(this.bladeWidth / 2, this.bladeHeight, this.padding, 1);
     blade.drawMeasures(ctx, 200.5, 40.5, params.countX * 2, 30 * size);
   }
+
+  reservePrimitives(width,height){
+    return [
+      new Lozenge(width, height),
+      new HalfBlade(width/4, height),
+      new Blade(width/4,height),
+    ]
+  }
+
 }

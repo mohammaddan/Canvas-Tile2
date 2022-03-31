@@ -63,4 +63,13 @@ export default class DiamondMirror extends BaseMirror {
     let hd =new HalfDiamond(this.diamondWidth/2,this.diamondHeight,this.padding);
     hd.drawMeasures(ctx, 200.5, 160.5, params.countY * 2, 70*size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Diamond(width, height, this.padding,1,false),
+      new UpperTriangle(width, height/3, this.padding,1,false),
+      new BottomTriangle(width, 2*height/3, this.padding,1,false),
+      new HalfDiamond(width/2, height, this.padding,1,false),
+    ];
+  }
 }

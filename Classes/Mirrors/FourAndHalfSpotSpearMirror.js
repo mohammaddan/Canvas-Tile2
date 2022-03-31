@@ -61,4 +61,13 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
     let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
     lloz.drawMeasures(ctx, parseInt(50 + 120 * size) + 0.5, 200.5, 8, 45 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Lozenge(width, height),
+      new UpperSpear(width/2, height),
+      new Spear(width/4, height),
+      new LeftTriangle(width/2, height),
+    ];
+  }
 }

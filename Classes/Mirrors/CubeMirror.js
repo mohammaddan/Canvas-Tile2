@@ -1,6 +1,5 @@
 import BottomTriangle from "../Primitives/BottomTriangle.js";
 import CutedLozenge from "../Primitives/CutedLozenge.js";
-import HalfCutedLozenge from "../Primitives/HalfCutedLozenge.js";
 import LeftTriangle from "../Primitives/LeftTriangle.js";
 import RightTriangle from "../Primitives/RightTriangle.js";
 import Square from "../Primitives/Square.js";
@@ -92,5 +91,15 @@ export default class CubeMirror extends BaseMirror {
     lt.drawMeasures(ctx, parseInt(100 + 130 * size) + 0.5, 50 + 100 * size + 0.5, (params.countY + 1) * 2, 60 * size);
     let sq = new Square(this.squareWidth, this.squareHeight, this.padding, 1);
     sq.drawMeasures(ctx, parseInt(100 + 170 * size) + 0.5, 50 + parseInt(290 * size) + 0.5, params.countX * params.countY, 60 * size);
+  }
+
+  reservePrimitives(width,height){
+    return [
+      new Square(width, height),
+      new CutedLozenge(width, height/2,width/4),
+      new CutedLozenge(width/2, height,height/4,0,1,false),
+      new UpperTriangle(width, height/2),
+      new LeftTriangle(width/2, height),
+    ]
   }
 }

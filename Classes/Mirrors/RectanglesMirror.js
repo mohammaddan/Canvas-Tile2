@@ -36,4 +36,13 @@ export default class RectanglesMirror extends BaseMirror {
     let hs = new Square(this.squareWidth, this.squareHeight, this.padding);
     hs.drawMeasures(ctx, 50.5, 40.5, params.countY * params.countX, 80 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Square(width,height),
+      new Square(width,height/2),
+      new Square(width/2,height),
+      new Square(width/2,height/2),
+    ];
+  }
 }

@@ -35,4 +35,10 @@ export default class SquareMirror extends BaseMirror {
     let hs = new Square(this.squareWidth, this.squareHeight, this.padding);
     hs.drawMeasures(ctx, 50.5, 40.5, params.countY * params.countX, 80 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Square(width,height),
+    ];
+  }
 }

@@ -41,4 +41,12 @@ export default class MiddleFourSpotSpearMirror extends BaseMirror {
     let spear = new UpperSpear(this.lozengeWidth, this.halfSpearHeight, this.padding);
     spear.drawMeasures(ctx, 80 + 150 * size + 0.5, 50.5, params.countX * 2, 55 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new Lozenge(width,height),
+      new UpperTriangle(width,height/2),
+      new UpperSpear(width/6,height),
+    ];
+  }
 }

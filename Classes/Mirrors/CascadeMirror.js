@@ -58,4 +58,10 @@ export default class CascadeMirror extends BaseMirror {
         sq.drawMeasures(ctx, 50.5, 50.5, this.countX * params.countY, 7 * size);
     }
 
+    reservePrimitives(width,height){
+        return [
+            new Square(width/20, height),
+        ]
+    }
+
 }

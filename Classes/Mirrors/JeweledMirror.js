@@ -92,4 +92,12 @@ export default class JeweledMirror extends BaseMirror {
     let hcl = new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, params.squareWidth, this.padding, 1, "top");
     hcl.drawMeasures(ctx, 60.5, parseInt(100 + 130 * size) + 0.5, params.countX * 4, 60 * size);
   }
+
+  reservePrimitives(width,height) {
+    return [
+      new CutedLozenge(width/1.5,height,height/4,0,1,false),
+      new Square(width,height),
+      new HalfCutedLozenge(width,height/2,width/4),
+    ];
+  }
 }

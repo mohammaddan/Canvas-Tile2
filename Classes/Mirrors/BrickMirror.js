@@ -78,4 +78,11 @@ export default class BrickMirror extends BaseMirror {
       80 * size
     );
   }
+
+  reservePrimitives(width,height){
+    return [
+      new Square(width, height),
+      new Square(width/2, height),
+    ]
+  }
 }

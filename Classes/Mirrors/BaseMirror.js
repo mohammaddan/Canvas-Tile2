@@ -2,7 +2,7 @@ import BaseDrawer from "../BaseDrawer.js";
 import LeftTriangle from "../Primitives/LeftTriangle.js";
 import Lozenge from "../Primitives/Lozenge.js";
 import RightTriangle from "../Primitives/RightTriangle.js";
-import Drawing from "../dxf-writer/src/Drawing.js";
+import Drawing from "../DXF/Drawing.js";
 
 export default class BaseMirror {
     constructor(ctx, width, height, yOffset = 0) {

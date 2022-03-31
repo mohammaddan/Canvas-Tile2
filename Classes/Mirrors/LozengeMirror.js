@@ -56,4 +56,12 @@ export default class LozengeMirror extends BaseMirror {
     let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
     lloz.drawMeasures(ctx, 150.5, 160.5, params.countY * 2, 45);
   }
+
+  reservePrimitives(width,height) {
+    return [
+        new Lozenge(width,height),
+        new UpperTriangle(width,height/2),
+        new LeftTriangle(width/2,height),
+    ];
+  }
 }
