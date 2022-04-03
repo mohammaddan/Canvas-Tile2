@@ -38,7 +38,8 @@ export default class SquareMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-      new Square(width,height),
+      {title:'مربع',name:'square',primitive:new Square(this.squareWidth, this.squareHeight)},
+      // new Square(width,height),
     ];
   }
 }

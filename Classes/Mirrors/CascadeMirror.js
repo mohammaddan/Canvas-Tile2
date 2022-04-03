@@ -60,7 +60,8 @@ export default class CascadeMirror extends BaseMirror {
 
     reservePrimitives(width,height){
         return [
-            new Square(width/20, height),
+            {title:'مستطیل',name:'rectangle',primitive:new Square(this.squareWidth,this.squareHeight)},
+            // new Square(width/20, height),
         ]
     }
 

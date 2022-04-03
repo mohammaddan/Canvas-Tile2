@@ -53,10 +53,14 @@ export default class ShatterMirror extends BaseMirror {
 
     reservePrimitives(width,height) {
         return [
-            new Square(width,height),
-            new Square(width,height/2),
-            new Square(width/2,height),
-            new Square(width/2,height/2),
+            {title:'مربع بزرگ',name:'squareL',primitive:new Square(this.squareWidth*2, this.squareHeight*2)},
+            {title:'مربع کوچک',name:'squareS',primitive:new Square(this.squareWidth*2, this.squareHeight)},
+            {title:'مستطیل افقی',name:'squareH',primitive:new Square(this.squareWidth, this.squareHeight*2)},
+            {title:'مستطیل عمودی',name:'squareV',primitive:new Square(this.squareWidth, this.squareHeight)},
+            // new Square(width,height),
+            // new Square(width,height/2),
+            // new Square(width/2,height),
+            // new Square(width/2,height/2),
         ];
     }
 }

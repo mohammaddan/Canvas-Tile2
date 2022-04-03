@@ -13,41 +13,19 @@ export default class JeweledMirror extends BaseMirror {
     this.drawer.addOneRowOfShapes(0, 0, new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, squareWidth, padding, 1, "top"), params.countX);
     for (let y = this.lozengeHeight / 2; y < this.height; y += this.lozengeHeight + squareWidth) {
       let x = (this.lozengeWidth - squareWidth) / 2;
-      this.drawer.addOneShapeAt(
-        0,
-        y - this.lozengeHeight / 2,
-        new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, "left")
-      );
+      this.drawer.addOneShapeAt(0, y - this.lozengeHeight / 2, new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, "left"));
       for (let i = 0; i < params.countX - 1; i++) {
         this.drawer.addOneShapeAt(x, y, new Square(squareWidth, squareWidth, padding));
-        this.drawer.addOneShapeAt(
-          x + squareWidth,
-          y,
-          new CutedLozenge(this.lozengeWidth - squareWidth, this.lozengeHeight + squareWidth, squareWidth, padding, 1, false)
-        );
+        this.drawer.addOneShapeAt(x + squareWidth, y, new CutedLozenge(this.lozengeWidth - squareWidth, this.lozengeHeight + squareWidth, squareWidth, padding, 1, false));
         x += this.lozengeWidth;
       }
       this.drawer.addOneShapeAt(x, y, new Square(squareWidth, squareWidth, padding));
-      this.drawer.addOneShapeAt(
-        width - (this.lozengeWidth - squareWidth) / 2,
-        y - this.lozengeHeight / 2,
-        new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, "right")
-      );
+      this.drawer.addOneShapeAt(width - (this.lozengeWidth - squareWidth) / 2, y - this.lozengeHeight / 2, new HalfCutedLozenge((this.lozengeWidth - squareWidth) / 2, this.lozengeHeight + squareWidth, squareWidth, padding, 1, "right"));
 
       if (y < this.height - this.lozengeHeight)
-        this.drawer.addOneRowOfShapes(
-          0,
-          y + this.lozengeHeight / 2 + squareWidth,
-          new CutedLozenge(this.lozengeWidth, this.lozengeHeight, squareWidth, padding, 1, true),
-          params.countX
-        );
+        this.drawer.addOneRowOfShapes(0, y + this.lozengeHeight / 2 + squareWidth, new CutedLozenge(this.lozengeWidth, this.lozengeHeight, squareWidth, padding, 1, true), params.countX);
     }
-    this.drawer.addOneRowOfShapes(
-      0,
-      height - this.lozengeHeight / 2,
-      new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, squareWidth, padding, 1, "bottom"),
-      params.countX
-    );
+    this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2, new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, squareWidth, padding, 1, "bottom"), params.countX);
 
     // for(let i=0;i<params.countX;i++)
     //     this.drawer.addShape(new CutedLozenge(this.lozengeWidth,this.lozengeHeight,squareWidth,padding,1,true));
@@ -90,14 +68,20 @@ export default class JeweledMirror extends BaseMirror {
     let sq = new Square(params.squareWidth, params.squareWidth, this.padding);
     sq.drawMeasures(ctx, 60 + 180 * size + 0.5, 60.5, params.countX * 2, 50 * size);
     let hcl = new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, params.squareWidth, this.padding, 1, "top");
-    hcl.drawMeasures(ctx, 60.5, parseInt(100 + 130 * size) + 0.5, params.countX * 4, 60 * size);
+    hcl.drawMeasures(ctx, 60.5, Math.round(100 + 130 * size) + 0.5, params.countX * 4, 60 * size);
   }
 
   reservePrimitives(width,height) {
     return [
-      new CutedLozenge(width/1.5,height,height/4,0,1,false),
-      new Square(width,height),
-      new HalfCutedLozenge(width,height/2,width/4),
+      {title:'نیزه عمودی',name:'cutedLozengeV',primitive: new CutedLozenge(this.lozengeWidth - this.squareWidth, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, false)},
+      // {title:'نیزه افقی',name:'cutedLozengeH',primitive: new CutedLozenge(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1, true)},
+      {title:'مربع',name:'square',primitive:new Square(this.squareWidth, this.squareWidth, this.padding)},
+      {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge((this.lozengeWidth - this.squareWidth) / 2, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, "left")},
+      {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, this.squareWidth, this.padding, 1, "top")},
+
+      // new CutedLozenge(width/1.5,height,height/4,0,1,false),
+      // new Square(width,height),
+      // new HalfCutedLozenge(width,height/2,width/4),
     ];
   }
 }

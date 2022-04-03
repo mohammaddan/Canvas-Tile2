@@ -39,10 +39,15 @@ export default class RectanglesMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-      new Square(width,height),
-      new Square(width,height/2),
-      new Square(width/2,height),
-      new Square(width/2,height/2),
+      {title:'مربع بزرگ',name:'squareL',primitive:new Square(this.squareWidth, this.squareWidth)},
+      {title:'مربع کوچک',name:'squareS',primitive:new Square(this.squareWidth/2, this.squareWidth/2)},
+      {title:'مستطیل افقی',name:'squareH',primitive:new Square(this.squareWidth, this.squareWidth/2)},
+      {title:'مستطیل عمودی',name:'squareV',primitive:new Square(this.squareWidth/2, this.squareWidth)},
+      //
+      // new Square(width,height),
+      // new Square(width,height/2),
+      // new Square(width/2,height),
+      // new Square(width/2,height/2),
     ];
   }
 }

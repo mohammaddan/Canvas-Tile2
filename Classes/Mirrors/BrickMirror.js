@@ -81,8 +81,11 @@ export default class BrickMirror extends BaseMirror {
 
   reservePrimitives(width,height){
     return [
-      new Square(width, height),
-      new Square(width/2, height),
+      {title:'مربع',name:'square',primitive:new Square(this.squareWidth / 2, this.squareHeight, this.padding)},
+      {title:'مستطیل',name:'rectangle',primitive:new Square(this.squareWidth, this.squareHeight, this.padding)},
+      //
+      // new Square(width, height),
+      // new Square(width/2, height),
     ]
   }
 }

@@ -66,10 +66,15 @@ export default class DiamondMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-      new Diamond(width, height, this.padding,1,false),
-      new UpperTriangle(width, height/3, this.padding,1,false),
-      new BottomTriangle(width, 2*height/3, this.padding,1,false),
-      new HalfDiamond(width/2, height, this.padding,1,false),
+      {title:'الماس',name:'diamond',primitive:new Diamond(this.diamondWidth, this.diamondHeight, this.padding,1,false)},
+      {title:'الماس حاشیه بالا',name:'upperTriangle',primitive:new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, this.padding)},
+      {title:'الماس حاشیه پایین',name:'bottomTriangle',primitive:new BottomTriangle(this.diamondWidth, 2*this.diamondHeight / 3, this.padding)},
+      {title:'الماس حاشیه راست و چپ',name:'diamond',primitive:new HalfDiamond(this.diamondWidth/2,this.diamondHeight,this.padding)},
+      //
+      // new Diamond(width, height, this.padding,1,false),
+      // new UpperTriangle(width, height/3, this.padding,1,false),
+      // new BottomTriangle(width, 2*height/3, this.padding,1,false),
+      // new HalfDiamond(width/2, height, this.padding,1,false),
     ];
   }
 }

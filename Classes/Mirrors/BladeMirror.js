@@ -82,9 +82,12 @@ export default class BladeMirror extends BaseMirror {
 
   reservePrimitives(width,height){
     return [
-      new Lozenge(width, height),
-      new HalfBlade(width/4, height),
-      new Blade(width/4,height),
+      {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.bladeWidth, this.bladeWidth)},
+      {title:'شمشیری حاشیه بالا و پایین',name:'halfBlade',primitive:new HalfBlade(this.bladeWidth / 2, this.upperBladeHeight, this.padding, 1)},
+      {title:'شمشیری',name:'blade',primitive:new Blade(this.bladeWidth / 2, this.bladeHeight, 0, 1)},
+      // new Lozenge(width, height),
+      // new HalfBlade(width/4, height),
+      // new Blade(width/4,height),
     ]
   }
 

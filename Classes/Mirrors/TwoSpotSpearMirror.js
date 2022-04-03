@@ -4,6 +4,8 @@ import BaseMirror from "./BaseMirror.js";
 import Spear from "../Primitives/Spear.js";
 import Lozenge from "../Primitives/Lozenge.js";
 import Blade from "../Primitives/Blade.js";
+import UpperSpear from "../Primitives/UpperSpear.js";
+import LeftTriangle from "../Primitives/LeftTriangle.js";
 
 export default class TwoSpotSpearMirror extends BaseMirror {
   constructor(ctx, width, height, params, padding = 0) {
@@ -37,21 +39,28 @@ export default class TwoSpotSpearMirror extends BaseMirror {
 
   drawMeasures(ctx, params, size = 0.8) {
     let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-    loz.drawMeasures(ctx, parseInt(50 + 90 + size) + 0.5, 80.5, (params.countX * 2 - 1) * 2, 80 * size);
-    let hf = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding);
-    hf.drawMeasures(ctx, parseInt(50 + 120 * size) + 0.5, parseInt(80 + 140 * size) + 0.5, params.countX * 2 + 4, 80 * size);
+    loz.drawMeasures(ctx,Math.round(50 + 90 + size) + 0.5, 80.5, (params.countX * 2 - 1) * 2, 80 * size);
+    let hf = new LeftTriangle(this.lozengeWidth/2, this.lozengeHeight, this.padding);
+    hf.drawMeasures(ctx, Math.round(50 + 120 * size) + 0.5,Math.round(80 + 140 * size) + 0.5, params.countX * 2 + 4, 80 * size);
     let spear = new Spear(this.spearWidth, this.spearHeight, this.padding);
     spear.drawMeasures(ctx, 50.5, 50.5, params.countX - 1, 50 * size);
     let blade = new Blade(this.spearWidth / 2, this.spearHeight, this.padding, 1, "left");
-    blade.drawMeasures(ctx, parseInt(50 + 250 * size) + 0.5, 30.5, 2, 25 * size);
+    blade.drawMeasures(ctx,Math.round(50 + 250 * size) + 0.5, 30.5, 2, 25 * size);
   }
 
   reservePrimitives(width,height) {
     return [
-      new Lozenge(width,height),
-      new UpperTriangle(width,height/2),
-      new Spear(width/6,height),
-      new Blade(width/6,height),
+      {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.lozengeWidth, this.lozengeHeight)},
+      {title:'لچک راست و چپ',name:'leftTriangle',primitive:new LeftTriangle(this.lozengeWidth/2, this.lozengeHeight)},
+      {title:'لچک بالا و پایین',name:'upperTriangle',primitive:new UpperTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)},
+      {title:'نیزه حاشیه بالا و پایین',name:'upperSpear',primitive:new UpperSpear(this.lozengeWidth, this.upperSpearHeight, this.padding, 1)},
+      {title:'نیزه',name:'spear',primitive:new Spear(this.spearWidth, this.spearHeight, this.padding)},
+      {title:'شمشیری',name:'blade',primitive:new Blade(this.spearWidth / 2, this.spearHeight, this.padding, 1, "left")},
+
+      // new Lozenge(width,height),
+      // new UpperTriangle(width,height/2),
+      // new Spear(width/6,height),
+      // new Blade(width/6,height),
     ];
   }
 }

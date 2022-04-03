@@ -54,20 +54,25 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
   drawMeasures(ctx, params, size = 0.8) {
     let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
     loz.drawMeasures(ctx, 50.5, 80.5, (params.countX * 3 - 2) * 2, 80 * size);
-    let hf = new UpperSpear(this.lozengeWidth, this.params.upperSpearHeight, this.padding, 1);
+    let hf = new UpperSpear(this.lozengeWidth, params.upperSpearHeight, this.padding, 1);
     hf.drawMeasures(ctx, 50.5, 180.5, params.countX * 2, 40 * size);
     let spear = new Spear(this.spearWidth, this.spearHeight, this.padding);
-    spear.drawMeasures(ctx, parseInt(50 + 220 * size) + 0.5, 50.5, params.countX, 55 * size);
+    spear.drawMeasures(ctx, Math.round(50 + 220 * size) + 0.5, 50.5, params.countX, 55 * size);
     let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
-    lloz.drawMeasures(ctx, parseInt(50 + 120 * size) + 0.5, 200.5, 8, 45 * size);
+    lloz.drawMeasures(ctx, Math.round(50 + 120 * size) + 0.5, 200.5, 8, 45 * size);
   }
 
   reservePrimitives(width,height) {
     return [
-      new Lozenge(width, height),
-      new UpperSpear(width/2, height),
-      new Spear(width/4, height),
-      new LeftTriangle(width/2, height),
+      {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.lozengeWidth, this.lozengeHeight)},
+      {title:'نیزه حاشیه بالا و پایین',name:'upperSpear',primitive:new UpperSpear(this.lozengeWidth, this.upperSpearHeight, this.padding, 1)},
+      {title:'نیزه',name:'spear',primitive:new Spear(this.spearWidth, this.spearHeight, this.padding)},
+      {title:'لچک راست و چپ',name:'leftTriangle',primitive:new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)},
+
+      // new Lozenge(width, height),
+      // new UpperSpear(width/2, height),
+      // new Spear(width/4, height),
+      // new LeftTriangle(width/2, height),
     ];
   }
 }

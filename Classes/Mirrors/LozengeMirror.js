@@ -59,9 +59,13 @@ export default class LozengeMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-        new Lozenge(width,height),
-        new UpperTriangle(width,height/2),
-        new LeftTriangle(width/2,height),
+      {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.lozengeWidth, this.lozengeHeight)},
+      {title:'لچک بالا و پایین',name:'upperSpear',primitive:new UpperTriangle(this.lozengeWidth, this.lozengeHeight/2)},
+      {title:'لچک راست و چپ',name:'leftTriangle',primitive:new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)},
+      //
+      // new Lozenge(width,height),
+      //   new UpperTriangle(width,height/2),
+      //   new LeftTriangle(width/2,height),
     ];
   }
 }

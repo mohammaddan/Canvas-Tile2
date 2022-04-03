@@ -1,6 +1,7 @@
 import BaseMirror from "./BaseMirror.js";
 import HalfBlade from "../Primitives/HalfBlade.js";
 import Rhombus from "../Primitives/Rhombus.js";
+import Square from "../Primitives/Square.js";
 
 export default class RhombusMirror extends BaseMirror {
     constructor(ctx, width, height, params, padding = 0) {
@@ -59,7 +60,8 @@ export default class RhombusMirror extends BaseMirror {
 
     reservePrimitives(width,height) {
         return [
-            new Rhombus(width/8,height)
+            {title:'متوازی الاضلاع',name:'rhombus',primitive:new Rhombus(this.rhombusWidth, this.rhombusHeight, this.padding, 1, 'left')},
+            // new Rhombus(width/8,height)
         ]
     }
 
