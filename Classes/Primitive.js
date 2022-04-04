@@ -57,6 +57,7 @@ export default class Primitive {
         });
         ctx.closePath();
         // ctx.fill();
+        // ctx.arc(fp.x+2.5,fp.y+2.5, 5, 0, 2 * Math.PI);
         ctx.stroke();
 
         ctx.beginPath();
@@ -76,6 +77,7 @@ export default class Primitive {
             ctx.lineTo(Math.floor(p.x) + 2.5, Math.floor(p.y) + 2.5);
         });
         ctx.closePath();
+
         ctx.fill();
         ctx.stroke();
     }

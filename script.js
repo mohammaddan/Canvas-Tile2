@@ -30,6 +30,8 @@ import CascadeMirror from "./Classes/Mirrors/CascadeMirror.js";
 import DiamondMirror from "./Classes/Mirrors/DiamondMirror.js";
 import RectanglesMirror from "./Classes/Mirrors/RectanglesMirror.js";
 import ShatterMirror from "./Classes/Mirrors/ShatterMirror.js";
+import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
+import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
@@ -43,6 +45,8 @@ canvas2.setAttribute("width", "320px");
 canvas2.setAttribute("height", "500px");
 let body = document.body;
 let cx = 0;
+
+// ------------------------------------------------------------------------------------------------
 // let mirror = new LozengeMirror(ctx, 200, 200,{countX:4,countY:4}, 2);
 // let mirror=new BladeMirror(ctx,200,200,{countX:4,upperBladeHeight:40},2);
 // let mirror=new BrickMirror(ctx,200,200,{countX:4,countY:5},2);
@@ -58,33 +62,44 @@ let cx = 0;
 // let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
 // let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
+let mirror = new CompositeMirror(ctx, 300, 240, { countX: 2, countY: 2 }, 2);
 
-let width = 200,
-  height = 250;
-let inParams = TwoSpotSpearMirror.parameters(width, height);
-console.log(inParams);
-let params = {};
-inParams.forEach((p) => {
-  p.value = p.default; // prompt(p.label,p.default);
-  params[p.name] = parseFloat(p.value);
-});
-let mirror= new TwoSpotSpearMirror(ctx,width,height,params,2);
 mirror.draw();
-mirror.drawMeasures(ctx2, params, 0.9);
-let reserves=mirror.reservePrimitives(180,180);
-reserves.forEach(r=>{
-  r.primitive.moveToCenter(200,200)
-  r.primitive.draw(ctx3)
-})
-document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
-mirror.drawMeasures(ctx2, params, 0.9);
-mirror.getMirrorPics(canvas)
-mirror.getMirrorPics(canvas2)
-console.log(mirror.mirrorPics)
-// mirror.drawDXF().downloadDXF()
+
+// ------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
+// let width = 200,
+//   height = 250;
+// let inParams = TwoSpotSpearMirror.parameters(width, height);
+// console.log(inParams);
+// let params = {};
+// inParams.forEach((p) => {
+//   p.value = p.default; // prompt(p.label,p.default);
+//   params[p.name] = parseFloat(p.value);
+// });
+// let mirror= new TwoSpotSpearMirror(ctx,width,height,params,2);
+// mirror.draw();
+// mirror.drawMeasures(ctx2, params, 0.9);
+// let reserves=mirror.reservePrimitives(180,180);
+// reserves.forEach(r=>{
+//   r.primitive.moveToCenter(200,200)
+//   r.primitive.draw(ctx3)
+// })
+// document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
+// mirror.drawMeasures(ctx2, params, 0.9);
+// mirror.getMirrorPics(canvas)
+// mirror.getMirrorPics(canvas2)
+// console.log(mirror.mirrorPics)
+// // mirror.drawDXF().downloadDXF()
 // document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
-// let loz = new UpperTriangle(40, 30);
+// ------------------------------------------------------------------------------------------------
+
+
+// let loz = new RotatedRhombus(150, 100,10,1,-90,0);
+// loz.shiftXY(50,100)
 // loz.draw(ctx);
+
 // loz.drawMeasures(ctx, 50.5, 80.5, 20, 80)
 // body.addEventListener('keyup', () => {
 //     cx = (cx + 1) % 10;
