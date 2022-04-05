@@ -62,7 +62,7 @@ let cx = 0;
 // let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
 // let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
-let mirror = new CompositeMirror(ctx, 300, 240, { countX: 2, countY: 2 }, 2);
+let mirror = new CompositeMirror(ctx, 300, 180, { countX: 2, countY: 2 }, 2);
 
 mirror.draw();
 
