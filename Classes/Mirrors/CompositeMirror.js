@@ -2,6 +2,8 @@ import BaseMirror from "./BaseMirror.js";
 import RotatedRhombus from "../Primitives/RotatedRhombus.js";
 import UpperTriangle from "../Primitives/UpperTriangle.js";
 import BottomTriangle from "../Primitives/BottomTriangle.js";
+import Lozenge from "../Primitives/Lozenge.js";
+import LeftTriangle from "../Primitives/LeftTriangle.js";
 
 /**
  * params is object that has countX,upperBladeHeight
@@ -58,5 +60,35 @@ export default class CompositeMirror extends BaseMirror {
             //-----------------------------------------------------------------------------------------------
         }
         this.drawer.addOneRowOfShapes(0, height - this.lozengeHeight / 2, new BottomTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
+    }
+
+    static parameters(width, height) {
+        return [
+            {
+                name: "countX",
+                required: true,
+                label: "تعداد تکرار در عرض",
+                default: Math.round(width / 75),
+                min: Math.ceil(width / 150),
+                max: Math.floor(width / 30),
+            },
+            {
+                name: "countY",
+                required: true,
+                label: "تعداد تکرار در ارتفاع",
+                default: Math.round(height / 75),
+                min: Math.ceil(height / 150),
+                max: Math.floor(height / 30),
+            },
+        ];
+    }
+
+    drawMeasures(ctx, params, size = 1) {
+        let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
+        loz.drawMeasures(ctx, 50.5, 80.5, (params.countX - 1) * params.countY , 70);
+        let uloz = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding);
+        uloz.drawMeasures(ctx, 200.5, 60.5, params.countX * 2, 70);
+        let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
+        lloz.drawMeasures(ctx, 150.5, 160.5, params.countY * 2, 45);
     }
 }

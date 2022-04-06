@@ -62,37 +62,37 @@ let cx = 0;
 // let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
 // let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
-let mirror = new CompositeMirror(ctx, 300, 180, { countX: 2, countY: 2 }, 2);
-
-mirror.draw();
-
-// ------------------------------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------------------------------
-// let width = 200,
-//   height = 250;
-// let inParams = TwoSpotSpearMirror.parameters(width, height);
-// console.log(inParams);
-// let params = {};
-// inParams.forEach((p) => {
-//   p.value = p.default; // prompt(p.label,p.default);
-//   params[p.name] = parseFloat(p.value);
-// });
-// let mirror= new TwoSpotSpearMirror(ctx,width,height,params,2);
+// let mirror = new CompositeMirror(ctx, 300, 180, { countX: 2, countY: 2 }, 2);
+//
 // mirror.draw();
-// mirror.drawMeasures(ctx2, params, 0.9);
-// let reserves=mirror.reservePrimitives(180,180);
-// reserves.forEach(r=>{
-//   r.primitive.moveToCenter(200,200)
-//   r.primitive.draw(ctx3)
-// })
-// document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
-// mirror.drawMeasures(ctx2, params, 0.9);
-// mirror.getMirrorPics(canvas)
-// mirror.getMirrorPics(canvas2)
-// console.log(mirror.mirrorPics)
-// // mirror.drawDXF().downloadDXF()
-// document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+
+// ------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
+let width = 200,
+  height = 250;
+let inParams = CompositeMirror.parameters(width, height);
+console.log(inParams);
+let params = {};
+inParams.forEach((p) => {
+  p.value = p.default; // prompt(p.label,p.default);
+  params[p.name] = parseFloat(p.value);
+});
+let mirror= new CompositeMirror(ctx,width,height,params,2);
+mirror.draw();
+mirror.drawMeasures(ctx2, params, 0.9);
+let reserves=mirror.reservePrimitives(180,180);
+reserves.forEach(r=>{
+  r.primitive.moveToCenter(200,200)
+  r.primitive.draw(ctx3)
+})
+document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
+mirror.drawMeasures(ctx2, params, 0.9);
+mirror.getMirrorPics(canvas)
+mirror.getMirrorPics(canvas2)
+console.log(mirror.mirrorPics)
+// mirror.drawDXF().downloadDXF()
+document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // ------------------------------------------------------------------------------------------------
 
 
