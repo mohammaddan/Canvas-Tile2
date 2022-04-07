@@ -4,6 +4,7 @@ export default class RotatedRhombus extends Primitive {
     constructor(width, height, padding = 0, lineWidth = 1,angle = -45, rotate = 0) {
         super(width, height, padding, lineWidth);
         let t0=Math.PI * angle / 180;
+        this.t0=t0;
         let t01=Math.PI * (180-angle) / 180;
         let t1 = Math.PI * rotate / 180;
         let x=[0],y=[0];
@@ -50,24 +51,23 @@ export default class RotatedRhombus extends Primitive {
     }
 
     area() {
-        return this.h2 * this.width;
+        return Math.abs(this.height*Math.sin(this.t0)) * this.width;
     }
 
     environment() {
-        let edge = Math.sqrt((this.width / 2) ^ 2 + this.h1 ^ 2);
-        return edge * 4 + 2 * this.h2;
+        // let edge = Math.abs(this.height/Math.sin(this.t0))
+        return this.height * 2 + 2 * this.width;
     }
 
     drawMeasures(ctx, offsetX, offsetY, n, size) {
+        let h1=Math.abs(this.height*Math.sin(this.t0))
         let points = [];
         let ratio = this.width / this.height;
-        let t = Math.sqrt(this.width ** 2 + this.height ** 2)
         this.points.forEach(p => {
             points.push({x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * ratio)})
         })
-        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[0].y, 0, -10, this.width)
-        this.measureLine(ctx, points[1].x, points[0].y, points[1].x, points[1].y, 0, 0, this.h1)
-        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -20, 0, this.height)
+        this.measureLine(ctx, points[0].x, points[0].y, points[0].x, points[1].y, -25, 0,h1)
+        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, 0, 20, this.width)
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

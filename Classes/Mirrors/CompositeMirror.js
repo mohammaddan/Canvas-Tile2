@@ -26,6 +26,7 @@ export default class CompositeMirror extends BaseMirror {
         this.rectHeight = this.compositeLength / 3;
         let t0 = 180-2*Math.atan(this.lozengeHeight/this.lozengeWidth)*180/Math.PI
         let t1=90-t0/2
+        this.t0=t0;this.t1=t1;
         let t = (Math.PI*t1) / 180
         let cosT=Math.cos(t);
         let sinT=Math.sin(t);
@@ -85,10 +86,24 @@ export default class CompositeMirror extends BaseMirror {
 
     drawMeasures(ctx, params, size = 1) {
         let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-        loz.drawMeasures(ctx, 50.5, 80.5, (params.countX - 1) * params.countY , 70);
-        let uloz = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding);
-        uloz.drawMeasures(ctx, 200.5, 60.5, params.countX * 2, 70);
-        let lloz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
-        lloz.drawMeasures(ctx, 150.5, 160.5, params.countY * 2, 45);
+        loz.drawMeasures(ctx, 50.5, 80.5, (params.countX - 1) * params.countY , 70*size);
+        let uLoz = new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, this.padding);
+        uLoz.drawMeasures(ctx, 200.5, 60.5, params.countX * 2, 70*size);
+        let lLoz = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
+        lLoz.drawMeasures(ctx, 220.5, 160.5, params.countY * 2, 45*size);
+        let sq=new RotatedRhombus(this.rectWidth-this.rectHeight, this.rectWidth-this.rectHeight, 0, 1, -this.t0, 0)
+        sq.drawMeasures(ctx,50.5,220.5,params.countX*(params.countY-1),40*size)
+        let rb=new RotatedRhombus(this.rectWidth, this.rectHeight, 0, 1, -this.t0, 0)
+        rb.drawMeasures(ctx,130.5,320.5,4*params.countX*(params.countY-1),80*size)
+    }
+
+    reservePrimitives(width,height) {
+        return [
+            {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.lozengeWidth, this.lozengeHeight)},
+            {title:'لچک بالا و پایین',name:'upperSpear',primitive:new UpperTriangle(this.lozengeWidth, this.lozengeHeight/2)},
+            {title:'لچک راست و چپ',name:'leftTriangle',primitive:new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)},
+            {title:'متوازی الاضلاع کوچک',name:'rhombusS',primitive:new RotatedRhombus(this.rectWidth-this.rectHeight, this.rectWidth-this.rectHeight, 0, 1, -this.t0,0)},
+            {title:'متوازی الاضلاع بزرگ',name:'rhombusL',primitive:new RotatedRhombus(this.rectWidth, this.rectHeight, 0, 1, -this.t0, 0)},
+        ];
     }
 }
