@@ -32,6 +32,7 @@ import RectanglesMirror from "./Classes/Mirrors/RectanglesMirror.js";
 import ShatterMirror from "./Classes/Mirrors/ShatterMirror.js";
 import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
 import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
+import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
@@ -59,27 +60,28 @@ let cx = 0;
 // let mirror = new TwoSpotSpearMirror(ctx,200,200,{countX:5,countY:5},2);
 // let mirror = new RhombusMirror(ctx,200,200,{countX:5,countY:2},2);
 // let mirror = new CubeMirror(ctx, 320, 300, { countX: 3, countY: 3 }, 2);
-// let mirror = new RectanglesMirror(ctx, 200, 200, { squareWidth: 25 }, 2);
+// let mirror = new RectanglesMirror(ctx, 375, 300, { squareWidth: 25 }, 2);
 // let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
 // let mirror = new CompositeMirror(ctx, 300, 180, { countX: 2, countY: 2 }, 2);
+// let mirror = new HexagonalMirror(ctx, 300, 300, { hexWidth: 100 }, 2);
 //
-// mirror.draw();
+// mirror.draw('white');
 
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let width = 200,
-  height = 250;
-let inParams = CompositeMirror.parameters(width, height);
+let width = 300,
+  height = 300;
+let inParams = HexagonalMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new CompositeMirror(ctx,width,height,params,2);
-mirror.draw();
+let mirror= new HexagonalMirror(ctx,width,height,params,2);
+mirror.draw('rozgold');
 mirror.drawMeasures(ctx2, params, 0.9);
 let reserves=mirror.reservePrimitives(180,180);
 reserves.forEach(r=>{
@@ -95,8 +97,12 @@ console.log(mirror.mirrorPics)
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // ------------------------------------------------------------------------------------------------
 
-
-// let loz = new RotatedRhombus(150, 100,10,1,-90,0);
+// let w=150;
+// let h=150;
+// let a=(4*w-Math.sqrt(16*w**2-12*(w**2-h**2/4)))/6
+// let x=w-2*a;
+//
+// let loz = new CutedLozenge(w, h,x,3,1,true);
 // loz.shiftXY(50,100)
 // loz.draw(ctx);
 
@@ -106,13 +112,24 @@ document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' 
 //     mirror = new LozengeMirror(ctx, 300, 200, 6, 4, cx);
 //     mirror.draw();
 // });
-
+// ------------------------------------------------------------------------------------------
 // let drawer = new BaseDrawer(ctx, 300, 210, 0);
 //
-// let shapes = Array.from({ length: 45 }, (a,i) => {
-//     console.log(i)
-//     if(i%12===0 || i%12===6) return new Square(25,40)
-//     return new Square(50,40)
+// let rects=[];
+//
+// Array.from({ length: 90 }, (a,i) => {
+//     rects.push({w: Math.floor(Math.random() * 2 + 1), h: Math.floor(Math.random() * 2 + 1)})
+// })
+//
+//
+// // let shapes = Array.from({ length: 45 }, (a,i) => {
+// //     if(i%12===0 || i%12===6) return new Square(25,40)
+// //     return new Square(50,40)
+// // })
+//
+// let shapes =[];
+// rects.forEach(r => {
+//     shapes.push(new Square(r.w*25,r.h*25,3))
 // })
 //
 // let stop = false;
@@ -121,7 +138,7 @@ document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' 
 //     if (shapes.length) {
 //         let r = shapes[0];
 //         shapes = shapes.splice(1);
-//         drawer.addShape(r)
+//         console.log(drawer.addRect(r))
 //     } else {
 //         stop = true;
 //         console.log('the end!')

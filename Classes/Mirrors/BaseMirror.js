@@ -15,8 +15,8 @@ export default class BaseMirror {
         this.mirrorPics = [];
     }
 
-    draw() {
-        this.drawer.drawAll();
+    draw(color='white') {
+        this.drawer.drawAll(color);
     }
 
     area() {

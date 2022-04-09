@@ -7,6 +7,16 @@ export default class Primitive {
         this.drawablePoints = [];
         this.points = [];
         this.offsetX = 0;
+
+        this.colors={
+            white:['#bbb','#aaa','#ccc','#fafafa'],
+            smoky:['#9d9d9d','#aaa','#767877','#9e9e9f'],
+            blue:['#6F83B3','#7f9abf','#566FA8','#7f9abf'],
+            gold:['#c8b848','#d0c055','#CBBE58','#D8Ca73'],
+            boronze:['#ad9988','#bba598','#B49485','#BfA59a'],
+            mesi:['#bf9473','#c4ad70','#8a6a41','#aD8F77'],
+            rozgold:['#cfb2a4','#DBBBAE','#D6B0A3','#e9c8bd'],
+        }
     }
 
     set_line_width(size) {
@@ -45,10 +55,10 @@ export default class Primitive {
         })
     }
 
-    draw(ctx) {
+    draw(ctx,color='white') {
         ctx.beginPath();
-        ctx.strokeStyle = '#bbb';
-        ctx.fillStyle = '#eee'
+        ctx.strokeStyle = this.colors[color][1];
+        ctx.fillStyle = this.colors[color][0]
         // ctx.setLineDash([3,3]);
         let fp = this.points[0];
         ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
@@ -62,11 +72,11 @@ export default class Primitive {
 
         ctx.beginPath();
         let my_gradient = ctx.createLinearGradient(0, 0, 200, 400);
-        my_gradient.addColorStop(0, "#ccc");
-        my_gradient.addColorStop(0.3, "#fafafa");
-        my_gradient.addColorStop(0.5, "#ccc");
-        my_gradient.addColorStop(0.7, "#fafafa");
-        my_gradient.addColorStop(1, "#ddd");
+        my_gradient.addColorStop(0, this.colors[color][2]);
+        my_gradient.addColorStop(0.3,  this.colors[color][3]);
+        my_gradient.addColorStop(0.5,  this.colors[color][2]);
+        my_gradient.addColorStop(0.7,  this.colors[color][3]);
+        my_gradient.addColorStop(1,  this.colors[color][2]);
         ctx.fillStyle = my_gradient;
         ctx.lineWidth = 1; // this.lineWidth;
         ctx.setLineDash([]);
