@@ -93,7 +93,7 @@ mirror.drawMeasures(ctx2, params, 0.9);
 mirror.getMirrorPics(canvas)
 mirror.getMirrorPics(canvas2)
 console.log(mirror.mirrorPics)
-// mirror.drawDXF().downloadDXF()
+mirror.drawDXF().downloadDXF()
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
 // ------------------------------------------------------------------------------------------------
 

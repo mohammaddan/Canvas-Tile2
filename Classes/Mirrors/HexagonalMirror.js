@@ -77,8 +77,8 @@ export default class HexagonalMirror extends BaseMirror {
     reservePrimitives(width,height) {
         return [
             {title: 'شش ضلعی', name: 'lozenge', primitive: new CutedLozenge(this.hexWidth, this.hexHeight, this.squareWidth, 0)},
-            {title: 'نیم شش ضلعی بالا و پایین', name: 'lozenge', primitive: new HalfCutedLozenge(this.hexWidth, this.hexHeight / 2, this.squareWidth, 0,1,'bottom')},
-            {title: 'نیم شش ضلعی چپ و راست', name: 'lozenge', primitive: new HalfCutedLozenge(this.hexWidth/2, this.hexHeight , this.squareWidth, 0,1,'left-invert')},
+            {title: 'نیم شش ضلعی بالا و پایین', name: 'halfLozengeH', primitive: new HalfCutedLozenge(this.hexWidth, this.hexHeight / 2, this.squareWidth, 0,1,'bottom')},
+            {title: 'نیم شش ضلعی چپ و راست', name: 'halfLozengeV', primitive: new HalfCutedLozenge(this.hexWidth/2, this.hexHeight , this.squareWidth, 0,1,'left-invert')},
         ]
     }
 }
