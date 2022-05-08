@@ -34,53 +34,54 @@ import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
 import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 
+let width = 300, height = 300;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
 let ctx = canvas.getContext("2d");
 let ctx2 = canvas2.getContext("2d");
 let ctx3 = canvas3.getContext("2d");
-canvas.setAttribute("width", "400px");
-canvas.setAttribute("height", "500px");
+canvas.setAttribute("width", (width + 5) + "px");
+canvas.setAttribute("height", (height + 5) + "px");
 canvas2.setAttribute("width", "320px");
 canvas2.setAttribute("height", "500px");
 let body = document.body;
 let cx = 0;
-
 // ------------------------------------------------------------------------------------------------
-// let mirror = new LozengeMirror(ctx, 200, 200,{countX:4,countY:4}, 2);
-// let mirror=new BladeMirror(ctx,200,200,{countX:4,upperBladeHeight:40},2);
-// let mirror=new BrickMirror(ctx,200,200,{countX:4,countY:5},2);
-// let mirror = new NineSpotSpearMirror(ctx,200,200,{countX:6,countY:5},2);
-// let mirror = new FourAndHalfSpotSpearMirror(ctx,200,200,{countX:8,upperSpearHeight:40},2);
-// let mirror = new FourSpotSpearMirror(ctx,200,200,{countX:6,upperSpearHeight:40},2);
-// let mirror = new JeweledMirror(ctx,200,200,{countX:5,countY:5,squareWidth:10},2);
-// let mirror = new MiddleFourSpotSpearMirror(ctx,200,200,{countX:5,countY:5,squareWidth:10},2);
-// let mirror = new SpearMirror(ctx,200,200,{countX:6,countY:2,upperSpearHeight:40},2);
-// let mirror = new TwoSpotSpearMirror(ctx,200,200,{countX:5,countY:5},2);
-// let mirror = new RhombusMirror(ctx,200,200,{countX:5,countY:2},2);
-// let mirror = new CubeMirror(ctx, 320, 300, { countX: 3, countY: 3 }, 2);
-// let mirror = new RectanglesMirror(ctx, 375, 300, { squareWidth: 25 }, 2);
-// let mirror = new DiamondMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
-// let mirror = new ShatterMirror(ctx, 300, 300, { countX: 5, countY: 5 }, 2);
-// let mirror = new CompositeMirror(ctx, 300, 180, { countX: 2, countY: 2 }, 2);
-// let mirror = new HexagonalMirror(ctx, 300, 300, { hexWidth: 100 }, 2);
-//
+// let mirror = new BladeMirror(ctx, 200, 200, {countX: 4, upperBladeHeight: 40}, 2);
+// let mirror = new BrickMirror(ctx, 200, 200, {countX: 4, countY: 5}, 2);
+// let mirror = new CompositeMirror(ctx, width, height, {countX:3, countY: 2}, 2);
+// let mirror = new CubeMirror(ctx, width, height, {countX: 3, countY: 3}, 2);
+// let mirror = new DiamondMirror(ctx, width, height, {countX: 4, countY: 4}, 2);
+// let mirror = new FourAndHalfSpotSpearMirror(ctx, 200, 200, {countX: 8, upperSpearHeight: 40}, 2);
+// let mirror = new FourSpotSpearMirror(ctx, 200, 200, {countX: 6, upperSpearHeight: 40}, 2);
+// let mirror = new HexagonalMirror(ctx, width, height, {hexWidth: 100}, 2);
+// let mirror = new JeweledMirror(ctx, 200, 200, {countX: 5, countY: 5, squareWidth: 10}, 2);
+// let mirror = new LozengeMirror(ctx, 200, 200, {countX: 4, countY: 4}, 2);
+// let mirror = new MiddleFourSpotSpearMirror(ctx, 200, 200, {countX: 5, countY: 5, squareWidth: 10}, 2);
+// let mirror = new NineSpotSpearMirror(ctx, 200, 200, {countX: 6, countY: 5}, 2);
+// let mirror = new RectanglesMirror(ctx, 200, 200, {squareWidth: 50, squareHeight: 50}, 2);
+// let mirror = new RhombusMirror(ctx, 200, 200, {countX: 5, countY: 2}, 2);
+// let mirror = new CascadeMirror(ctx, width, height, {squareWidth: 10, countY: 3}, 1);
+// let mirror = new SpearMirror(ctx, 200, 200, {countX: 6, countY: 2, upperSpearHeight: 40}, 2);
+// let mirror = new SquareMirror(ctx, 200, 200, {countX:5,countY:5}, 2);
+// let mirror = new TwoSpotSpearMirror(ctx, 200, 200, {countX: 5, countY: 5}, 2);
+
 // mirror.draw('white');
-
+// mirror.getMirrorPics(canvas).then(() => {
+//     // mirror.downloadMirrorPics()
+// });
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let width = 300,
-  height = 300;
-let inParams = HexagonalMirror.parameters(width, height);
+let inParams = CascadeMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new HexagonalMirror(ctx,width,height,params,2);
+let mirror= new CascadeMirror(ctx,width,height,params,1);
 mirror.draw('rozgold');
 mirror.drawMeasures(ctx2, params, 0.9);
 let reserves=mirror.reservePrimitives(180,180);
@@ -88,13 +89,12 @@ reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
 })
-document.getElementById("properties").innerHTML = "area : " + mirror.area() + " cm2<br/>" + "environment : " + mirror.environment() + " cm";
 mirror.drawMeasures(ctx2, params, 0.9);
 mirror.getMirrorPics(canvas)
 mirror.getMirrorPics(canvas2)
 console.log(mirror.mirrorPics)
-mirror.drawDXF().downloadDXF()
-document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm2<br/>' + 'environment : ' + mirror.environment() + ' cm';
+// mirror.drawDXF().downloadDXF()
+document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm<sup>2</sup><br/>' + 'environment : ' + mirror.environment() + ' cm';
 // ------------------------------------------------------------------------------------------------
 
 // let w=150;

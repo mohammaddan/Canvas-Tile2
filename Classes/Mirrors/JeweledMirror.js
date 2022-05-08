@@ -73,9 +73,9 @@ export default class JeweledMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-      {title:'نیزه عمودی',name:'cutedLozengeV',primitive: new CutedLozenge(this.lozengeWidth - this.squareWidth, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, false)},
-      // {title:'نیزه افقی',name:'cutedLozengeH',primitive: new CutedLozenge(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1, true)},
       {title:'مربع',name:'square',primitive:new Square(this.squareWidth, this.squareWidth, this.padding)},
+      // {title:'نیزه افقی',name:'cutedLozengeH',primitive: new CutedLozenge(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1, true)},
+      {title:'نیزه عمودی',name:'cutedLozengeV',primitive: new CutedLozenge(this.lozengeWidth - this.squareWidth, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, false)},
       {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge((this.lozengeWidth - this.squareWidth) / 2, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, "left")},
       {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, this.squareWidth, this.padding, 1, "top")},
 

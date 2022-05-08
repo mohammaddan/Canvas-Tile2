@@ -2,6 +2,14 @@ import BaseMirror from "./BaseMirror.js";
 import Square from "../Primitives/Square.js";
 
 export default class SquareMirror extends BaseMirror {
+  /**
+   *
+   * @param ctx
+   * @param width
+   * @param height
+   * @param {{countX,countY}} params
+   * @param padding
+   */
   constructor(ctx, width, height, params, padding = 0) {
     super(ctx, width, height);
 

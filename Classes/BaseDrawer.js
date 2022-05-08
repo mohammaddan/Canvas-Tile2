@@ -90,7 +90,7 @@ export default class BaseDrawer {
         while (this.rows.length && this.rows[0].points.size === 0) {
             this.rows = this.rows.splice(1);
         }
-        this.drawLastShapeWithAllPoint();
+        // this.drawLastShapeWithAllPoint();
     }
 
     addRect(primitive) {

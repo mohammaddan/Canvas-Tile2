@@ -15,7 +15,7 @@ export default class BaseMirror {
         this.mirrorPics = [];
     }
 
-    draw(color='white') {
+    draw(color = 'white') {
         this.drawer.drawAll(color);
     }
 
@@ -55,11 +55,28 @@ export default class BaseMirror {
         return this.download(this.dxfWriter.toDxfString(), 'mirror.dxf', 'application/dxf')
     }
 
-    getMirrorPics(canvasElement){
-        fetch(canvasElement.toDataURL('image/png'))
+    getMirrorPics(canvasElement) {
+        return fetch(canvasElement.toDataURL('image/png'))
             .then(res => res.blob()).then(blob => {
-            this.mirrorPics.push(new File([blob], 'mirror.png', {type: "image/png"}))
-        })
+                this.mirrorPics.push(new File([blob], 'mirror.png', {type: "image/png"}))
+            }).then(() => Promise.resolve()).catch(() => Promise.reject())
+    }
+
+    downloadMirrorPics() {
+        let filename = this.constructor.name.replace('Mirror','')
+        this.mirrorPics.forEach(pic => {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveBlob(pic, filename);
+                } else {
+                    const elem = window.document.createElement('a');
+                    elem.href = window.URL.createObjectURL(pic);
+                    elem.download = filename;
+                    document.body.appendChild(elem);
+                    elem.click();
+                    document.body.removeChild(elem);
+                }
+            }
+        )
     }
 
     download(data, filename, type) {

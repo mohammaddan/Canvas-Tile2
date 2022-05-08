@@ -53,7 +53,6 @@ export default class TwoSpotSpearMirror extends BaseMirror {
       {title:'لوزی',name:'lozenge',primitive:new Lozenge(this.lozengeWidth, this.lozengeHeight)},
       {title:'لچک راست و چپ',name:'leftTriangle',primitive:new LeftTriangle(this.lozengeWidth/2, this.lozengeHeight)},
       {title:'لچک بالا و پایین',name:'upperTriangle',primitive:new UpperTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding)},
-      {title:'نیزه حاشیه بالا و پایین',name:'upperSpear',primitive:new UpperSpear(this.lozengeWidth, this.upperSpearHeight, this.padding, 1)},
       {title:'نیزه',name:'spear',primitive:new Spear(this.spearWidth, this.spearHeight, this.padding)},
       {title:'شمشیری',name:'blade',primitive:new Blade(this.spearWidth / 2, this.spearHeight, this.padding, 1, "left")},
 
