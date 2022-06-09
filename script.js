@@ -34,7 +34,7 @@ import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
 import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 
-let width = 300, height = 300;
+let width = 100, height = 300;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -74,15 +74,16 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = CascadeMirror.parameters(width, height);
+let inParams = HexagonalMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new CascadeMirror(ctx,width,height,params,1);
-mirror.draw('rozgold');
+let mirror= new HexagonalMirror(ctx,width,height,params,1);
+// smoky , blue , gold , boronze , mesi , rozgold , white
+mirror.draw('gold');
 mirror.drawMeasures(ctx2, params, 0.9);
 let reserves=mirror.reservePrimitives(180,180);
 reserves.forEach(r=>{

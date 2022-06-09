@@ -9,13 +9,13 @@ export default class Primitive {
         this.offsetX = 0;
 
         this.colors={
-            white:['#bbb','#aaa','#ccc','#fafafa'],
-            smoky:['#9d9d9d','#aaa','#767877','#9e9e9f'],
-            blue:['#6F83B3','#7f9abf','#566FA8','#7f9abf'],
-            gold:['#c8b848','#d0c055','#CBBE58','#D8Ca73'],
-            boronze:['#ad9988','#bba598','#B49485','#BfA59a'],
-            mesi:['#bf9473','#c4ad70','#8a6a41','#aD8F77'],
-            rozgold:['#cfb2a4','#DBBBAE','#D6B0A3','#e9c8bd'],
+            white:['#f8f3f3','#dcd4d4','#ccc','#fafafa'],
+            smoky:['#c8c3c3','#a7a1a1','#767877','#b9b9b9'],
+            blue:['#b5c0da','#9eb3d1','#6e87c1','#8cacd8'],
+            gold:['#f4f1d8','#f3e483','#d7cd46','#e6e652'],
+            boronze:['#efc6a6','#d5c097','#be9a57','#ccaa7a'],
+            mesi:['#e5ccb8','#d8b9a5','#f4a174','#ed9b60'],
+            rozgold:['#f8e8df','#ffd7be','#ffd79b','#fbc87d'],
         }
     }
 
@@ -80,7 +80,7 @@ export default class Primitive {
         ctx.fillStyle = my_gradient;
         ctx.lineWidth = 1; // this.lineWidth;
         ctx.setLineDash([]);
-        ctx.strokeStyle = '#ccc';
+        ctx.strokeStyle = this.colors[color][0];//'#ddd';
         fp = this.drawablePoints[0];
         ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
         this.drawablePoints.slice(1).forEach(p => {
