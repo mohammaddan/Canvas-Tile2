@@ -46,6 +46,7 @@ export default class LeftTriangle extends Primitive {
         ctx.closePath();
         ctx.stroke();
         ctx.fillStyle = '#555';
-        ctx.fillText('n=' + n, points[0].x + size / 4, (points[0].y + points[2].y) / 2 - 5)
+
+        ctx.fillText('n=' + n, points[0].x + size / 4, (points[0].y + points[2].y) / 2 )
     }
 }

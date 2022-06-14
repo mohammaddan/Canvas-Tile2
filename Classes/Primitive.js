@@ -147,6 +147,11 @@ export default class Primitive {
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
-        ctx.fillText(typeof label == "number" ? label.toFixed(1) : label, (x1 + x2) / 2 + dx * 1.1, (y1 + y2) / 2 + dy * 1.1);
+        let text=typeof label == "number" ? label.toFixed(1) : label
+        let temp=ctx.measureText(text)
+        ctx.fillStyle = "#fff";
+        ctx.fillRect((x1 + x2-temp.width) / 2 + dx-2, (y1 + y2-temp.actualBoundingBoxAscent) / 2 + dy-2 ,temp.width+4,temp.actualBoundingBoxAscent+4)
+        ctx.fillStyle = "#f00";
+        ctx.fillText(text, (x1 + x2-temp.width) / 2 + dx , (y1 + y2+temp.actualBoundingBoxAscent) / 2 + dy );
     }
 }

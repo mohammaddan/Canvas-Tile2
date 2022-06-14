@@ -84,13 +84,12 @@ inParams.forEach((p) => {
 let mirror= new HexagonalMirror(ctx,width,height,params,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
-mirror.drawMeasures(ctx2, params, 0.9);
+mirror.drawMeasures(ctx2, params);
 let reserves=mirror.reservePrimitives(180,180);
 reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
 })
-mirror.drawMeasures(ctx2, params, 0.9);
 mirror.getMirrorPics(canvas)
 mirror.getMirrorPics(canvas2)
 console.log(mirror.mirrorPics)

@@ -138,7 +138,7 @@ export default class HalfCutedLozenge extends Primitive {
             this.measureLine(ctx, points[0].x, points[0].y, points[4].x, points[4].y, -25, 0, this.height)
             this.measureLine(ctx, points[0].x, points[2].y, points[2].x, points[2].y, 0, this.height/(ratio*2)+20, this.width)
             ctx.fillStyle = '#555';
-            ctx.fillText('n=' + n, (points[0].x + points[2].x - this.squareWidth * size / this.width+5) / 2, (points[1].y + points[3].y) / 2)
+            ctx.fillText('n=' + n, (points[0].x + points[2].x - this.squareWidth * size / this.width+15) / 2, (points[1].y + points[3].y) / 2)
         }
         ctx.beginPath();
         ctx.strokeStyle = '#000';

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .my-div{
+            width:100px;
+            min-width:100px;
+            height: 100px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .d1,.d2,.d3, .d4, .d5{
+            width: 300px;
+            /*animation: backInRight 2s infinite linear ;*/
+        }
+        .d1{background: linear-gradient(65deg,#fafafa,#ddd,#fafafa);}
+        .d2{background: linear-gradient(65deg,#b9b9b9,#767877,#b9b9b9);}
+        .d3{background: linear-gradient(65deg,#8cacd8,#6e87c1,#8cacd8);}
+        .d4{background: linear-gradient(65deg,#e6e652,#d7cd46,#e6e652);}
+        .d5{background: linear-gradient(65deg,#ccaa7a,#be9a57,#ccaa7a);}
+        .d6{background: linear-gradient(65deg,#ed9b60,#f4a174,#ed9b60);}
+        .d7{background: linear-gradient(65deg,#fbc87d,#ffd79b,#fbc87d);}
+        @keyframes backInRight {
+            from{
+                transform: translateX(-200px);
+            }
+            to{
+                transform: translateX(0px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex; column-gap: 10px;row-gap: 10px;width: 100%;flex-wrap: wrap">
+    <div class="my-div">
+        <div class="my-div d1"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d2"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d3"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d4"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d5"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d6"></div>
+    </div>
+    <div class="my-div">
+        <div class="my-div d7"></div>
+    </div>
+</div>
+</body>
+</html>
