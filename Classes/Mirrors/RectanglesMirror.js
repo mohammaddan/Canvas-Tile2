@@ -43,7 +43,7 @@ export default class RectanglesMirror extends BaseMirror {
             area -= r.w*r.h
             if(area<=0) break;
         }
-        console.log(width,height,this.squareWidth,this.squareHeight,countX,countY,area)
+        // console.log(width,height,this.squareWidth,this.squareHeight,countX,countY,area,this.drawer.rows)
         this.nums[0]+=this.nums[1];
         this.nums[2]+=this.nums[3];
         this.nums[4]+=this.nums[5];

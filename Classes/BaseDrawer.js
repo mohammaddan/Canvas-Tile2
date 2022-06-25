@@ -37,7 +37,7 @@ export default class BaseDrawer {
     hasSubscription(s1, x, y) {
         return (this.primitives.some((s2) =>
             Math.max(0, Math.min(s1.points[2].x + x, s2.points[2].x) - Math.max(s1.points[0].x + x, s2.points[0].x)) *
-            Math.max(0, Math.min(s1.points[2].y + y, s2.points[2].y) - Math.max(s1.points[0].y + y, s2.points[0].y))>0.0001
+            Math.max(0, Math.min(s1.points[2].y + y, s2.points[2].y) - Math.max(s1.points[0].y + y, s2.points[0].y))>0.001
         ))
     }
 
@@ -110,7 +110,7 @@ export default class BaseDrawer {
         }
         primitive.shiftXY(x, y);
         this.primitives.push(primitive);
-        this.rows[yIndex].points.delete(x);
+        // this.rows[yIndex].points.delete(x);
 
         if(this.rows[yIndex].points.size===0)  this.rows.splice(yIndex)
 
