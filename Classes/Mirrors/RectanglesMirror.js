@@ -18,19 +18,19 @@ export default class RectanglesMirror extends BaseMirror {
         this.squareWidth = width/countX;
         this.squareHeight = height/countY;
 
-        let randNums = [0,7,3,0,6,2,3,1,3,7,4,4,2,1,5,7,7,5,2,0,0,2,1,1,7,5,0,7,1,2,0,7,4,7,6,7,2,
-            5,2,4,3,1,7,4,4,4,6,0,7,1,5,1,7,1,5,7,0,3,6,6,3,7,5,4,1,2,7,1,1,6,2,1,4,3,1,3,6,2,1,3,5,
-            3,1,4,0,0,1,1,5,3,7,1,1,4,0,7,5,6,3,7,2,0,7,0,5,7,7,0,6,7,3,2,2,4,1,3,1,0,5,4,4,0,6,3,6,
-            1,2,6,4,0,4,3,6,6,5,6,3,0,0,1,3,2,3,7,5,0,6,1,0,4,2,1,5,7,
+        let randNums = [0,4,3,0,6,2,3,1,3,6,4,4,2,1,5,1,3,5,2,0,0,2,1,1,6,5,0,4,1,2,0,3,4,1,6,0,2,
+            5,2,4,3,1,0,4,4,4,6,0,6,1,5,1,1,1,5,2,0,3,6,6,3,3,5,4,1,2,5,1,1,6,2,1,4,3,1,3,6,2,1,3,5,
+            3,1,4,0,0,1,1,5,3,5,1,1,4,0,6,5,6,3,0,2,0,1,0,5,2,3,0,6,5,3,2,2,4,1,3,1,0,5,4,4,0,6,3,6,
+            1,2,6,4,0,4,3,6,6,5,6,3,0,0,1,3,2,3,6,5,0,6,1,0,4,2,1,5,5,
         ];
         let rects=[
-            {w:1,h:1},
-            {w:1,h:1},
-            {w:1,h:2},
-            {w:1,h:2},
-            {w:2,h:1},
-            {w:2,h:1},
-            {w:2,h:2},
+            {w:1,h:1},  // 0
+            {w:1,h:1},  // 1
+            {w:1,h:2},  // 2
+            {w:1,h:2},  // 3
+            {w:2,h:1},  // 4
+            {w:2,h:1},  // 5
+            {w:2,h:2},  // 6
         ]
         this.nums=[0,0,0,0,0,0,0,0]
         let sz=randNums.length
@@ -41,11 +41,12 @@ export default class RectanglesMirror extends BaseMirror {
             if(!this.drawer.addRect(new Square(this.squareWidth * r.w, this.squareHeight * r.h, padding))) continue;
             this.nums[randNums[i%sz]%7]++;
             area -= r.w*r.h
-            // console.log(area)
             if(area<=0) break;
         }
-        // console.log(width,height,this.squareWidth,this.squareHeight,countX,countY,area)
-
+        console.log(width,height,this.squareWidth,this.squareHeight,countX,countY,area)
+        this.nums[0]+=this.nums[1];
+        this.nums[2]+=this.nums[3];
+        this.nums[4]+=this.nums[5];
 
     }
 
@@ -54,18 +55,18 @@ export default class RectanglesMirror extends BaseMirror {
             {
                 name: "squareWidth",
                 required: true,
-                label: "عرض مربع",
-                default: Math.round(width / 25),
-                min: Math.ceil(width / 50),
-                max: Math.floor(width / 10),
+                label: "عرض مربع کوچک",
+                default: 20,
+                min: 10,
+                max: 25,
             },
             {
                 name: "squareHeight",
                 required: true,
-                label: "ارتفاع مربع",
-                default: Math.round(width / 25),
-                min: Math.ceil(width / 50),
-                max: Math.floor(width / 10),
+                label: "ارتفاع مربع کوچک",
+                default:20,
+                min: 10,
+                max: 25,
             },
         ];
     }
