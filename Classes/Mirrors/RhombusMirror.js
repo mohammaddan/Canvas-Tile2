@@ -9,7 +9,7 @@ export default class RhombusMirror extends BaseMirror {
 
         this.rhombusWidth = width / params.countX;
         this.rhombusHeight = height / params.countY;
-        let t=[2,4,3,1,5];
+        let t=[2,4,1,3,5];
 
         this.h1 = !params.angle ? this.rhombusWidth : Math.tan(Math.PI * params.angle / 180) * this.rhombusWidth;
         this.rhombusHeight+=this.h1

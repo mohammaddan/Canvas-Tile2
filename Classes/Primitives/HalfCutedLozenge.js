@@ -151,6 +151,6 @@ export default class HalfCutedLozenge extends Primitive {
         ctx.stroke();
         ctx.fillStyle = '#555';
         if(this.type!=='left-invert')
-            ctx.fillText('n=' + n, (points[0].x + points[1].x - this.squareWidth * size / this.width) / 2, (points[1].y + points[3].y) / 2)
+            ctx.fillText('n=' + n, (points[0].x + points[1].x - 2*this.squareWidth * size / this.width) / 2, (points[1].y + points[3].y*2) / 3)
     }
 }

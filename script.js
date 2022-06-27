@@ -33,6 +33,7 @@ import ShatterMirror from "./Classes/Mirrors/ShatterMirror.js";
 import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
 import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
+import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
 let width = 300, height = 300;
 let canvas = document.getElementById("myCanvas");
@@ -47,6 +48,10 @@ canvas2.setAttribute("width", width+"px");
 canvas2.setAttribute("height", height+"px");
 let body = document.body;
 let cx = 0;
+
+// let ih=new IrregularHexagon(100,100,20,5)
+// ih.shiftXY(100,100)
+// ih.draw(ctx)
 // ------------------------------------------------------------------------------------------------
 // let mirror = new BladeMirror(ctx, 200, 200, {countX: 4, upperBladeHeight: 40}, 2);
 // let mirror = new BrickMirror(ctx, 200, 200, {countX: 4, countY: 5}, 2);
@@ -74,14 +79,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = RhombusMirror.parameters(width, height);
+let inParams = JeweledMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new RhombusMirror(ctx,width,height,params,1);
+let mirror= new JeweledMirror(ctx,width,height,params,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);
