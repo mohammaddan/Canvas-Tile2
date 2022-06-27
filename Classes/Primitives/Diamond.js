@@ -39,7 +39,7 @@ export default class Diamond extends Primitive {
             points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * ratio) })
         })
         this.measureLine(ctx, points[1].x, points[1].y, points[3].x, points[3].y, size / 2 + 10, 0, this.height)
-        this.measureLine(ctx, points[0].x, points[0].y, points[2].x, points[2].y, 0, -(size / ratio) , this.width)
+        this.measureLine(ctx, points[0].x, points[0].y, points[2].x, points[2].y, 0, -(0.8*size / ratio) , this.width)
         this.measureLine(ctx, points[0].x, points[1].y, points[0].x, points[0].y, -20,0 ,this.h1)
         this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -size / 3, size / 3, t.toFixed(1))
         ctx.beginPath();

@@ -10,12 +10,16 @@ export default class SpearMirror extends BaseMirror {
         super(ctx, width, height);
         let upperSpearHeight = params.upperSpearHeight;
         this.spearWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
-        this.spearHeight = height - 2 * upperSpearHeight;
+        let countY = this.countY = Math.ceil((  height - 2 * upperSpearHeight) / 120);
+
+        this.spearHeight = (height - 2 * upperSpearHeight)/countY;
         this.upperSpearHeight = upperSpearHeight;
         this.drawer.addOneRowOfShapes(0, 0, new UpperSpear(this.lozengeWidth, upperSpearHeight, padding), params.countX);
         this.addGridOfLozenge(upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, 1, padding);
-        this.drawer.addOneRowOfShapes(0, upperSpearHeight + this.lozengeHeight * 0.5, new Spear(this.spearWidth, this.spearHeight, padding), params.countX);
-        this.addGridOfLozenge(this.spearHeight + upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, 1, padding);
+        for(let j=0;j<countY;j++){
+            this.drawer.addOneRowOfShapes(0, upperSpearHeight + this.lozengeHeight * 0.5+this.spearHeight*j, new Spear(this.spearWidth, this.spearHeight, padding), params.countX);
+            this.addGridOfLozenge(this.spearHeight*(j+1) + upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, 1, padding);
+        }
         this.drawer.addOneRowOfShapes(
             0,
             this.height - upperSpearHeight + this.lozengeHeight / 2,
@@ -30,9 +34,9 @@ export default class SpearMirror extends BaseMirror {
                 name: "countX",
                 required: true,
                 label: "تعداد تکرار در عرض",
-                default: Math.round(width / 25),
+                default: Math.round(width / 33),
                 min: Math.ceil(width / 50),
-                max: Math.floor(width / 10),
+                max: Math.floor(width / 15),
             },
             {
                 name: "upperSpearHeight",
@@ -45,15 +49,15 @@ export default class SpearMirror extends BaseMirror {
         ];
     }
 
-    drawMeasures(ctx, params, size = 0.8) {
+    drawMeasures(ctx, params, size = 0.7) {
         let loz = new Lozenge(this.lozengeWidth, this.lozengeHeight);
-        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * 2 - 2, 80 * size);
+        loz.drawMeasures(ctx, 50.5, 80.5, params.countX * (1+this.countY) - 1-this.countY, 80 * size);
         let hf = new LeftTriangle(this.lozengeWidth / 2, this.lozengeHeight, this.padding);
-        hf.drawMeasures(ctx, 50.5, Math.round(80 + 100 * size) + 0.5, 4, 80 * size);
+        hf.drawMeasures(ctx, 50.5, Math.round(80 + 100 * size) + 0.5, (this.countY+1)*2, 80 * size);
         let spear = new Spear(this.spearWidth, this.spearHeight, this.padding);
-        spear.drawMeasures(ctx, Math.round(50 + 210 * size) + 0.5, 50.5, params.countX, 55 * size);
+        spear.drawMeasures(ctx, Math.round(50 + 210 * size) + 0.5, 50.5, params.countX*this.countY, 55 * size);
         let uspear = new UpperSpear(this.lozengeWidth, params.upperSpearHeight, this.padding);
-        uspear.drawMeasures(ctx, Math.round(50 + 40 * size) + 0.5, Math.round(80 + 220 * size) + 0.5, params.countX * 2, 55 * size);
+        uspear.drawMeasures(ctx, Math.round(140 + 40 * size) + 0.5, Math.round(80 + 170 * size) + 0.5, params.countX * 2, 55 * size);
     }
 
     reservePrimitives(width, height) {

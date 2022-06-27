@@ -44,7 +44,7 @@ export default class Spear extends Primitive {
         this.measureLine(ctx, points[0].x, points[1].y, points[2].x, points[1].y, 0, -10, this.width)
         this.measureLine(ctx, points[0].x, points[1].y, points[0].x, points[0].y, -20, 0, this.h1)
         this.measureLine(ctx, points[0].x, points[0].y, points[5].x, points[5].y, -20, 0, this.height - this.h1 * 2)
-        this.measureLine(ctx, points[1].x, points[1].y, points[4].x, points[4].y, size / 2 + 10, 0, this.height)
+        this.measureLine(ctx, points[1].x, points[1].y, points[4].x, points[4].y, size / 2 + 15, 0, this.height)
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];

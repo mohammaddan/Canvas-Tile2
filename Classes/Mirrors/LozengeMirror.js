@@ -19,7 +19,7 @@ export default class LozengeMirror extends BaseMirror {
    */
   constructor(ctx, width, height, params, padding = 0) {
     super(ctx, width, height);
-
+    this.checkLimits(params);
     this.lozengeWidth = width / params.countX;
     this.lozengeHeight = height / params.countY;
     this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.lozengeWidth, this.lozengeHeight / 2, padding), params.countX);
@@ -33,19 +33,46 @@ export default class LozengeMirror extends BaseMirror {
         name: "countX",
         required: true,
         label: "تعداد تکرار در عرض",
-        default: Math.round(width / 25),
-        min: Math.ceil(width / 50),
+        default: Math.round(width / 33),
+        min: Math.ceil(width / 40),
         max: Math.floor(width / 10),
       },
       {
         name: "countY",
         required: true,
         label: "تعداد تکرار در ارتفاع",
-        default: Math.round(height / 25),
-        min: Math.ceil(height / 50),
+        default: Math.round(height / 33),
+        min: Math.ceil(height / 40),
         max: Math.floor(height / 10),
       },
     ];
+  }
+
+  checkLimits(params,increase_count=false){
+    let lozengeWidth = this.width / params.countX;
+    let lozengeHeight = this.height / params.countY;
+    let cx=params.countX,cy=params.countY
+    while(lozengeWidth<lozengeHeight*0.8 && params.countX>2){
+      if(!increase_count)
+        params.countX--;
+      else
+        params.countY++;
+      lozengeWidth = this.width / params.countX;
+      lozengeHeight = this.height / params.countY;
+    }
+    while(lozengeHeight<lozengeWidth*0.8 && params.countY>2){
+      if(!increase_count)
+        params.countY--;
+      else
+        params.countX++;
+      lozengeWidth = this.width / params.countX;
+      lozengeHeight = this.height / params.countY;
+    }
+    if(cx>params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت';
+    if(cx<params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت';
+    if(cy>params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت';
+    if(cy<params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت';
+    return null;
   }
 
   drawMeasures(ctx, params, size = 1) {

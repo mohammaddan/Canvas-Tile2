@@ -18,7 +18,7 @@ export default class DiamondMirror extends BaseMirror {
    */
   constructor(ctx, width, height, params, padding = 0) {
     super(ctx, width, height);
-
+    this.checkLimits(params);
     this.diamondWidth = width / params.countX;
     this.diamondHeight = height / params.countY;
     this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, padding), params.countX);
@@ -53,13 +53,32 @@ export default class DiamondMirror extends BaseMirror {
     ];
   }
 
+  checkLimits(params,increase_count=false){
+    let diamondWidth = this.width / params.countX;
+    let diamondHeight = this.height / params.countY;
+    let cx=params.countX,cy=params.countY
+    while(diamondWidth>diamondHeight-10 && params.countY>2){
+      if(!increase_count)
+        params.countY--;
+      else
+        params.countX++;
+      diamondWidth = this.width / params.countX;
+      diamondHeight = this.height / params.countY;
+    }
+    if(cx>params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت';
+    if(cx<params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت';
+    if(cy>params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت';
+    if(cy<params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت';
+    return null;
+  }
+
   drawMeasures(ctx, params, size = 1) {
     let d =  new Diamond(this.diamondWidth, this.diamondHeight, this.padding,1,false)
-    d.drawMeasures(ctx, 70.5, 80.5, (params.countX - 1) * params.countY + params.countX * (params.countY - 1), 70*size);
+    d.drawMeasures(ctx, 70.5, 100.5, (params.countX - 1) * params.countY + params.countX * (params.countY - 1), 70*size);
     let ul =new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, this.padding)
     ul.drawMeasures(ctx, 200.5, 60.5, params.countX , 90*size);
     let bl =new BottomTriangle(this.diamondWidth, 2*this.diamondHeight / 3, this.padding)
-    bl.drawMeasures(ctx, 70.5, 160.5, params.countX , 70*size);
+    bl.drawMeasures(ctx, 70.5, 200.5, params.countX , 70*size);
     let hd =new HalfDiamond(this.diamondWidth/2,this.diamondHeight,this.padding);
     hd.drawMeasures(ctx, 200.5, 160.5, params.countY * 2, 70*size);
   }
@@ -70,11 +89,6 @@ export default class DiamondMirror extends BaseMirror {
       {title:'الماس حاشیه بالا',name:'upperTriangle',primitive:new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, this.padding)},
       {title:'الماس حاشیه پایین',name:'bottomTriangle',primitive:new BottomTriangle(this.diamondWidth, 2*this.diamondHeight / 3, this.padding)},
       {title:'الماس حاشیه راست و چپ',name:'diamond',primitive:new HalfDiamond(this.diamondWidth/2,this.diamondHeight,this.padding)},
-      //
-      // new Diamond(width, height, this.padding,1,false),
-      // new UpperTriangle(width, height/3, this.padding,1,false),
-      // new BottomTriangle(width, 2*height/3, this.padding,1,false),
-      // new HalfDiamond(width/2, height, this.padding,1,false),
     ];
   }
 }

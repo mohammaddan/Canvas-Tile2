@@ -9,17 +9,19 @@ export default class RhombusMirror extends BaseMirror {
 
         this.rhombusWidth = width / params.countX;
         this.rhombusHeight = height / params.countY;
-        let t=[1,2,3,4,1];
+        let t=[2,4,3,1,5];
 
         this.h1 = !params.angle ? this.rhombusWidth : Math.tan(Math.PI * params.angle / 180) * this.rhombusWidth;
         this.rhombusHeight+=this.h1
         for (let j = 0; j < params.countX; j++) {
             let h1 = t[j % 3 ] * (this.rhombusHeight - this.h1) / 7 + this.h1;
 
-            this.drawer.addOneShapeAt(j * this.rhombusWidth, 0, new HalfBlade(this.rhombusWidth, h1, padding, 1, 'top-right'))
+            this.drawer.addOneShapeAt(j * this.rhombusWidth, 0, new HalfBlade(this.rhombusWidth, h1, padding, 1, 'top-'+(j%2?'left':'right')))
             for (let i = 0; i < params.countY - 1; i++)
-                this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + i * (this.rhombusHeight - this.h1), new Rhombus(this.rhombusWidth, this.rhombusHeight, padding, 1, 'left'))
-            this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + (params.countY - 1) * (this.rhombusHeight -this.h1), new HalfBlade(this.rhombusWidth, this.rhombusHeight - h1, padding, 1, 'bottom-left'))
+                this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + i * (this.rhombusHeight - this.h1) +(j%2?this.rhombusWidth:0),
+                    new Rhombus(this.rhombusWidth, this.rhombusHeight, padding, 1, (j%2?'right':'left')))
+            this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + (params.countY - 1) * (this.rhombusHeight -this.h1) +(j%2?this.rhombusWidth:0),
+                new HalfBlade(this.rhombusWidth, this.rhombusHeight - h1, padding, 1, 'bottom-'+(j%2?'right':'left')))
         }
 
     }
@@ -53,9 +55,9 @@ export default class RhombusMirror extends BaseMirror {
         ]
     }
 
-    drawMeasures(ctx, params, size) {
+    drawMeasures(ctx, params, size=0.6) {
         let rm = new Rhombus(this.rhombusWidth, this.rhombusHeight, this.padding, 1, 'left');
-        rm.drawMeasures(ctx, 50.5, 80.5, params.countX * params.countY, 80)
+        rm.drawMeasures(ctx, 50.5, 50.5, params.countX * params.countY, 80*size)
     }
 
     reservePrimitives(width,height) {

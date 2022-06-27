@@ -34,7 +34,7 @@ import RotatedRhombus from "./Classes/Primitives/RotatedRhombus.js";
 import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 
-let width = 115, height = 300;
+let width = 300, height = 300;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -43,8 +43,8 @@ let ctx2 = canvas2.getContext("2d");
 let ctx3 = canvas3.getContext("2d");
 canvas.setAttribute("width", (width + 5) + "px");
 canvas.setAttribute("height", (height + 5) + "px");
-canvas2.setAttribute("width", "320px");
-canvas2.setAttribute("height", "500px");
+canvas2.setAttribute("width", width+"px");
+canvas2.setAttribute("height", height+"px");
 let body = document.body;
 let cx = 0;
 // ------------------------------------------------------------------------------------------------
@@ -74,14 +74,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = RectanglesMirror.parameters(width, height);
+let inParams = RhombusMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new RectanglesMirror(ctx,width,height,params,1);
+let mirror= new RhombusMirror(ctx,width,height,params,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);
@@ -90,9 +90,9 @@ reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
 })
-mirror.getMirrorPics(canvas)
-mirror.getMirrorPics(canvas2)
-console.log(mirror.mirrorPics)
+// mirror.getMirrorPics(canvas)
+// mirror.getMirrorPics(canvas2)
+// console.log(mirror.mirrorPics)
 // mirror.drawDXF().downloadDXF()
 document.getElementById('properties').innerHTML = 'area : ' + mirror.area() + ' cm<sup>2</sup><br/>' + 'environment : ' + mirror.environment() + ' cm';
 // ------------------------------------------------------------------------------------------------

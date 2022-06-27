@@ -26,13 +26,13 @@ export default class Rhombus extends Primitive {
         } else {
             this.points.push({x: 0, y: 0});
             this.points.push({x: width, y: -this.h1});
-            this.points.push({x: width, y: height - this.h1});
-            this.points.push({x: 0, y: height - 2 * this.h1});
+            this.points.push({x: width, y: height -2* this.h1});
+            this.points.push({x: 0, y: height -  this.h1});
 
             this.drawablePoints.push({x: padding, y: padding * 0.5});
             this.drawablePoints.push({x: width - padding, y: -this.h1 + 2 * padding});
-            this.drawablePoints.push({x: width - padding, y: height - this.h1 - 2 * padding});
-            this.drawablePoints.push({x: padding, y: height - 2 * this.h1});
+            this.drawablePoints.push({x: width - padding, y: height - 2*this.h1 - 2 * padding});
+            this.drawablePoints.push({x: padding, y: height -  this.h1});
         }
     }
 

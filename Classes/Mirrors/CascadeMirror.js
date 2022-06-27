@@ -15,11 +15,14 @@ export default class CascadeMirror extends BaseMirror {
      */
     constructor(ctx, width, height, params, padding = 0) {
         super(ctx, width, height);
+        padding=0
         this.squareHeight=height/params.countY
         this.countX=Math.round(width/params.squareWidth);
         this.squareWidth=width/this.countX;
         this.padding = padding;
-        let startSquare=[0.2,0.5,0.3,0.8,0.1,0.4,0.9,0.6,0.7,0.15,0.25,0.45,0.85,0.6,0.35,0.25,0.55];
+        let startSquare=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        //0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,
+        //[0.2,0.5,0.3,0.8,0.1,0.4,0.9,0.6,0.7,0.15,0.25,0.45,0.85,0.6,0.35,0.25,0.55];
         for(let j=0;j<this.countX;j++){
             let height=startSquare[j%17]*this.squareHeight;
             let st=0;
@@ -37,10 +40,10 @@ export default class CascadeMirror extends BaseMirror {
             {
                 name: "squareWidth",
                 required: true,
-                label: "عرض هر قطعه",
-                default: 2,
+                label: "عرض هر قطعه (سانتیمتر)",
+                default: 4,
                 min: 2,
-                max: 5,
+                max: 6,
             },
             {
                 name: "countY",
@@ -48,7 +51,7 @@ export default class CascadeMirror extends BaseMirror {
                 label: "تعداد تکرار در ارتفاع",
                 default: Math.round(height/100),
                 min: Math.ceil(height / 120),
-                max: Math.floor(height / 25),
+                max: Math.floor(height / 50),
             },
         ];
     }

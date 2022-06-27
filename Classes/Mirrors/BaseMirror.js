@@ -24,6 +24,7 @@ export default class BaseMirror {
     }
 
     environment() {
+        if(this.constructor.name==='CascadeMirror') return 0;
         return Math.round(this.drawer.primitives.reduce((prev, next) => prev + next.environment(), 0));
     }
 
@@ -39,6 +40,8 @@ export default class BaseMirror {
                     new Lozenge(lWidth, lHeight, padding), countX);
         }
     }
+
+    checkLimits(params,increase_count=false){return null;}
 
     drawDXF() {
         this.drawer.primitives.forEach(primitive => {
