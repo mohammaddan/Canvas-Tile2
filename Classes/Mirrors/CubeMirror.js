@@ -80,7 +80,7 @@ export default class CubeMirror extends BaseMirror {
     ];
   }
 
-  drawMeasures(ctx, params, size = 0.9) {
+  drawMeasures(ctx, params, size = 0.7) {
     let jw = new CutedLozenge(this.squareWidth, this.squareHeight * 2, this.squareHeight, this.padding, 1, false);
     jw.drawMeasures(ctx, 60.5, 70.5, (params.countY + 1) * params.countX, 80 * size);
     let vc = new CutedLozenge(this.squareWidth * 2, this.squareHeight, this.squareWidth, this.padding, 1, true);

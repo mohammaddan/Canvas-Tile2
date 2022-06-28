@@ -136,7 +136,7 @@ export default class HalfCutedLozenge extends Primitive {
         }else if(this.type==='left-invert'){
             this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -15, this.squareWidth/2)
             this.measureLine(ctx, points[0].x, points[0].y, points[4].x, points[4].y, -25, 0, this.height)
-            this.measureLine(ctx, points[0].x, points[2].y, points[2].x, points[2].y, 0, this.height/(ratio*2)+20, this.width)
+            this.measureLine(ctx, points[0].x, points[2].y, points[2].x, points[2].y, 0, this.height/(ratio*2)+30, this.width)
             ctx.fillStyle = '#555';
             ctx.fillText('n=' + n, (points[0].x + points[2].x - this.squareWidth * size / this.width+15) / 2, (points[1].y + points[3].y) / 2)
         }
@@ -151,6 +151,6 @@ export default class HalfCutedLozenge extends Primitive {
         ctx.stroke();
         ctx.fillStyle = '#555';
         if(this.type!=='left-invert')
-            ctx.fillText('n=' + n, (points[0].x + points[1].x - 2*this.squareWidth * size / this.width) / 2, (points[1].y + points[3].y*2) / 3)
+            ctx.fillText('n=' + n, (points[0].x + points[3].x ) / 2+10, (points[1].y + points[3].y*2) / 3)
     }
 }

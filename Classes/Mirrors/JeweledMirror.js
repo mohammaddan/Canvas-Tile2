@@ -8,7 +8,7 @@ export default class JeweledMirror extends BaseMirror {
   constructor(ctx, width, height, params, padding = 0) {
     super(ctx, width, height);
     if (!params.squareWidth) params.squareWidth = 7;
-    let squareWidth = params.squareWidth;
+    let squareWidth=this.squarWidth = params.squareWidth;
     let tx= (width-params.countX*squareWidth) / (params.countX+1),
         ty=(height-params.countY*squareWidth)/(params.countY+1);
     console.log(params.countX,squareWidth)
@@ -76,20 +76,19 @@ export default class JeweledMirror extends BaseMirror {
 
   drawMeasures(ctx, params, size = 1) {
     let jw = new IrregularHexagon(this.lozengeWidth, this.lozengeHeight, params.squareWidth, this.padding, 1);
-    jw.drawMeasures(ctx, 60.5, 100.5, params.countX * 2, 80 * size);
+    jw.drawMeasures(ctx, 60.5, 100.5, params.countX * (params.countY+1)+(params.countX+1)*params.countY, 80 * size);
     let sq = new Square(params.squareWidth, params.squareWidth, this.padding);
-    sq.drawMeasures(ctx, 60 + 160 * size + 0.5, 60.5, params.countX * 2, 50 * size);
+    sq.drawMeasures(ctx, 60 + 160 * size + 0.5, 60.5, (params.countX+1) * (params.countY+1)+params.countX*params.countY, 50 * size);
     let hcl = new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, params.squareWidth, this.padding, 1, "bottom");
-    hcl.drawMeasures(ctx, 60 + 120 * size + 0.5, Math.round(50 + 130 * size) + 0.5, params.countX * 4, 80 * size);
+    hcl.drawMeasures(ctx, 60 + 120 * size + 0.5, Math.round(50 + 130 * size) + 0.5, params.countX * 2+params.countY*2+4, 80 * size);
   }
 
   reservePrimitives(width,height) {
     return [
       {title:'مربع',name:'square',primitive:new Square(this.squareWidth, this.squareWidth, this.padding)},
-      // {title:'نیزه افقی',name:'cutedLozengeH',primitive: new CutedLozenge(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1, true)},
-      {title:'نیزه عمودی',name:'cutedLozengeV',primitive: new CutedLozenge(this.lozengeWidth - this.squareWidth, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, false)},
-      {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge((this.lozengeWidth - this.squareWidth) / 2, this.lozengeHeight + this.squareWidth, this.squareWidth, this.padding, 1, "left")},
-      {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2, this.squareWidth, this.padding, 1, "top")},
+      {title:'شش ضعلی',name:'irregularHexagon',primitive: new IrregularHexagon(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1)},
+      {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge(this.lozengeWidth/2-this.squarWidth/2, this.lozengeHeight, this.squareWidth, this.padding, 1, "left")},
+      {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2-this.squarWidth/2, this.squareWidth, this.padding, 1, "top")},
 
       // new CutedLozenge(width/1.5,height,height/4,0,1,false),
       // new Square(width,height),

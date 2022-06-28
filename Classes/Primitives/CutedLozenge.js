@@ -66,7 +66,7 @@ export default class CutedLozenge extends Primitive {
     if (this.horizontal) {
       this.measureLine(ctx, points[1].x, points[1].y, points[0].x, points[0].y, -20, -20, t1.toFixed(1));
       this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 0, -15, this.squareWidth);
-      this.measureLine(ctx, points[2].x, points[2].y, points[4].x, points[4].y, size / 3, 0, this.height);
+      this.measureLine(ctx, points[2].x, points[2].y, points[4].x, points[4].y, size / 3+10, 0, this.height);
       this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, 0, 0.5*size / ratio+15, this.width);
     } else {
       this.measureLine(ctx, points[1].x, points[1].y, points[0].x, points[0].y, -20, -20, t.toFixed(1));
