@@ -7,38 +7,41 @@ import IrregularHexagon from "../Primitives/IrregularHexagon.js";
 export default class JeweledMirror extends BaseMirror {
   constructor(ctx, width, height, params, padding = 0) {
     super(ctx, width, height);
-    let tx= width / params.countX,ty=height/params.countY;
     if (!params.squareWidth) params.squareWidth = 7;
     let squareWidth = params.squareWidth;
-    this.lozengeWidth = tx-squareWidth+0.5*squareWidth/(params.countX-1);
-    this.lozengeHeight = ty-squareWidth+0.5*squareWidth/(params.countY-1);
-    for(let x=0;x<width;x+=this.lozengeWidth)
-      this.drawer.addOneShapeAt(x,0,new HalfCutedLozenge(this.lozengeWidth-squareWidth, this.lozengeHeight/2-squareWidth, squareWidth, padding, 1, "top"))
+    let tx= (width-params.countX*squareWidth) / (params.countX+1),
+        ty=(height-params.countY*squareWidth)/(params.countY+1);
+    console.log(params.countX,squareWidth)
+    this.lozengeWidth = tx;//-squareWidth;
+    this.lozengeHeight = ty;//-squareWidth;
+    for(let x=0;x<width;x+=this.lozengeWidth+squareWidth)
+      this.drawer.addOneShapeAt(x,0,new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight/2-squareWidth/2, squareWidth, padding, 1, "top"))
 
-    for (let y = this.lozengeHeight/2-squareWidth/2; y < this.height; y += this.lozengeHeight) {
+    for (let y = this.lozengeHeight/2-squareWidth/2; y < this.height; y += this.lozengeHeight+squareWidth) {
       let x = (this.lozengeWidth ) / 2;
       this.drawer.addOneShapeAt(0, y - this.lozengeHeight / 2+squareWidth/2,
-          new HalfCutedLozenge(this.lozengeWidth/2 - squareWidth, this.lozengeHeight - squareWidth, squareWidth, padding, 1, "left"));
+          new HalfCutedLozenge(this.lozengeWidth/2 - squareWidth/2, this.lozengeHeight , squareWidth, padding, 1, "left"));
       for (let i = 0; i <= params.countX ; i++) {
         if(i<params.countX){
-          this.drawer.addOneShapeAt(x , y,
-              new IrregularHexagon(this.lozengeWidth - squareWidth, this.lozengeHeight - squareWidth, squareWidth, padding, 1));
+          this.drawer.addOneShapeAt(x +squareWidth/2, y+squareWidth/2,
+              new IrregularHexagon(this.lozengeWidth, this.lozengeHeight , squareWidth, padding, 1));
         }
         if(y<height-this.lozengeHeight){
-          this.drawer.addOneShapeAt(x-this.lozengeWidth/2 , y+this.lozengeHeight/2,
-              new IrregularHexagon(this.lozengeWidth - squareWidth, this.lozengeHeight - squareWidth, squareWidth, padding, 1));
+          this.drawer.addOneShapeAt(x-this.lozengeWidth/2 , y+this.lozengeHeight/2+squareWidth,
+              new IrregularHexagon(this.lozengeWidth, this.lozengeHeight , squareWidth, padding, 1));
           if(i>0)
-            this.drawer.addOneShapeAt(x-squareWidth-this.lozengeWidth/2, y+this.lozengeHeight/2-squareWidth/2, new Square(squareWidth, squareWidth, padding));
+            this.drawer.addOneShapeAt(x-squareWidth-this.lozengeWidth/2, y+this.lozengeHeight/2+squareWidth/2,
+                new Square(squareWidth, squareWidth, padding));
         }
-        this.drawer.addOneShapeAt(x-squareWidth, y-squareWidth/2, new Square(squareWidth, squareWidth, padding));
-        x += this.lozengeWidth;
+        this.drawer.addOneShapeAt(x-squareWidth/2, y, new Square(squareWidth, squareWidth, padding));
+        x += this.lozengeWidth+squareWidth;
       }
-      this.drawer.addOneShapeAt(width - this.lozengeWidth/2 + squareWidth, y - this.lozengeHeight / 2+squareWidth/2,
-          new HalfCutedLozenge(this.lozengeWidth/2 - squareWidth, this.lozengeHeight - squareWidth, squareWidth, padding, 1, "right"));
+      this.drawer.addOneShapeAt(width - this.lozengeWidth/2 + squareWidth/2, y - this.lozengeHeight / 2+squareWidth/2,
+          new HalfCutedLozenge(this.lozengeWidth/2 - squareWidth/2, this.lozengeHeight, squareWidth, padding, 1, "right"));
     }
-    for(let x=0;x<width;x+=this.lozengeWidth)
-      this.drawer.addOneShapeAt(x,height-this.lozengeHeight/2+squareWidth,
-          new HalfCutedLozenge(this.lozengeWidth-squareWidth, this.lozengeHeight/2-squareWidth, squareWidth, padding, 1, "bottom"))
+    for(let x=0;x<width;x+=this.lozengeWidth+squareWidth)
+      this.drawer.addOneShapeAt(x,height-this.lozengeHeight/2+squareWidth/2,
+          new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight/2-squareWidth/2, squareWidth, padding, 1, "bottom"))
 
   }
 
@@ -72,7 +75,7 @@ export default class JeweledMirror extends BaseMirror {
   }
 
   drawMeasures(ctx, params, size = 1) {
-    let jw = new IrregularHexagon(this.lozengeWidth - params.squareWidth, this.lozengeHeight - params.squareWidth, params.squareWidth, this.padding, 1);
+    let jw = new IrregularHexagon(this.lozengeWidth, this.lozengeHeight, params.squareWidth, this.padding, 1);
     jw.drawMeasures(ctx, 60.5, 100.5, params.countX * 2, 80 * size);
     let sq = new Square(params.squareWidth, params.squareWidth, this.padding);
     sq.drawMeasures(ctx, 60 + 160 * size + 0.5, 60.5, params.countX * 2, 50 * size);
