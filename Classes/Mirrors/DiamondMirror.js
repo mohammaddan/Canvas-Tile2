@@ -65,11 +65,11 @@ export default class DiamondMirror extends BaseMirror {
       diamondWidth = this.width / params.countX;
       diamondHeight = this.height / params.countY;
     }
-    if(cx>params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت';
-    if(cx<params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت';
-    if(cy>params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت';
-    if(cy<params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت';
-    return null;
+    if(cx>params.countX) return {countX: params.countX,msg:'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت'};
+    if(cx<params.countX) return {countX: params.countX,msg:'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت'};
+    if(cy>params.countY) return {countY: params.countY,msg:'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت'};
+    if(cy<params.countY) return {countY: params.countY,msg:'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت'};
+    return {};
   }
 
   drawMeasures(ctx, params, size = 1) {

@@ -41,7 +41,7 @@ export default class BaseMirror {
         }
     }
 
-    checkLimits(params,increase_count=false){return null;}
+    checkLimits(params,increase_count=false){return {};}
 
     drawDXF() {
         this.drawer.primitives.forEach(primitive => {
