@@ -79,14 +79,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = JeweledMirror.parameters(width, height);
+let inParams = LozengeMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new JeweledMirror(ctx,width,height,params,1);
+let mirror= new LozengeMirror(ctx,width,height,params,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);

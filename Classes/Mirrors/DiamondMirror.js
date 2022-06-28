@@ -15,10 +15,11 @@ export default class DiamondMirror extends BaseMirror {
    * @param height
    * @param {{countX,countY}} params
    * @param padding
+   * @param increase_count
    */
-  constructor(ctx, width, height, params, padding = 0) {
+  constructor(ctx, width, height, params, padding = 0,increase_count=false) {
     super(ctx, width, height);
-    this.checkLimits(params);
+    this.checkLimits(params,increase_count);
     this.diamondWidth = width / params.countX;
     this.diamondHeight = height / params.countY;
     this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, padding), params.countX);
