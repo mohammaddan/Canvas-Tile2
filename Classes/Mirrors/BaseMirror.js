@@ -3,6 +3,7 @@ import LeftTriangle from "../Primitives/LeftTriangle.js";
 import Lozenge from "../Primitives/Lozenge.js";
 import RightTriangle from "../Primitives/RightTriangle.js";
 import Drawing from "../DXF/Drawing.js";
+import Square from "../Primitives/Square.js";
 
 export default class BaseMirror {
     constructor(ctx, width, height, yOffset = 0) {
@@ -58,8 +59,30 @@ export default class BaseMirror {
         return this.download(this.dxfWriter.toDxfString(), 'mirror.dxf', 'application/dxf')
     }
 
-    getMirrorPics(canvasElement) {
-        return fetch(canvasElement.toDataURL('image/png'))
+    getMirrorMeasure(canvasElement,canvas){
+        let tempCanvas =document.createElement('canvas');
+        tempCanvas.width=this.width+51
+        tempCanvas.height=this.height+51
+        let ctx = tempCanvas.getContext('2d');
+        ctx.drawImage(canvas,40,40)
+        let tempPrimitive = new Square(this.width,this.height)
+        tempPrimitive.shiftXY(40,40)
+        tempPrimitive.drawMeasures(ctx,0,0,'',this.width)
+        return tempCanvas
+    }
+
+    /**
+     * If it has ctx then return mirror with measures
+     * send ctx just for mirror itself
+     *
+     * @param canvasElement
+     * @param ctx
+     * @returns {Promise<void>}
+     */
+    getMirrorPics(canvasElement,ctx=null) {
+        let el=canvasElement;
+        if(ctx) el=this.getMirrorMeasure(ctx,canvasElement)
+        return fetch(el.toDataURL('image/png'))
             .then(res => res.blob()).then(blob => {
                 this.mirrorPics.push(new File([blob], 'mirror.png', {type: "image/png"}))
             }).then(() => Promise.resolve()).catch(() => Promise.reject())

@@ -34,9 +34,9 @@ export default class ShatterMirror extends BaseMirror {
                 name: "countY",
                 required: true,
                 label: "تعداد تکرار در ارتفاع",
-                default: Math.round(width / 75),
-                min: Math.ceil(width / 150),
-                max: Math.floor(width / 30),
+                default: Math.round(height / 75),
+                min: Math.ceil(height / 150),
+                max: Math.floor(height / 30),
             },
         ];
     }
