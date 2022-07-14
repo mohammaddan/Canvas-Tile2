@@ -61,13 +61,15 @@ export default class BaseMirror {
 
     getMirrorMeasure(canvasElement,canvas){
         let tempCanvas =document.createElement('canvas');
-        tempCanvas.width=this.width+51
-        tempCanvas.height=this.height+51
+        let w=parseInt(this.width)
+        let h=parseInt(this.height)
+        tempCanvas.width=w+51
+        tempCanvas.height=h+51
         let ctx = tempCanvas.getContext('2d');
         ctx.drawImage(canvas,40,40)
-        let tempPrimitive = new Square(this.width,this.height)
+        let tempPrimitive = new Square(w,h)
         tempPrimitive.shiftXY(40,40)
-        tempPrimitive.drawMeasures(ctx,0,0,'',this.width)
+        tempPrimitive.drawMeasures(ctx,0,0,'',w)
         return tempCanvas
     }
 
