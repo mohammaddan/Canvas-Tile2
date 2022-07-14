@@ -15,10 +15,11 @@ export default class DiamondMirror extends BaseMirror {
    * @param height
    * @param {{countX,countY}} params
    * @param padding
+   * @param increase_count
    */
-  constructor(ctx, width, height, params, padding = 0) {
+  constructor(ctx, width, height, params, padding = 0,increase_count=false) {
     super(ctx, width, height);
-    this.checkLimits(params);
+    this.checkLimits(params,increase_count);
     this.diamondWidth = width / params.countX;
     this.diamondHeight = height / params.countY;
     this.drawer.addOneRowOfShapes(0, 0, new UpperTriangle(this.diamondWidth, this.diamondHeight / 3, padding), params.countX);
@@ -65,11 +66,11 @@ export default class DiamondMirror extends BaseMirror {
       diamondWidth = this.width / params.countX;
       diamondHeight = this.height / params.countY;
     }
-    if(cx>params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت';
-    if(cx<params.countX) return 'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت';
-    if(cy>params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت';
-    if(cy<params.countY) return 'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت';
-    return null;
+    if(cx>params.countX) return {countX: params.countX,msg:'به علت محدودیت های اجرایی تعداد تکرار در عرض کاهش یافت'};
+    if(cx<params.countX) return {countX: params.countX,msg:'به علت محدودیت های اجرایی تعداد تکرار در عرض افزایش یافت'};
+    if(cy>params.countY) return {countY: params.countY,msg:'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع کاهش یافت'};
+    if(cy<params.countY) return {countY: params.countY,msg:'به علت محدودیت های اجرایی تعداد تکرار در ارتفاع افزایش یافت'};
+    return {};
   }
 
   drawMeasures(ctx, params, size = 1) {
