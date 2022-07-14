@@ -74,14 +74,10 @@ export default class BaseMirror {
     /**
      * If it has ctx then return mirror with measures
      * send ctx just for mirror itself
-     *
-     * @param canvasElement
-     * @param ctx
-     * @returns {Promise<void>}
      */
-    getMirrorPics(canvasElement,ctx=null) {
-        let el=canvasElement;
-        if(ctx) el=this.getMirrorMeasure(ctx,canvasElement)
+    getMirrorPics(canvasElement,isMirror=false) {
+        let ctx=canvasElement.getContext('2d')
+        let el=isMirror ? this.getMirrorMeasure(ctx,canvasElement) : canvasElement;
         return fetch(el.toDataURL('image/png'))
             .then(res => res.blob()).then(blob => {
                 this.mirrorPics.push(new File([blob], 'mirror.png', {type: "image/png"}))

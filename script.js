@@ -98,8 +98,8 @@ reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
 })
-// mirror.getMirrorPics(canvas,ctx).then(()=>{
-  // mirror.downloadMirrorPics()
+// mirror.getMirrorPics(canvas,true).then(()=>{
+//   mirror.downloadMirrorPics()
 // })
 // mirror.getMirrorPics(canvas2)
 // console.log(mirror.mirrorPics)

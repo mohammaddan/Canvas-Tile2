@@ -17,7 +17,6 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
             this.upperSpearHeight=this.params.upperSpearHeight=params.upperSpearHeight
             this.spearHeight=0
         }
-        console.log(height, this.spearHeight,countY,this.upperSpearHeight,this.lozengeHeight)
         this.drawer.addOneRowOfShapes(0, 0, new UpperSpear(this.lozengeWidth, params.upperSpearHeight, padding), params.countX);
         this.addGridOfLozenge(params.upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, countY?2:1, padding);
         if(countY===0){
