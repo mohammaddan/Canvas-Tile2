@@ -10,11 +10,20 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
         super(ctx, width, height);
         this.params = params;
         this.spearWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
-        let countY = this.countY = Math.ceil((height - 2 * this.lozengeHeight - 2 * params.upperSpearHeight) / 120);
-        this.spearHeight = (height - 2 * this.lozengeHeight - 2 * params.upperSpearHeight) / countY;
-
+        let countY =this.countY = Math.ceil((height - 2 * this.lozengeHeight - 2 * params.upperSpearHeight) / 120);
+        this.spearHeight = (height - 2 * this.lozengeHeight - 2 * params.upperSpearHeight) / (countY||1);
+        if(this.spearHeight<this.lozengeHeight){
+            params.upperSpearHeight+= this.spearHeight/2
+            this.upperSpearHeight=this.params.upperSpearHeight=params.upperSpearHeight
+            this.spearHeight=0
+        }
+        console.log(height, this.spearHeight,countY,this.upperSpearHeight,this.lozengeHeight)
         this.drawer.addOneRowOfShapes(0, 0, new UpperSpear(this.lozengeWidth, params.upperSpearHeight, padding), params.countX);
-        this.addGridOfLozenge(params.upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, 2, padding);
+        this.addGridOfLozenge(params.upperSpearHeight - this.lozengeHeight / 2, this.lozengeWidth, this.lozengeHeight, params.countX, countY?2:1, padding);
+        if(countY===0){
+            this.drawer.addOneRowOfShapes(0,this.upperSpearHeight+this.lozengeHeight/2,
+                new Lozenge(this.lozengeWidth,this.lozengeHeight,padding),params.countX)
+        }
         for (let i = 0; i < countY; i++) {
             this.drawer.addOneRowOfShapes(0, params.upperSpearHeight + this.lozengeHeight * 1.5+i*this.spearHeight, new Spear(this.spearWidth, this.spearHeight, padding), params.countX);
             if(i===countY-1) continue
@@ -37,7 +46,7 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
         );
         this.drawer.addOneRowOfShapes(
             0,
-            this.height - params.upperSpearHeight + this.lozengeHeight / 2,
+            this.height - params.upperSpearHeight +this.lozengeHeight/2,
             new BottomSpear(this.lozengeWidth, params.upperSpearHeight, padding),
             params.countX
         );

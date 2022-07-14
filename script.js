@@ -35,7 +35,7 @@ import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
-let width = 200, height = 300;
+let width = 200, height =250;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -44,8 +44,8 @@ let ctx2 = canvas2.getContext("2d");
 let ctx3 = canvas3.getContext("2d");
 canvas.setAttribute("width", (width + 5) + "px");
 canvas.setAttribute("height", (height + 5) + "px");
-canvas2.setAttribute("width", "300px");
-canvas2.setAttribute("height", "300px");
+canvas2.setAttribute("width", width+"px");
+canvas2.setAttribute("height", height+"px");
 let body = document.body;
 let cx = 0;
 
@@ -79,14 +79,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = ShatterMirror.parameters(width, height);
+let inParams = FourAndHalfSpotSpearMirror.parameters(width, height);
 console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new ShatterMirror(ctx,width,height,params,1);
+let mirror= new FourAndHalfSpotSpearMirror(ctx,width,height,params,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);
