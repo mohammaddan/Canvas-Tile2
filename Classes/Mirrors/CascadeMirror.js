@@ -49,9 +49,9 @@ export default class CascadeMirror extends BaseMirror {
                 name: "countY",
                 required: false,
                 label: "تعداد تکرار در ارتفاع",
-                default: Math.round(height/100),
-                min: Math.ceil(height / 120),
-                max: Math.floor(height / 50),
+                default: Math.max(1, Math.round(height/100)),
+                min: Math.max(1,Math.ceil(height / 120)),
+                max: Math.max(1, Math.floor(height / 50)),
             },
         ];
     }
