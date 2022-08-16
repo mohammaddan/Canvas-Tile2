@@ -35,7 +35,7 @@ import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
-let width = 150, height =39;
+let width = 150, height =150;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");

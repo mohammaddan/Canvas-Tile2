@@ -25,7 +25,7 @@ export default class BaseMirror {
     }
 
     environment() {
-        if(this.constructor.name==='CascadeMirror') return 0;
+        // if(this.constructor.name==='CascadeMirror') return 0; move to CasecadeMirror
         return Math.round(this.drawer.primitives.reduce((prev, next) => prev + next.environment(), 0));
     }
 

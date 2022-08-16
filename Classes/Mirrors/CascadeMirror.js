@@ -35,6 +35,10 @@ export default class CascadeMirror extends BaseMirror {
         }
     }
 
+    environment(){
+        return 0;
+    }
+
     static parameters(width, height) {
         return [
             {
