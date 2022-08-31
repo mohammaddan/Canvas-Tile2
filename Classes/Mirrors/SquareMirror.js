@@ -9,9 +9,10 @@ export default class SquareMirror extends BaseMirror {
    * @param height
    * @param {{countX,countY}} params
    * @param padding
+   * @param scale
    */
-  constructor(ctx, width, height, params, padding = 0) {
-    super(ctx, width, height);
+  constructor(ctx, width, height, params, padding = 0,scale=1) {
+    super(ctx, width, height,0,scale);
 
     this.squareWidth = width / params.countX;
     this.squareHeight = height / params.countY;

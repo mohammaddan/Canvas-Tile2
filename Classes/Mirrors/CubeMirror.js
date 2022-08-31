@@ -7,8 +7,17 @@ import UpperTriangle from "../Primitives/UpperTriangle.js";
 import BaseMirror from "./BaseMirror.js";
 
 export default class CubeMirror extends BaseMirror {
-  constructor(ctx, width, height, params, padding = 0) {
-    super(ctx, width, height);
+  /**
+   *
+   * @param ctx
+   * @param width
+   * @param height
+   * @param {{countX,countY}} params
+   * @param padding
+   * @param scale
+   */
+  constructor(ctx, width, height, params, padding = 0,scale=1) {
+    super(ctx, width, height,0,scale);
     this.squareWidth = width / (2 * params.countX + 1);
     this.squareHeight = height / (2 * params.countY + 1);
     for (let i = 0; i < params.countX + 1; i++)

@@ -12,9 +12,10 @@ export default class BrickMirror extends BaseMirror {
    * @param height
    * @param {{countX:int,countY:int}} params
    * @param padding
+   * @param scale
    */
-  constructor(ctx, width, height, params, padding = 0) {
-    super(ctx, width, height);
+  constructor(ctx, width, height, params, padding = 0,scale=1) {
+    super(ctx, width, height,0,scale);
     this.padding = padding;
     this.squareWidth = width / params.countX;
     this.squareHeight = height / params.countY;

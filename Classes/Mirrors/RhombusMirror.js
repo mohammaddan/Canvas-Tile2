@@ -4,8 +4,17 @@ import Rhombus from "../Primitives/Rhombus.js";
 import Square from "../Primitives/Square.js";
 
 export default class RhombusMirror extends BaseMirror {
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    /**
+     *
+     * @param ctx
+     * @param width
+     * @param height
+     * @param {{countX,countY,angle}} params
+     * @param padding
+     * @param scale
+     */
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
 
         this.rhombusWidth = width / params.countX;
         this.rhombusHeight = height / params.countY;

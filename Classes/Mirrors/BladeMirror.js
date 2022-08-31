@@ -14,9 +14,10 @@ export default class BladeMirror extends BaseMirror {
      * @param height
      * @param {{countX,upperBladeHeight}} params
      * @param padding
+     * @param scale
      */
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
 
         this.bladeWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
         let countY = this.countY = Math.ceil((height - 2 * params.upperBladeHeight) / 120);

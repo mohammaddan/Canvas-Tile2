@@ -8,8 +8,17 @@ import UpperSpear from "../Primitives/UpperSpear.js";
 import LeftTriangle from "../Primitives/LeftTriangle.js";
 
 export default class TwoSpotSpearMirror extends BaseMirror {
-  constructor(ctx, width, height, params, padding = 0) {
-    super(ctx, width, height);
+  /**
+   *
+   * @param ctx
+   * @param width
+   * @param height
+   * @param {{countX}} params
+   * @param padding
+   * @param scale
+   */
+  constructor(ctx, width, height, params, padding = 0,scale=1) {
+    super(ctx, width, height,0,scale);
 
     this.spearWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
     let countY=this.countY =Math.ceil((height - this.lozengeHeight * 2)/120);

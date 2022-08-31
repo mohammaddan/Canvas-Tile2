@@ -9,9 +9,10 @@ export default class RectanglesMirror extends BaseMirror {
      * @param height
      * @param {{squareWidth,squareHeight}} params
      * @param padding
+     * @param scale
      */
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
 
         let countX=Math.round(width/params.squareWidth)
         let countY=Math.round(height/params.squareHeight)

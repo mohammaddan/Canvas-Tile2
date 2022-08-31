@@ -13,9 +13,10 @@ export default class HexagonalMirror extends BaseMirror {
      * @param height
      * @param {{hexWidth}} params
      * @param padding
+     * @param scale
      */
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
         this.hexWidth = params.hexWidth
         let countY = Math.round(height / this.hexWidth)
         this.hexHeight = height / (countY + 1);

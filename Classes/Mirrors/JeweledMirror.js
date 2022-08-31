@@ -5,8 +5,17 @@ import Square from "../Primitives/Square.js";
 import IrregularHexagon from "../Primitives/IrregularHexagon.js";
 
 export default class JeweledMirror extends BaseMirror {
-  constructor(ctx, width, height, params, padding = 0) {
-    super(ctx, width, height);
+  /**
+   *
+   * @param ctx
+   * @param width
+   * @param height
+   * @param {{countX,countY,squareWidth}} params
+   * @param padding
+   * @param scale
+   */
+  constructor(ctx, width, height, params, padding = 0,scale=1) {
+    super(ctx, width, height,0,scale);
     if (!params.squareWidth) params.squareWidth = 7;
     let squareWidth=this.squarWidth = params.squareWidth;
     let tx= (width-params.countX*squareWidth) / (params.countX+1),

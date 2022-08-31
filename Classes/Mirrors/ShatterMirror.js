@@ -2,8 +2,17 @@ import BaseMirror from "./BaseMirror.js";
 import Square from "../Primitives/Square.js";
 
 export default class ShatterMirror extends BaseMirror {
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    /**
+     *
+     * @param ctx
+     * @param width
+     * @param height
+     * @param {{countX,countY}} params
+     * @param padding
+     * @param scale
+     */
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
 
         this.squareWidth = width / (params.countX * 3);
         this.squareHeight = height / (params.countY * 3);

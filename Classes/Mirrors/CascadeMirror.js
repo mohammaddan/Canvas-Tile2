@@ -12,9 +12,10 @@ export default class CascadeMirror extends BaseMirror {
      * @param height
      * @param {{squareWidth,countY}} params
      * @param padding
+     * @param scale
      */
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
         padding=0
         this.squareHeight=height/params.countY
         this.countX=Math.round(width/params.squareWidth);

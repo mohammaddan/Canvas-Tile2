@@ -156,14 +156,14 @@ export default class BaseDrawer {
         this.ctx.strokeStyle = "#000000";
     }
 
-    drawAll(color='white') {
+    drawAll(color='white',scale=1) {
         // this.ctx.imageSmoothingEnabled = true;
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';
-        this.ctx.clearRect(0, 0, this.width + 4, this.height + 4);
+        this.ctx.clearRect(0, 0, this.width*scale + 4, this.height*scale + 4);
         // this.ctx.strokeRect(50, 50, this.width, this.height);
 
-        this.primitives.forEach((shape) => shape.draw(this.ctx,color));
+        this.primitives.forEach((shape) => shape.draw(this.ctx,color,scale));
         // this.ctx.translate(0.5, 0.5);
     }
 }

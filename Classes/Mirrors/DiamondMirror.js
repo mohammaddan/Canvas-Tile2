@@ -15,10 +15,11 @@ export default class DiamondMirror extends BaseMirror {
    * @param height
    * @param {{countX,countY}} params
    * @param padding
+   * @param scale
    * @param increase_count
    */
-  constructor(ctx, width, height, params, padding = 0,increase_count=false) {
-    super(ctx, width, height);
+  constructor(ctx, width, height, params, padding = 0,scale=1,increase_count=false) {
+    super(ctx, width, height,0,scale);
     this.checkLimits(params,increase_count);
     this.diamondWidth = width / params.countX;
     this.diamondHeight = height / params.countY;

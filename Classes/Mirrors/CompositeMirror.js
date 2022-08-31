@@ -16,9 +16,10 @@ export default class CompositeMirror extends BaseMirror {
      * @param height
      * @param {{countX,countY}} params
      * @param padding
+     * @param scale
      */
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
         this.lozengeWidth = this.width / params.countX
         this.lozengeHeight = this.height / params.countY
         this.compositeLength=Math.sqrt(this.lozengeWidth**2+this.lozengeHeight**2)/2

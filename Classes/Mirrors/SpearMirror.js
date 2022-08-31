@@ -6,8 +6,17 @@ import Lozenge from "../Primitives/Lozenge.js";
 import LeftTriangle from "../Primitives/LeftTriangle.js";
 
 export default class SpearMirror extends BaseMirror {
-    constructor(ctx, width, height, params, padding = 0) {
-        super(ctx, width, height);
+    /**
+     *
+     * @param ctx
+     * @param width
+     * @param height
+     * @param {{countX,upperSpearHeight}} params
+     * @param padding
+     * @param scale
+     */
+    constructor(ctx, width, height, params, padding = 0,scale=1) {
+        super(ctx, width, height,0,scale);
         let upperSpearHeight = params.upperSpearHeight;
         this.spearWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
         let countY = this.countY = Math.ceil((  height - 2 * upperSpearHeight) / 120);

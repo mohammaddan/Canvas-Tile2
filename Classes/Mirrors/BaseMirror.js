@@ -6,10 +6,11 @@ import Drawing from "../DXF/Drawing.js";
 import Square from "../Primitives/Square.js";
 
 export default class BaseMirror {
-    constructor(ctx, width, height, yOffset = 0) {
+    constructor(ctx, width, height, yOffset = 0,scale=1) {
         this.ctx = ctx;
         this.width = width;
         this.height = height;
+        this.scale = scale;
         this.drawer = new BaseDrawer(ctx, width, height, 0, yOffset);
         this.dxfWriter = new Drawing();
         this.dxfWriter.setUnits('Centimeters');
@@ -17,7 +18,7 @@ export default class BaseMirror {
     }
 
     draw(color = 'white') {
-        this.drawer.drawAll(color);
+        this.drawer.drawAll(color,this.scale);
     }
 
     area() {

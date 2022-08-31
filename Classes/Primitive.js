@@ -55,15 +55,15 @@ export default class Primitive {
         })
     }
 
-    draw(ctx,color='white') {
+    draw(ctx,color='white',scale=1) {
         ctx.beginPath();
         ctx.strokeStyle = this.colors[color][1];
         ctx.fillStyle = this.colors[color][0]
         // ctx.setLineDash([3,3]);
         let fp = this.points[0];
-        ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
+        ctx.moveTo(Math.floor(fp.x*scale) + 2.5, Math.floor(fp.y*scale) + 2.5);
         this.points.slice(1).forEach(p => {
-            ctx.lineTo(Math.floor(p.x) + 2.5, Math.floor(p.y) + 2.5);
+            ctx.lineTo(Math.floor(p.x*scale) + 2.5, Math.floor(p.y*scale) + 2.5);
         });
         ctx.closePath();
         // ctx.fill();
@@ -82,9 +82,9 @@ export default class Primitive {
         ctx.setLineDash([]);
         ctx.strokeStyle = this.colors[color][0];//'#ddd';
         fp = this.drawablePoints[0];
-        ctx.moveTo(Math.floor(fp.x) + 2.5, Math.floor(fp.y) + 2.5);
+        ctx.moveTo(Math.floor(fp.x*scale) + 2.5, Math.floor(fp.y*scale) + 2.5);
         this.drawablePoints.slice(1).forEach(p => {
-            ctx.lineTo(Math.floor(p.x) + 2.5, Math.floor(p.y) + 2.5);
+            ctx.lineTo(Math.floor(p.x*scale) + 2.5, Math.floor(p.y*scale) + 2.5);
         });
         ctx.closePath();
 
