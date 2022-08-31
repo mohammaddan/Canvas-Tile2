@@ -62,8 +62,8 @@ export default class BaseMirror {
 
     getMirrorMeasure(canvasElement,canvas){
         let tempCanvas =document.createElement('canvas');
-        let w=parseFloat(this.width)
-        let h=parseFloat(this.height)
+        let w=parseFloat(this.width)*this.scale
+        let h=parseFloat(this.height)*this.scale
         tempCanvas.width=w+51
         tempCanvas.height=h+51
         let ctx = tempCanvas.getContext('2d');

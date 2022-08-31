@@ -86,7 +86,7 @@ inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new RectanglesMirror(ctx,width,height,params,1,0.7);
+let mirror= new RectanglesMirror(ctx,width,height,params,1,0.75);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);
