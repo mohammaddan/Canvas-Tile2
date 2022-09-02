@@ -71,7 +71,7 @@ export default class Primitive {
         ctx.stroke();
 
         ctx.beginPath();
-        let my_gradient = ctx.createLinearGradient(0, 0, 200, 400);
+        let my_gradient = ctx.createLinearGradient(0, 0, 200*scale, 400*scale);
         my_gradient.addColorStop(0, this.colors[color][2]);
         my_gradient.addColorStop(0.3,  this.colors[color][3]);
         my_gradient.addColorStop(0.5,  this.colors[color][2]);
@@ -119,13 +119,16 @@ export default class Primitive {
     }
 
     measureLine(ctx, x1, y1, x2, y2, dx, dy, label) {
+        let scale= ((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))>1000000 ? 10 : 1
+        dx=dx*scale
+        dy=dy*scale
         let t = Math.atan((x2 - x1) / (y2 - y1));
-        ctx.strokeStyle = "#fcc";
+        ctx.strokeStyle = "#faa";
         ctx.beginPath();
         ctx.moveTo(x1, y1);
-        ctx.lineTo(x1 + dx * 1.1, y1 + dy * 1.1);
+        ctx.lineTo(x1 + dx * 1.1*scale, y1 + dy * 1.1*scale);
         ctx.moveTo(x2, y2);
-        ctx.lineTo(x2 + dx * 1.1, y2 + dy * 1.1);
+        ctx.lineTo(x2 + dx * 1.1*scale, y2 + dy * 1.1*scale);
         ctx.moveTo(x1 + dx, y1 + dy);
         ctx.lineTo(x2 + dx, y2 + dy);
         ctx.closePath();
@@ -133,20 +136,21 @@ export default class Primitive {
         ctx.strokeStyle = "#f00";
         ctx.fillStyle = "#f00";
         ctx.beginPath();
-        ctx.lineTo(x2 + dx + 5 * Math.cos(t + Math.PI / 4), y2 + dy - 5 * Math.sin(t + Math.PI / 4));
-        ctx.lineTo(x2 + dx + 5 * Math.cos(t + (3 * Math.PI) / 4), y2 + dy - 5 * Math.sin(t + (3 * Math.PI) / 4));
+        ctx.lineTo(x2 + dx + 5 *scale* Math.cos(t + Math.PI / 4), y2 + dy - 5 *scale* Math.sin(t + Math.PI / 4));
+        ctx.lineTo(x2 + dx + 5 *scale* Math.cos(t + (3 * Math.PI) / 4), y2 + dy - 5 *scale* Math.sin(t + (3 * Math.PI) / 4));
         ctx.lineTo(x2 + dx, y2 + dy);
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
         ctx.beginPath();
         ctx.moveTo(x1 + dx, y1 + dy);
-        ctx.lineTo(x1 + dx - 5 * Math.cos(t + Math.PI / 4), y1 + dy + 5 * Math.sin(t + Math.PI / 4));
-        ctx.lineTo(x1 + dx - 5 * Math.cos(t + (3 * Math.PI) / 4), y1 + dy + 5 * Math.sin(t + (3 * Math.PI) / 4));
+        ctx.lineTo(x1 + dx - 5 *scale* Math.cos(t + Math.PI / 4), y1 + dy + 5 *scale* Math.sin(t + Math.PI / 4));
+        ctx.lineTo(x1 + dx - 5 *scale* Math.cos(t + (3 * Math.PI) / 4), y1 + dy + 5 *scale* Math.sin(t + (3 * Math.PI) / 4));
         ctx.lineTo(x1 + dx, y1 + dy);
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
+        ctx.font=(10*scale)+'px arial'
         let text=typeof label == "number" ? label.toFixed(1) : label
         let temp=ctx.measureText(text)
         ctx.fillStyle = "#fff";

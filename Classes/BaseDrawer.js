@@ -157,6 +157,7 @@ export default class BaseDrawer {
     }
 
     drawAll(color='white',scale=1) {
+        this.color=color;
         // this.ctx.imageSmoothingEnabled = true;
         // console.log(this.shapes);
         // this.ctx.strokeStyle='#000000aa';

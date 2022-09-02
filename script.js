@@ -35,7 +35,7 @@ import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
-let width = 255.45, height =388.5;
+let width = 200, height =300;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -80,7 +80,7 @@ let cx = 0;
 
 // ------------------------------------------------------------------------------------------------
 let inParams = RectanglesMirror.parameters(width, height);
-console.log(inParams);
+// console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
@@ -98,9 +98,9 @@ reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
 })
-// mirror.getMirrorPics(canvas,true).then(()=>{
-//   mirror.downloadMirrorPics()
-// })
+mirror.getMirrorPics(canvas,true).then(()=>{
+  mirror.downloadMirrorPics()
+})
 // mirror.getMirrorPics(canvas2)
 // console.log(mirror.mirrorPics)
 // mirror.drawDXF().downloadDXF()

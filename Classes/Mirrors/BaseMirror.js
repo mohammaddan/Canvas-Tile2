@@ -62,15 +62,17 @@ export default class BaseMirror {
 
     getMirrorMeasure(canvasElement,canvas){
         let tempCanvas =document.createElement('canvas');
-        let w=parseFloat(this.width)*this.scale
-        let h=parseFloat(this.height)*this.scale
-        tempCanvas.width=w+51
-        tempCanvas.height=h+51
+        tempCanvas.setAttribute('width',(this.width*10)+'px')
+        tempCanvas.setAttribute('height',(this.height*10)+'px')
+        let w=parseFloat(this.width)*10//this.scale
+        let h=parseFloat(this.height)*10//this.scale
+        tempCanvas.width=w+51*10
+        tempCanvas.height=h+51*10
         let ctx = tempCanvas.getContext('2d');
-        ctx.drawImage(canvas,40,40)
+        ctx.drawImage(canvas,40*10,40*10)
         let tempPrimitive = new Square(w,h)
-        tempPrimitive.shiftXY(40,40)
-        tempPrimitive.drawMeasures(ctx,0,0,'',w)
+        tempPrimitive.shiftXY(40*10,40*10)
+        tempPrimitive.drawMeasures(ctx,0,0,'',w,true)
         return tempCanvas
     }
 
@@ -79,8 +81,17 @@ export default class BaseMirror {
      * send ctx just for mirror itself
      */
     getMirrorPics(canvasElement,isMirror=false) {
-        let ctx=canvasElement.getContext('2d')
-        let el=isMirror ? this.getMirrorMeasure(ctx,canvasElement) : canvasElement;
+        let tempCanvas =document.createElement('canvas');
+        tempCanvas.setAttribute('width',(this.width*10)+'px')
+        tempCanvas.setAttribute('height',(this.height*10)+'px')
+        let ctx=tempCanvas.getContext('2d')
+        // let ctx=canvasElement.getContext('2d')
+        let tempCTX=this.ctx
+        this.drawer.ctx=ctx
+        this.drawer.drawAll(this.drawer.color,10)
+        this.drawer.ctx=tempCTX;
+        this.drawer.drawAll(this.drawer.color,this.scale)
+        let el=isMirror ? this.getMirrorMeasure(ctx,tempCanvas) : canvasElement;
         return fetch(el.toDataURL('image/png'))
             .then(res => res.blob()).then(blob => {
                 this.mirrorPics.push(new File([blob], 'mirror.png', {type: "image/png"}))

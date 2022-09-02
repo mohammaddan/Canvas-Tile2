@@ -20,7 +20,7 @@ export default class JeweledMirror extends BaseMirror {
     let squareWidth=this.squarWidth = params.squareWidth;
     let tx= (width-params.countX*squareWidth) / (params.countX+1),
         ty=(height-params.countY*squareWidth)/(params.countY+1);
-    console.log(params.countX,squareWidth)
+    // console.log(params.countX,squareWidth)
     this.lozengeWidth = tx;//-squareWidth;
     this.lozengeHeight = ty;//-squareWidth;
     for(let x=0;x<width;x+=this.lozengeWidth+squareWidth)

@@ -26,15 +26,15 @@ export default class Square extends Primitive {
         return 2 * (this.width + this.height);
     }
 
-    drawMeasures(ctx, offsetX, offsetY, n, size) {
+    drawMeasures(ctx, offsetX, offsetY, n, size,isMirror=false) {
         let points = [];
-        let raio = this.width / this.height;
+        let ratio = this.width / this.height;
         let t = Math.sqrt(this.width ** 2 + (this.height / 2) ** 2)
         this.points.forEach(p => {
-            points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * raio) })
+            points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * ratio) })
         })
-        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -10, this.width)
-        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -20, 0, this.height)
+        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -10, this.width/(isMirror?10:1))
+        this.measureLine(ctx, points[0].x, points[0].y, points[3].x, points[3].y, -20, 0, this.height/(isMirror?10:1))
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         let fp = points[0];
