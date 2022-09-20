@@ -79,14 +79,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = RectanglesMirror.parameters(width, height);
+let inParams = TwoSpotSpearMirror.parameters(width, height);
 // console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new RectanglesMirror(ctx,width,height,params,1,0.75);
+let mirror= new TwoSpotSpearMirror(ctx,width,height,params,1,0.75);
 // smoky , blue , gold , boronze , mesi , rozgold , white
 mirror.draw('gold');
 mirror.drawMeasures(ctx2, params);
@@ -97,9 +97,10 @@ let reserves=mirror.reservePrimitives(180,180);
 reserves.forEach(r=>{
   r.primitive.moveToCenter(200,200)
   r.primitive.draw(ctx3)
+  console.log(r.primitive.area(),r.primitive.constructor.name)
 })
 mirror.getMirrorPics(canvas,true).then(()=>{
-  mirror.downloadMirrorPics()
+  // mirror.downloadMirrorPics()
 })
 // mirror.getMirrorPics(canvas2)
 // console.log(mirror.mirrorPics)

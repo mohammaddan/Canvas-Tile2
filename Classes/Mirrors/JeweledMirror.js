@@ -17,7 +17,8 @@ export default class JeweledMirror extends BaseMirror {
   constructor(ctx, width, height, params, padding = 0,scale=1) {
     super(ctx, width, height,0,scale);
     if (!params.squareWidth) params.squareWidth = 7;
-    let squareWidth=this.squarWidth = params.squareWidth;
+    this.params=params
+    let squareWidth= params.squareWidth;
     let tx= (width-params.countX*squareWidth) / (params.countX+1),
         ty=(height-params.countY*squareWidth)/(params.countY+1);
     // console.log(params.countX,squareWidth)
@@ -94,10 +95,10 @@ export default class JeweledMirror extends BaseMirror {
 
   reservePrimitives(width,height) {
     return [
-      {title:'مربع',name:'square',primitive:new Square(this.squareWidth, this.squareWidth, this.padding)},
+      {title:'مربع',name:'square',primitive:new Square(this.params.squareWidth, this.params.squareWidth, this.padding)},
       {title:'شش ضعلی',name:'irregularHexagon',primitive: new IrregularHexagon(this.lozengeWidth, this.lozengeHeight, this.squareWidth, this.padding, 1)},
-      {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge(this.lozengeWidth/2-this.squarWidth/2, this.lozengeHeight, this.squareWidth, this.padding, 1, "left")},
-      {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2-this.squarWidth/2, this.squareWidth, this.padding, 1, "top")},
+      {title:'نیزه حاشیه راست و چپ',name:'halfCutedLozengeH',primitive:new HalfCutedLozenge(this.lozengeWidth/2-this.params.squareWidth/2, this.lozengeHeight, this.params.squareWidth, this.padding, 1, "left")},
+      {title:'نیزه حاشیه بالا و پایین',name:'halfCutedLozengeV',primitive:new HalfCutedLozenge(this.lozengeWidth, this.lozengeHeight / 2-this.params.squareWidth/2, this.params.squareWidth, this.padding, 1, "top")},
 
       // new CutedLozenge(width/1.5,height,height/4,0,1,false),
       // new Square(width,height),

@@ -21,7 +21,7 @@ export default class BladeMirror extends BaseMirror {
 
         this.bladeWidth = this.lozengeHeight = this.lozengeWidth = width / params.countX;
         let countY = this.countY = Math.ceil((height - 2 * params.upperBladeHeight) / 120);
-
+        this.upperBladeHeight=params.upperBladeHeight
         this.bladeHeight = (height - 2 * params.upperBladeHeight) / countY;
         this.padding = padding;
         for (let i = 0; i < params.countX; i++) {

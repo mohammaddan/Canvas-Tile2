@@ -98,7 +98,7 @@ export default class FourAndHalfSpotSpearMirror extends BaseMirror {
             {
                 title: 'نیزه حاشیه بالا و پایین',
                 name: 'upperSpear',
-                primitive: new UpperSpear(this.lozengeWidth, this.upperSpearHeight, this.padding, 1)
+                primitive: new UpperSpear(this.lozengeWidth, this.params.upperSpearHeight, this.padding, 1)
             },
             {title: 'نیزه', name: 'spear', primitive: new Spear(this.spearWidth, this.spearHeight, this.padding)},
             {

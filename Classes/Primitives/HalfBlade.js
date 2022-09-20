@@ -5,6 +5,7 @@ export default class HalfBlade extends Primitive {
         super(width, height, padding, lineWidth);
         this.h1 = width;
         this.h2 = height - this.h1;
+
         if (type === 'top-left') {
             this.points.push({ x: 0, y: 0 });
             this.points.push({ x: width, y: 0 });
@@ -50,7 +51,7 @@ export default class HalfBlade extends Primitive {
     }
 
     clone() {
-        return new Blade(this.width, this.height, this.padding, this.lineWidth);
+        return new HalfBlade(this.width, this.height, this.padding, this.lineWidth);
     }
 
     area() {
