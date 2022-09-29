@@ -9,14 +9,23 @@ export default class Primitive {
         this.offsetX = 0;
 
         this.colors={
-            white:['#f8f3f3','#dcd4d4','#ccc','#fafafa'],
-            smoky:['#c8c3c3','#a7a1a1','#767877','#b9b9b9'],
-            blue:['#b5c0da','#9eb3d1','#6e87c1','#8cacd8'],
-            gold:['#f4f1d8','#f3e483','#d7cd46','#e6e652'],
-            boronze:['#efc6a6','#d5c097','#be9a57','#ccaa7a'],
-            mesi:['#e5ccb8','#d8b9a5','#f4a174','#ed9b60'],
-            rozgold:['#f8e8df','#ffd7be','#ffd79b','#fbc87d'],
+            // white:['#f8f3f3','#dcd4d4','#ccc','#fafafa'],
+            white:['#f8f3f3','#d2caca','#b7bcbe','#fafafa'],
+            // smoky:['#c8c3c3','#a7a1a1','#767877','#b9b9b9'],
+            smoky:['#c8c3c3','#aaa2a2','#878a8d','#b9b9b9'],
+            // blue:['#b5c0da','#9eb3d1','#6e87c1','#8cacd8'],
+            blue:['#b5c0da','#9a9fb5','#6681a4','#8cacd8'],
+            // gold:['#f4f1d8','#f3e483','#d7cd46','#e6e652'],
+            gold:['#f4f1d8','#cfc8b3','#b2b71c','#f4f425'],
+            // boronze:['#efc6a6','#d5c097','#be9a57','#ccaa7a'],
+            boronze:['#efc6a6','#cba48a','#ae966d','#efc890'],
+            // mesi:['#e5ccb8','#d8b9a5','#f4a174','#ed9b60'],
+            mesi:['#e5ccb8','#c3a999','#b78056','#faaa71'],
+            // rozgold:['#f8e8df','#ffd7be','#ffd79b','#fbc87d'],
+            rozgold:['#ffdcd7','#d9b7b3','#ba967d','#ffc8a5'],
+            grey:['#e1dcdc','#bfb7b7','#999ea0','#d2d2d2'],
         }
+
     }
 
     set_line_width(size) {

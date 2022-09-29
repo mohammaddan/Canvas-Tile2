@@ -87,8 +87,8 @@ inParams.forEach((p) => {
   params[p.name] = parseFloat(p.value);
 });
 let mirror= new TwoSpotSpearMirror(ctx,width,height,params,1,0.75);
-// smoky , blue , gold , boronze , mesi , rozgold , white
-mirror.draw('gold');
+// smoky , blue , gold , boronze , mesi , rozgold , white , grey
+mirror.draw('grey');
 mirror.drawMeasures(ctx2, params);
 
 // document.body.append(mirror.getMirrorMeasure(ctx,canvas))
