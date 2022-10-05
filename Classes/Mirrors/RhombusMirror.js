@@ -18,19 +18,22 @@ export default class RhombusMirror extends BaseMirror {
 
         this.rhombusWidth = width / params.countX;
         this.rhombusHeight = height / params.countY;
+
         let t=[2,4,1,3,5];
 
         this.h1 = !params.angle ? this.rhombusWidth : Math.tan(Math.PI * params.angle / 180) * this.rhombusWidth;
-        this.rhombusHeight+=this.h1
+        // this.rhombusHeight+=this.h1
+        console.log(this.rhombusHeight,this.h1)
         for (let j = 0; j < params.countX; j++) {
             let h1 = t[j % 3 ] * (this.rhombusHeight - this.h1) / 7 + this.h1;
 
             this.drawer.addOneShapeAt(j * this.rhombusWidth, 0, new HalfBlade(this.rhombusWidth, h1, padding, 1, 'top-'+(j%2?'left':'right')))
-            for (let i = 0; i < params.countY - 1; i++)
-                this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + i * (this.rhombusHeight - this.h1) +(j%2?this.rhombusWidth:0),
+            for (let i = 0; i < params.countY - 1; i++){
+                this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + i * (this.rhombusHeight),
                     new Rhombus(this.rhombusWidth, this.rhombusHeight, padding, 1, (j%2?'right':'left')))
-            this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 - this.h1 + (params.countY - 1) * (this.rhombusHeight -this.h1) +(j%2?this.rhombusWidth:0),
-                new HalfBlade(this.rhombusWidth, this.rhombusHeight - h1, padding, 1, 'bottom-'+(j%2?'right':'left')))
+            }
+            this.drawer.addOneShapeAt(j * this.rhombusWidth, h1 -this.h1+ (params.countY - 1) * this.rhombusHeight +(j%2?this.rhombusWidth:0),
+                new HalfBlade(this.rhombusWidth, this.rhombusHeight - h1+this.h1, padding, 1, 'bottom-'+(j%2?'right':'left')))
         }
 
     }

@@ -1,0 +1,82 @@
+import Primitive from "../Primitive.js";
+
+export default class Square extends Primitive {
+    constructor(width, height, padding = 0, lineWidth = 1,type='left') {
+        super(width, height, padding, lineWidth);
+        switch (type){
+            case 'top-left':
+                this.points.push({ x: 0, y: 0 });
+                this.points.push({ x: width, y: 0 });
+                this.points.push({ x: width, y: height });
+
+                this.drawablePoints.push({ x: padding, y: padding });
+                this.drawablePoints.push({ x: width - padding, y: padding });
+                this.drawablePoints.push({ x: width - padding, y: height - padding });
+                break
+            case 'top-right':
+                this.points.push({ x: 0, y: 0 });
+                this.points.push({ x: width, y: 0 });
+                this.points.push({ x: 0, y: height });
+
+                this.drawablePoints.push({ x: padding, y: padding });
+                this.drawablePoints.push({ x: width - padding, y: padding });
+                this.drawablePoints.push({ x: padding, y: height - padding });
+                break
+            case 'bottom-left':
+                this.points.push({ x: 0, y: 0 });
+                this.points.push({ x: width, y: height });
+                this.points.push({ x: 0, y: height });
+
+                this.drawablePoints.push({ x: padding, y: padding });
+                this.drawablePoints.push({ x: width - padding, y: height - padding });
+                this.drawablePoints.push({ x: padding, y: height - padding });
+                break
+            case 'bottom-right':
+                this.points.push({ x: width, y: 0 });
+                this.points.push({ x: width, y: height });
+                this.points.push({ x: 0, y: height });
+
+                this.drawablePoints.push({ x: width - padding, y: padding });
+                this.drawablePoints.push({ x: width - padding, y: height - padding });
+                this.drawablePoints.push({ x: padding, y: height - padding });
+                break
+        }
+    }
+
+    clone() {
+        return new Square(this.width, this.height, this.padding, this.lineWidth);
+    }
+
+    area() {
+        return this.width * this.height/2;
+    }
+
+    environment() {
+        return this.width + this.height+Math.sqrt(this.width**2+this.height**2);
+    }
+
+    drawMeasures(ctx, offsetX, offsetY, n, size,isMirror=false) {
+        let points = [];
+        let ratio = this.width / this.height;
+        let t = Math.sqrt(this.width ** 2 + (this.height / 2) ** 2)
+        this.points.forEach(p => {
+            points.push({ x: offsetX + p.x * size / this.width, y: offsetY + p.y * size / (this.height * ratio) })
+        })
+        this.measureLine(ctx, points[0].x, points[0].y, points[1].x, points[1].y, 0, -15, this.width/(isMirror?10:1))
+        this.measureLine(ctx, points[0].x, points[0].y, points[2].x, points[2].y, -20, 0, this.height/(isMirror?10:1))
+        this.measureLine(ctx, points[1].x, points[1].y, points[2].x, points[2].y, 0, 20, this.height/(isMirror?10:1))
+        ctx.beginPath();
+        ctx.strokeStyle = '#000';
+        let fp = points[0];
+        ctx.moveTo(Math.floor(fp.x), Math.floor(fp.y));
+        points.slice(1).forEach(p => {
+            ctx.lineTo(Math.floor(p.x), Math.floor(p.y));
+        });
+        ctx.closePath();
+        ctx.stroke();
+        if(n){
+            ctx.fillStyle = '#555';
+            ctx.fillText('n=' + n, points[0].x + 5, points[2].y - 5)
+        }
+    }
+}

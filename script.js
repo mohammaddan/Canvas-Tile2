@@ -14,6 +14,7 @@ import BladeMirror from "./Classes/Mirrors/BladeMirror.js";
 import BrickMirror from "./Classes/Mirrors/BrickMirror.js";
 import Square from "./Classes/Primitives/Square.js";
 import RhombusMirror from "./Classes/Mirrors/RhombusMirror.js";
+import RhombusesMirror from "./Classes/Mirrors/RhombusesMirror.js";
 import Blade from "./Classes/Primitives/Blade.js";
 import BottomSpear from "./Classes/Primitives/BottomSpear.js";
 import BottomTriangle from "./Classes/Primitives/BottomTriangle.js";
@@ -35,7 +36,7 @@ import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
-let width = 200, height =300;
+let width = 300, height =300;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -79,14 +80,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = TwoSpotSpearMirror.parameters(width, height);
+let inParams = RhombusesMirror.parameters(width, height);
 // console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new TwoSpotSpearMirror(ctx,width,height,params,1,0.75);
+let mirror= new RhombusesMirror(ctx,width,height,params,1,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white , grey
 mirror.draw('grey');
 mirror.drawMeasures(ctx2, params);
