@@ -2,7 +2,7 @@ import BaseMirror from "./BaseMirror.js";
 import Rhombus from "../Primitives/Rhombus.js";
 import HalfSquare from "../Primitives/HalfSquare.js";
 
-export default class RhombusMirror extends BaseMirror {
+export default class RhombusesMirror extends BaseMirror {
     /**
      *
      * @param ctx
@@ -59,8 +59,8 @@ export default class RhombusMirror extends BaseMirror {
                 required: true,
                 label: 'تعداد تکرار در ارتفاع',
                 default: Math.round(0.5 * height / 20),
-                min: 10,
-                max: 40
+                min: Math.round(0.5 * height / 40),
+                max: Math.round(0.5 * height / 10)
             },
             {
                 name: 'angle',

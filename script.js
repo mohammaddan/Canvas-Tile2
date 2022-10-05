@@ -36,7 +36,7 @@ import CompositeMirror from "./Classes/Mirrors/CompositeMirror.js";
 import HexagonalMirror from "./Classes/Mirrors/HexagonalMirror.js";
 import IrregularHexagon from "./Classes/Primitives/IrregularHexagon.js";
 
-let width = 300, height =300;
+let width = 200, height =200;
 let canvas = document.getElementById("myCanvas");
 let canvas2 = document.getElementById("myCanvas2");
 let canvas3 = document.getElementById("myCanvas3");
@@ -89,7 +89,7 @@ inParams.forEach((p) => {
 });
 let mirror= new RhombusesMirror(ctx,width,height,params,1,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white , grey
-mirror.draw('grey');
+mirror.draw('white');
 mirror.drawMeasures(ctx2, params);
 
 // document.body.append(mirror.getMirrorMeasure(ctx,canvas))
