@@ -53,8 +53,8 @@ export default class RhombusMirror extends BaseMirror {
                 required: true,
                 label: 'تعداد تکرار در ارتفاع',
                 default: Math.round(0.5*height / 60),
-                min: 50,
-                max: 100
+                min: Math.round(0.5*height / 100),
+                max: Math.round(0.5*height / 20)
             },
             {
                 name: 'angle',
