@@ -80,14 +80,14 @@ let cx = 0;
 // ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
-let inParams = RhombusesMirror.parameters(width, height);
+let inParams = ShatterMirror.parameters(width, height);
 // console.log(inParams);
 let params = {};
 inParams.forEach((p) => {
   p.value = p.default; // prompt(p.label,p.default);
   params[p.name] = parseFloat(p.value);
 });
-let mirror= new RhombusesMirror(ctx,width,height,params,1,1);
+let mirror= new ShatterMirror(ctx,width,height,params,1,1);
 // smoky , blue , gold , boronze , mesi , rozgold , white , grey
 mirror.draw('white');
 mirror.drawMeasures(ctx2, params);

@@ -54,9 +54,9 @@ export default class ShatterMirror extends BaseMirror {
         let s = new Square(this.squareWidth, this.squareHeight, this.padding);
         s.drawMeasures(ctx, 50.5, 40.5, params.countY * params.countX, 80 * size);
         let hs = new Square(this.squareWidth*2, this.squareHeight, this.padding);
-        hs.drawMeasures(ctx, 50.5, 180.5, params.countY * params.countX, 80 * size);
+        hs.drawMeasures(ctx, 50.5, 180.5, params.countY * params.countX*2, 80 * size);
         let vs = new Square(this.squareWidth, this.squareHeight*2, this.padding);
-        vs.drawMeasures(ctx, 200.5, 40.5, params.countY * params.countX, 80 * size);
+        vs.drawMeasures(ctx, 200.5, 40.5, params.countY * params.countX*2, 80 * size);
     }
 
 
