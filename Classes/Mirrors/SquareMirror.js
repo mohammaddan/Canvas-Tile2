@@ -33,9 +33,9 @@ export default class SquareMirror extends BaseMirror {
         name: "countY",
         required: true,
         label: "تعداد تکرار در ارتفاع",
-        default: Math.round(width / 25),
-        min: Math.ceil(width / 50),
-        max: Math.floor(width / 10),
+        default: Math.round(height / 25),
+        min: Math.ceil(height / 50),
+        max: Math.floor(height / 10),
       },
     ];
   }
